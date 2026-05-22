@@ -149,7 +149,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className={cn('relative', 'flex', 'justify-center', 'items-center', 'bg-[#080808]', 'w-full', 'min-h-screen', 'overflow-hidden')}>
+    <section className={cn('relative', 'flex', 'justify-center', 'items-center', 'bg-[#080808]', 'w-full', 'min-h-[1080px]', 'overflow-hidden')}>
 
       {/* Canvas */}
       <canvas ref={canvasRef} className={cn('absolute', 'inset-0', 'w-full', 'h-full')} />
@@ -184,19 +184,19 @@ export default function HeroSection() {
         style={{ background: "radial-gradient(ellipse at 50% 50%, transparent 15%, rgba(8,8,8,0.82) 100%)" }} />
 
       {/* ── Content ── */}
-      <div className={cn('z-10', 'relative', 'flex', 'flex-col', 'items-center', 'mx-auto', 'px-4', 'md:px-9', 'pt-28', 'pb-20', 'max-w-[1440px]', 'text-center')}>
+      <div className={cn('z-10', 'relative', 'flex', 'flex-col', 'items-center', 'mx-auto', 'px-4', 'md:px-9', 'pt-28', 'pb-20', 'max-w-[1040px]', 'text-center')}>
 
         {/* Badge */}
         <div className={cn('inline-flex', 'items-center', 'gap-2', 'bg-white/5', 'backdrop-blur-md', 'mb-8', 'px-4', 'py-2', 'border', 'border-white/10', 'rounded-full', 'animate-fade-in-up')}>
           <Zap size={11} className={cn('opacity-60', 'fill-white', 'text-white')} />
-          <span className={cn('font-inter', 'font-semibold', 'text-[8px]','md:text-[11px]', 'text-white/50', 'uppercase', 'tracking-[0.2em]')}>
+          <span className={cn('font-inter', 'font-semibold', 'text-[8px]','md:text-[11px]', 'xl:text-[14px]' , 'text-white/50', 'uppercase', 'tracking-[0.2em]')}>
             Trusted by 50+ product teams worldwide
           </span>
         </div>
 
         {/* ── Big headline ── */}
-        <h1 className={cn('mb-5', 'w-full', 'max-w-[1480px]', 'font-mont', 'font-bold', 'text-white', 'leading-none', 'tracking-tight', 'animate-fade-in-up')}
-          style={{ fontSize: "clamp(96px, min(8vw, 12vh), 180px)", animationDelay: "60ms" }}>
+        <h1 className={cn('mb-5', 'font-mont', 'font-bold', 'text-white', 'text-[96px]','leading-none', 'tracking-tight', 'animate-fade-in-up')}
+          style={{animationDelay: "60ms" }}>
           We Build
           <br />
           <Typewriter />
@@ -204,8 +204,8 @@ export default function HeroSection() {
           <span className="text-white/60">That Ship.</span>
         </h1>
           {/* ── Heavy paragraph ── */}
-        <p className={cn('mb-4', 'max-w-[880px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
-          style={{ fontSize: "clamp(16px, min(2vw, 2.2vh), 24px)", animationDelay: "140ms" }}>
+        <p className={cn('mb-4', 'max-w-[680px]', 'font-inter', 'text-white/50', 'leading-[1.8]', 'animate-fade-in-up')}
+          style={{ fontSize: "clamp(15px, 1.8vw, 19px)", animationDelay: "140ms" }}>
           From initial idea to production ready product, we architect, design, and develop software that <span className={cn('font-medium', 'text-white/80')}>drives real revenue</span>. We deliver clean code, exceptional user experiences, and high performing products your customers will love on time and without compromise.
         </p>
 
