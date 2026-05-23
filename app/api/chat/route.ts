@@ -154,7 +154,7 @@ Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics
 ## Contact
 - Email: info@thrilledge.com
 - Phone: +44 7576 532096
-- WhatsApp: https://wa.me/447853746775
+- WhatsApp: https://wa.me/+447576532096
 - Book a meeting: user just needs to say "book meeting"
 
 ## Our Process & Culture
