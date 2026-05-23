@@ -256,7 +256,7 @@ export function ChatWidget() {
     // ── Human/WhatsApp intent ─────────────────────────────────────────────
     if (detectHumanIntent(trimmed)) {
       await delay(500)
-      addMessage('assistant', "Of course! You can reach our team directly on WhatsApp — they typically respond within a few minutes during business hours.\n\n👉 [Chat on WhatsApp](https://wa.me/447853746775)\n\nOr email us at info@thrilledge.com")
+      addMessage('assistant', "Of course! You can reach our team directly on WhatsApp — they typically respond within a few minutes during business hours.\n\n👉 [Chat on WhatsApp](https://wa.me/+447576532096)\n\nOr email us at info@thrilledge.com")
       return
     }
 
@@ -309,7 +309,7 @@ export function ChatWidget() {
         )
       }
     } catch {
-      addMessage('assistant', "Sorry, I'm having a bit of trouble right now. Please reach us on [WhatsApp](https://wa.me/447853746775) or at info@thrilledge.com")
+      addMessage('assistant', "Sorry, I'm having a bit of trouble right now. Please reach us on [WhatsApp](https://wa.me/+447576532096) or at info@thrilledge.com")
     } finally {
       setLoading(false)
     }
@@ -368,7 +368,7 @@ export function ChatWidget() {
     } catch {
       addMessage(
         'assistant',
-        "Something went wrong with the booking. Please try at [/contact](/contact) or reach us on [WhatsApp](https://wa.me/447853746775)."
+        "Something went wrong with the booking. Please try at [/contact](/contact) or reach us on [WhatsApp](https://wa.me/+447576532096)."
       )
       resetBooking()
     } finally {
@@ -632,7 +632,7 @@ export function ChatWidget() {
         {/* Footer */}
         <div className="px-4 pb-3 flex items-center justify-between shrink-0">
           <a
-            href="https://wa.me/447853746775"
+            href="https://wa.me/+447576532096"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-[11px] text-[#929296] hover:text-[#25D366] transition-colors"
