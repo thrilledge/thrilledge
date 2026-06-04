@@ -195,7 +195,7 @@ export default function HeroSection() {
         </div>
 
         {/* ── Big headline ── */}
-        <h1 className={cn('mb-5', 'font-mont', 'font-bold', 'text-white', 'text-[96px]','leading-none', 'tracking-tight', 'animate-fade-in-up')}
+        <h1 className={cn('mb-5', 'font-mont', 'font-bold', 'text-white', 'md:text-[96px]','leading-none', 'tracking-tight', 'animate-fade-in-up')}
           style={{animationDelay: "60ms" }}>
           We Build
           <br />
