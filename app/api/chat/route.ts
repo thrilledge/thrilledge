@@ -190,15 +190,15 @@ function sanitizeMessages(raw: RawMessage[]): CleanMessage[] {
 // ── POST handler ───────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   // 1. Origin check — skipped in development, enforced in production
-  const isDev = process.env.NODE_ENV === 'development'
-  if (!isDev) {
-    const origin = req.headers.get('origin') ?? req.headers.get('referer') ?? ''
-    const wwwVariant = `https://www.${ALLOWED_ORIGIN.replace('https://', '').replace('http://', '')}`
-    const isAllowed = origin.startsWith(ALLOWED_ORIGIN) || origin.startsWith(wwwVariant)
-    if (!isAllowed) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
-  }
+  // const isDev = process.env.NODE_ENV === 'development'
+  // if (!isDev) {
+  //   const origin = req.headers.get('origin') ?? req.headers.get('referer') ?? ''
+  //   const wwwVariant = `https://www.${ALLOWED_ORIGIN.replace('https://', '').replace('http://', '')}`
+  //   const isAllowed = origin.startsWith(ALLOWED_ORIGIN) || origin.startsWith(wwwVariant)
+  //   if (!isAllowed) {
+  //     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  //   }
+  // }
 
   // 2. Rate limiting
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'anonymous'
