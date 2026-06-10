@@ -12,6 +12,7 @@ import {
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
   Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
+  Wrench,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -39,7 +40,6 @@ interface MenuGroup {
 
 // ─── data ─────────────────────────────────────────────────────────────────────
 const menus: MenuGroup[] = [
-  //  { label: 'Our work', href: '/work' },
   {
     label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
     items: [
@@ -87,6 +87,8 @@ const menus: MenuGroup[] = [
       { label: 'Logistics', href: '/industries/logistics', icon: Truck, description: 'Efficient logistics solutions using AI and blockchain to optimize supply chain management.' },
     ],
   },
+  { label: 'Tools', href: '/tools' },
+
 ]
 // ─── lucide icon renderer ─────────────────────────────────────────────────────
 function MenuIcon({ icon: Icon }: { icon: LucideIcon }) {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/layout/header'
@@ -82,14 +83,16 @@ export default function RootLayout({
         <meta charSet="utf-8" />
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        <Providers>
-          <div style={{ overflowX: 'clip' }}>
-            <Header />
-            {children}
-            <Footer />
-          </div>
-          <ChatWidget />
-        </Providers>
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ''}>
+          <Providers>
+            <div style={{ overflowX: 'clip' }}>
+              <Header />
+              {children}
+              <Footer />
+            </div>
+            <ChatWidget />
+          </Providers>
+        </ClerkProvider>
         <Analytics />
         <SpeedInsights />
       </body>

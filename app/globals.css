@@ -546,3 +546,6 @@ figure.wp-block-image.size-large {
 .testimonials-swiper .swiper-pagination-bullet-active {
   background: #ffffff;
 }
+.cl-footerItem {
+    display: none;
+}
