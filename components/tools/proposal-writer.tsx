@@ -8,8 +8,6 @@ import { saveToolGeneration } from '@/lib/tool-history-client'
 export function ProposalWriter() {
   const [jobTitle, setJobTitle] = useState('')
   const [jobDescription, setJobDescription] = useState('')
-  const [skills, setSkills] = useState('')
-  const [experience, setExperience] = useState('')
   const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -25,7 +23,7 @@ export function ProposalWriter() {
       const res = await fetch('/api/tools/proposal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jobTitle, jobDescription, skills, experience }),
+        body: JSON.stringify({ jobTitle, jobDescription }),
       })
 
       const data = await res.json()
@@ -41,7 +39,7 @@ export function ProposalWriter() {
       setResult(data.proposal)
       await saveToolGeneration({
         tool_type: 'proposal',
-        input_data: { jobTitle, jobDescription, skills: skills || '', experience: experience || '' },
+        input_data: { jobTitle, jobDescription },
         output_data: data.proposal,
       })
     } catch (err) {
@@ -87,28 +85,6 @@ export function ProposalWriter() {
               placeholder="Paste the full job description here..."
               rows={6}
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-[#e5e5e5] text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-white resize-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1.5">Your Skills</label>
-            <input
-              type="text"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
-              placeholder="e.g. React, Node.js, TypeScript, Stripe API"
-              className="w-full px-4 py-2.5 rounded-xl border border-[#e5e5e5] text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-white"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1.5">Relevant Experience</label>
-            <textarea
-              value={experience}
-              onChange={(e) => setExperience(e.target.value)}
-              placeholder="Briefly describe relevant experience or past projects..."
-              rows={3}
               className="w-full px-4 py-2.5 rounded-xl border border-[#e5e5e5] text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400 bg-white resize-none"
             />
           </div>
