@@ -1,9 +1,9 @@
 import { clerkClient } from '@clerk/nextjs/server'
 
 const MONTHLY_LIMITS: Record<string, number> = {
-  proposal: 5,
-  'cold-email': 10,
-  'cold-call': 5,
+  proposal: 20,
+  'cold-email': 20,
+  'cold-call': 20,
 }
 
 export async function checkUsage(userId: string, tool: string): Promise<{ allowed: boolean; plan: string }> {
@@ -19,7 +19,7 @@ export async function checkUsage(userId: string, tool: string): Promise<{ allowe
 
   const usage = (metadata.usage as Record<string, number>) || {}
   const currentUsage = usage[tool] || 0
-  const limit = MONTHLY_LIMITS[tool] || 5
+  const limit = MONTHLY_LIMITS[tool] || 20
 
   if (currentUsage >= limit) {
     return { allowed: false, plan }
