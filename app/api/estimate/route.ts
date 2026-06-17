@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { extractTrackingInfo, trackingHtml } from '../_helpers/tracking'
 
 function makeTransport() {
   return nodemailer.createTransport({
@@ -89,6 +90,8 @@ export async function POST(req: NextRequest) {
                   <p style="margin:0;font-size:15px;color:#111212;line-height:1.6;white-space:pre-wrap;">${notes}</p>
                 </td>
               </tr>` : ''}
+
+              ${trackingHtml(extractTrackingInfo(req))}
 
             </table>
           </td>
