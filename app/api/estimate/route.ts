@@ -35,6 +35,8 @@ export async function POST(req: NextRequest) {
         </td>
       </tr>` : ''
 
+    const tracking = await extractTrackingInfo(req)
+
     const tagList = (items: string[]) => items.length
       ? items.map(i => `<span style="display:inline-block;background:#f0f0f0;color:#111212;font-size:12px;padding:4px 10px;border-radius:20px;margin:2px 3px 2px 0;">${i}</span>`).join('')
       : '—'
@@ -91,7 +93,7 @@ export async function POST(req: NextRequest) {
                 </td>
               </tr>` : ''}
 
-              ${trackingHtml(extractTrackingInfo(req))}
+              ${trackingHtml(tracking)}
 
             </table>
           </td>

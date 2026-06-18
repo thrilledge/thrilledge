@@ -82,6 +82,8 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Build HTML email ────────────────────────────────────────────────────
+    const tracking = await extractTrackingInfo(req)
+
     const fields: [string, string][] = [
       ['Full Name',          name],
       ['Email',              email],
@@ -152,7 +154,7 @@ export async function POST(req: NextRequest) {
                 </td>
               </tr>` : ''}
 
-              ${trackingHtml(extractTrackingInfo(req))}
+              ${trackingHtml(tracking)}
 
             </table>
           </td>
