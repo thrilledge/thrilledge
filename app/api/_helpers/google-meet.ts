@@ -16,7 +16,11 @@ async function getAuthClient() {
     return null
   }
 
-  const formattedKey = key.startsWith('"') ? JSON.parse(key) : key.replace(/\\n/g, '\n')
+  let formattedKey = key
+  if (formattedKey.startsWith('"') && formattedKey.endsWith('"')) {
+    formattedKey = formattedKey.slice(1, -1)
+  }
+  formattedKey = formattedKey.replace(/\\n/g, '\n')
 
   const client = new JWT({
     email,
@@ -76,7 +80,7 @@ export async function createGoogleMeet(
       calendarId,
       requestBody: event,
       conferenceDataVersion: 1,
-      sendUpdates: 'all',
+      sendUpdates: 'none',
     })
 
     const meetLink = res.data.hangoutLink
