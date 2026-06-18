@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
 
     const tracking = await extractTrackingInfo(req)
 
+    console.log('[Book Meeting] Creating Google Meet for', name, email)
     const meet = await createGoogleMeet(
       `Zeerak Jamshaid — ${name}`,
       dateObj.toISOString(),
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
       `Meeting with ${name}\nEmail: ${email}\nPhone: ${phone}`,
     )
     const meetLink = meet?.meetLink || ''
+    console.log('[Book Meeting] Meet link:', meetLink || 'NOT GENERATED')
 
     // ── Email to team ───────────────────────────────────────────────────────
     const teamHtml = `

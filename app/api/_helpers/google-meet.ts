@@ -1,16 +1,3 @@
-/**
- * Google Meet Link Generator
- *
- * Setup required:
- * 1. Go to https://console.cloud.google.com → Create a project → Enable Google Calendar API
- * 2. Create a Service Account → Download JSON key
- * 3. In Google Calendar settings → Share your calendar with the service account email (Make changes to events)
- * 4. Set these env vars:
- *    GOOGLE_SERVICE_ACCOUNT_EMAIL — service account client_email
- *    GOOGLE_PRIVATE_KEY — service account private_key (with actual newlines)
- *    GOOGLE_CALENDAR_ID — your Google email address (the calendar to create events on)
- */
-
 let cachedClient: any = null
 
 async function getAuthClient() {
@@ -22,12 +9,18 @@ async function getAuthClient() {
   const key = process.env.GOOGLE_PRIVATE_KEY
 
   if (!email || !key) {
-    throw new Error('Google Meet: GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_PRIVATE_KEY must be set')
+    console.error('[Google Meet] Missing env vars:',
+      !email ? 'GOOGLE_SERVICE_ACCOUNT_EMAIL' : '',
+      !key ? 'GOOGLE_PRIVATE_KEY' : '',
+    )
+    return null
   }
+
+  const formattedKey = key.startsWith('"') ? JSON.parse(key) : key.replace(/\\n/g, '\n')
 
   const client = new JWT({
     email,
-    key: key.replace(/\\n/g, '\n'),
+    key: formattedKey,
     scopes: ['https://www.googleapis.com/auth/calendar'],
   })
 
@@ -48,10 +41,18 @@ export async function createGoogleMeet(
   description?: string,
 ): Promise<MeetLinkResult | null> {
   const calendarId = process.env.GOOGLE_CALENDAR_ID
-  if (!calendarId) return null
+  if (!calendarId) {
+    console.error('[Google Meet] GOOGLE_CALENDAR_ID not set')
+    return null
+  }
 
   try {
     const auth = await getAuthClient()
+    if (!auth) {
+      console.error('[Google Meet] Auth client not created — check env vars')
+      return null
+    }
+
     const { google } = await import('googleapis')
     const calendar = google.calendar({ version: 'v3', auth })
 
@@ -66,8 +67,10 @@ export async function createGoogleMeet(
           conferenceSolutionKey: { type: 'hangoutsMeet' },
         },
       },
-      attendees: attendeeEmails.map(email => ({ email })),
+      attendees: attendeeEmails.filter(Boolean).map(email => ({ email })),
     }
+
+    console.log('[Google Meet] Creating event:', summary, startISO)
 
     const res = await calendar.events.insert({
       calendarId,
@@ -79,11 +82,18 @@ export async function createGoogleMeet(
     const meetLink = res.data.hangoutLink
     const eventId = res.data.id
 
-    if (!meetLink) return null
+    if (!meetLink) {
+      console.error('[Google Meet] No hangoutLink in response')
+      return null
+    }
 
+    console.log('[Google Meet] Created:', meetLink)
     return { meetLink, eventId: eventId! }
-  } catch (e) {
-    console.error('[Google Meet] Failed to create meeting:', e)
+  } catch (e: any) {
+    console.error('[Google Meet] Failed:', e?.message || e)
+    if (e?.response?.data?.error) {
+      console.error('[Google Meet] API error details:', JSON.stringify(e.response.data.error))
+    }
     return null
   }
 }
