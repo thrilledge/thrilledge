@@ -49,7 +49,6 @@ export async function POST(req: NextRequest) {
       `Zeerak Jamshaid — ${name}`,
       dateObj.toISOString(),
       new Date(dateObj.getTime() + 30 * 60 * 1000).toISOString(),
-      [email, process.env.SMTP_TO!],
       eventDescription,
     )
     console.log('[Book Meeting] Calendar event:', eventId || 'not created')

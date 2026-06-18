@@ -32,7 +32,6 @@ export async function GET(req: NextRequest) {
       '[TEST] Jitsi Diagnostic',
       start,
       end,
-      [process.env.GOOGLE_CALENDAR_ID],
       `Test event with Jitsi link: ${link1}`,
     )
 

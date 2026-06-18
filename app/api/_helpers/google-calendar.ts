@@ -30,7 +30,6 @@ export async function createCalendarEvent(
   summary: string,
   startISO: string,
   endISO: string,
-  attendeeEmails: string[],
   description?: string,
 ): Promise<string | null> {
   const calendarId = process.env.GOOGLE_CALENDAR_ID
@@ -48,13 +47,11 @@ export async function createCalendarEvent(
       description: description || '',
       start: { dateTime: startISO, timeZone: 'Asia/Karachi' },
       end: { dateTime: endISO, timeZone: 'Asia/Karachi' },
-      attendees: attendeeEmails.filter(Boolean).map(email => ({ email })),
     }
 
     const res = await calendar.events.insert({
       calendarId,
       requestBody: event,
-      sendUpdates: 'none',
     })
 
     return res.data.id || null
