@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import { extractTrackingInfo, trackingHtml } from '../_helpers/tracking'
-import { createGoogleMeet } from '../_helpers/google-meet'
+import { generateJitsiLink } from '../_helpers/jitsi'
+import { createCalendarEvent } from '../_helpers/google-calendar'
 
 function makeTransport() {
   return nodemailer.createTransport({
@@ -40,16 +41,18 @@ export async function POST(req: NextRequest) {
 
     const tracking = await extractTrackingInfo(req)
 
-    console.log('[Book Meeting] Creating Google Meet for', name, email)
-    const meet = await createGoogleMeet(
+    const jitsiLink = generateJitsiLink()
+    console.log('[Book Meeting] Jitsi link:', jitsiLink)
+
+    const eventDescription = `Meeting with ${name}\nEmail: ${email}\nPhone: ${phone}\n\nJoin meeting: ${jitsiLink}`
+    const eventId = await createCalendarEvent(
       `Zeerak Jamshaid — ${name}`,
       dateObj.toISOString(),
       new Date(dateObj.getTime() + 30 * 60 * 1000).toISOString(),
       [email, process.env.SMTP_TO!],
-      `Meeting with ${name}\nEmail: ${email}\nPhone: ${phone}`,
+      eventDescription,
     )
-    const meetLink = meet?.meetLink || ''
-    console.log('[Book Meeting] Meet link:', meetLink || 'NOT GENERATED')
+    console.log('[Book Meeting] Calendar event:', eventId || 'not created')
 
     // ── Email to team ───────────────────────────────────────────────────────
     const teamHtml = `
@@ -77,7 +80,7 @@ export async function POST(req: NextRequest) {
                 <td style="padding:14px 0;border-bottom:1px solid #f0f0f0;">
                   <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Meeting Type</p>
                   <p style="margin:0;font-size:18px;font-weight:700;color:#111212;">Zeerak Jamshaid | 30 Minute Meeting</p>
-                  ${meetLink ? `<p style="margin:6px 0 0;font-size:13px;color:#111212;"><a href="${meetLink}" style="color:#1a73e8;text-decoration:underline;">${meetLink}</a></p>` : `<p style="margin:4px 0 0;font-size:13px;color:#929296;">Web conferencing details provided upon confirmation.</p>`}
+                  <p style="margin:6px 0 0;font-size:13px;color:#111212;"><a href="${jitsiLink}" style="color:#1a73e8;text-decoration:underline;">${jitsiLink}</a></p>
                 </td>
               </tr>
 
@@ -163,16 +166,14 @@ export async function POST(req: NextRequest) {
                 <td style="padding:16px 0 0;">
                   <p style="margin:0 0 2px;font-size:11px;color:#929296;text-transform:uppercase;letter-spacing:1px;">Date &amp; Time</p>
                   <p style="margin:0;font-size:16px;font-weight:600;color:#111212;">${formattedDate} at ${formattedTime}</p>
-                  ${meetLink ? `
                   <div style="margin-top:16px;text-align:center;">
-                    <a href="${meetLink}" style="display:inline-block;background:#1a73e8;color:#ffffff;font-size:16px;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;">
-                      Join Google Meet
+                    <a href="${jitsiLink}" style="display:inline-block;background:#1a73e8;color:#ffffff;font-size:16px;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;">
+                      Join Meeting
                     </a>
                     <p style="margin:10px 0 0;font-size:13px;color:#929296;">
-                      <a href="${meetLink}" style="color:#1a73e8;">${meetLink}</a>
+                      <a href="${jitsiLink}" style="color:#1a73e8;">${jitsiLink}</a>
                     </p>
-                  </div>` : `
-                  <p style="margin:6px 0 0;font-size:13px;color:#929296;">Web conferencing details will be provided upon confirmation.</p>`}
+                  </div>
                 </td>
               </tr>
             </table>
