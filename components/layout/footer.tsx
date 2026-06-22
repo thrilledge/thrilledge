@@ -184,6 +184,13 @@ export default function Footer() {
 
     <Link
       className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
+      href="/refund-policy"
+    >
+      Refund Policy
+    </Link>
+
+    <Link
+      className="text-sm text-white/40 hover:text-white transition-colors whitespace-nowrap"
       href="/terms-of-service"
     >
       Terms of Service

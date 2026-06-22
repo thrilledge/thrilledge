@@ -598,6 +598,8 @@ function MobileDrawer({
               <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.15em] font-semibold text-neutral-400">
                 <Link href="/privacy-policy">Privacy</Link>
 
+                <Link href="/refund-policy">Refund</Link>
+
                 <Link href="/terms-condition">Terms</Link>
 
                 <Link href="/sitemap.xml">Sitemap</Link>
