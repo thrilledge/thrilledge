@@ -40,6 +40,14 @@ import {
   Bitcoin,
   Landmark,
   Truck,
+  GitBranch,
+  TrendingUp,
+  Search,
+  Zap,
+  Map,
+  DollarSign,
+  Share2,
+  FileText,
   ArrowRight,
   Globe,
   Linkedin,
@@ -143,10 +151,73 @@ const mobileNav = [
       },
 
       {
+        label: 'Product Discovery & Research',
+        href: '/services/mvp-product-strategy',
+        desc: 'Validate ideas before building',
+        icon: Search,
+      },
+
+      {
+        label: 'MVP Development',
+        href: '/services/mvp-product-strategy',
+        desc: 'Build and launch MVPs fast',
+        icon: Zap,
+      },
+
+      {
+        label: 'Product Roadmapping',
+        href: '/services/mvp-product-strategy',
+        desc: 'Plan strategic product journeys',
+        icon: Map,
+      },
+
+      {
         label: 'SaaS Solutions',
         href: '/services/saas-solutions',
         desc: 'Cloud based SaaS products',
         icon: Cloud,
+      },
+
+      {
+        label: 'AI Workflow Automation',
+        href: '/services/ai-workflow-automation',
+        desc: 'Automate with AI agents',
+        icon: GitBranch,
+      },
+
+      {
+        label: 'Digital Marketing Solutions',
+        href: '/services/digital-marketing-solutions',
+        desc: 'Data-driven growth strategies',
+        icon: TrendingUp,
+      },
+
+      {
+        label: 'SEO Optimization',
+        href: '/services/digital-marketing-solutions',
+        desc: 'Boost search engine rankings',
+        icon: Search,
+      },
+
+      {
+        label: 'PPC & Paid Advertising',
+        href: '/services/digital-marketing-solutions',
+        desc: 'Targeted ad campaigns',
+        icon: DollarSign,
+      },
+
+      {
+        label: 'Social Media Marketing',
+        href: '/services/digital-marketing-solutions',
+        desc: 'Engage audiences on social',
+        icon: Share2,
+      },
+
+      {
+        label: 'Content Marketing',
+        href: '/services/digital-marketing-solutions',
+        desc: 'Drive traffic with content',
+        icon: FileText,
       },
 
       {
@@ -314,7 +385,7 @@ function AccordionItem({
       <div
         className={cn(
           'overflow-hidden transition-all duration-300',
-          open ? 'max-h-[900px] opacity-100' : 'max-h-0 opacity-0'
+          open ? 'max-h-[1500px] opacity-100' : 'max-h-0 opacity-0'
         )}
       >
         <div className="pl-2 pb-3 flex flex-col gap-2">

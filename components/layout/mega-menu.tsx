@@ -12,18 +12,25 @@ import {
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
   Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
-  Wrench,
+  Wrench, TrendingUp, Search, Zap, Map, DollarSign, Share2, FileText,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { cn } from "../../lib/utils";
 
 // ─── types ────────────────────────────────────────────────────────────────────
-interface MenuItem {
+interface SubMenuItem {
   label: string
   href: string
-  description: string
   icon: LucideIcon
+}
+
+interface MenuItem {
+  label: string
+  href?: string
+  description?: string
+  icon: LucideIcon
+  children?: SubMenuItem[]
 }
 
 interface MenuGroup {
@@ -58,10 +65,27 @@ const menus: MenuGroup[] = [
       { label: 'Custom Web Development', href: '/services/custom-web-development', icon: Globe, description: 'Our web engineers craft scalable, secure, and high-performing applications that power growth' },
       { label: 'UI/UX Design', href: '/services/ui-ux-design', icon: Palette, description: 'Our design philosophy blends aesthetics, usability, and psychology into effortless digital experiences' },
       { label: 'Mobile App Development', href: '/services/mobile-app-development', icon: Smartphone, description: 'We design and build powerful, scalable, and user-centric mobile apps across iOS and Android' },
-      { label: 'MVP & Product Strategy', href: '/services/mvp-product-strategy', icon: Rocket, description: 'We help you transform ideas into market-ready products, fast, focused, and scalable' },
+      {
+        label: 'MVP & Product Strategy', href: '/services/mvp-product-strategy', icon: Rocket,
+        description: 'We help you transform ideas into market-ready products, fast, focused, and scalable',
+        children: [
+          { label: 'Product Discovery & Research', href: '/services/mvp-product-strategy', icon: Search },
+          { label: 'MVP Development', href: '/services/mvp-product-strategy', icon: Zap },
+          { label: 'Product Roadmapping', href: '/services/mvp-product-strategy', icon: Map },
+        ],
+      },
       { label: 'SaaS Solutions', href: '/services/saas-solutions', icon: Cloud, description: 'We build scalable, cloud-native software and multi-tenant platforms designed for high retention and recurring growth' },
       { label: 'AI Workflow Automation', href: '/services/ai-workflow-automation', icon: GitBranch, description: 'We automate complex business workflows using AI agents, LLMs, and intelligent pipelines that reduce manual effort and accelerate operations.' },
-      { label: 'Digital Marketing Solutions', href: '/services/digital-marketing-solutions', icon: Rocket, description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.' },
+      {
+        label: 'Digital Marketing Solutions', href: '/services/digital-marketing-solutions', icon: TrendingUp,
+        description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.',
+        children: [
+          { label: 'SEO Optimization', href: '/services/digital-marketing-solutions', icon: Search },
+          { label: 'PPC & Paid Advertising', href: '/services/digital-marketing-solutions', icon: DollarSign },
+          { label: 'Social Media Marketing', href: '/services/digital-marketing-solutions', icon: Share2 },
+          { label: 'Content Marketing', href: '/services/digital-marketing-solutions', icon: FileText },
+        ],
+      },
       { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart,  description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
     ],
   },
@@ -179,21 +203,50 @@ export function MegaMenu() {
               <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
               <ul className={cn('gap-6', 'grid', 'grid-cols-3')}>
                 {(activeMenu.items ?? []).map((item) => (
-                  <li key={item.href} className="h-full">
-                    <Link
-                      href={item.href}
-                      onClick={() => setActive(null)}
-                      className={cn('block', 'box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-xl', 'w-full', 'h-full', 'font-semibold', 'text-[16px]', 'text-black', 'leading-6', 'cursor-pointer')}
-                    >
-                      <div className={cn('flex', 'items-start', 'gap-4')}>
-                        <MenuIcon icon={item.icon} />
-                        <div className={cn('flex', 'flex-col', 'gap-2')}>
-                          <p>{item.label}</p>
-                          <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-4.5')}>{item.description}</p>
+                  item.children ? (
+                    <li key={item.href || item.label} className="h-full">
+                      <div className={cn('box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-xl', 'w-full', 'h-full', 'cursor-pointer')}>
+                        <div className={cn('flex', 'items-start', 'gap-4')}>
+                          <MenuIcon icon={item.icon} />
+                          <div className={cn('flex', 'flex-col', 'gap-1.5', 'w-full')}>
+                            <Link href={item.href || '#'} onClick={() => setActive(null)} className={cn('font-semibold', 'text-[16px]', 'text-black', 'leading-6', 'hover:underline')}>
+                              {item.label}
+                            </Link>
+                            {item.description && (
+                              <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-4.5')}>{item.description}</p>
+                            )}
+                            <div className={cn('mt-2', 'space-y-1')}>
+                              {item.children.map((child) => (
+                                <Link key={child.label} href={child.href} onClick={() => setActive(null)}
+                                  className={cn('flex', 'items-center', 'gap-2', 'py-1', 'text-[13px]', 'text-[#777]', 'hover:text-black', 'transition-colors')}>
+                                  <child.icon size={14} className={cn('text-[#aaa]', 'shrink-0')} />
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </Link>
-                  </li>
+                    </li>
+                  ) : (
+                    <li key={item.href} className="h-full">
+                      <Link
+                        href={item.href || '#'}
+                        onClick={() => setActive(null)}
+                        className={cn('block', 'box-border', 'hover:bg-gray-50', 'px-4', 'py-2', 'border', 'border-white', 'hover:border-[#F2F2F2]', 'rounded-xl', 'w-full', 'h-full', 'font-semibold', 'text-[16px]', 'text-black', 'leading-6', 'cursor-pointer')}
+                      >
+                        <div className={cn('flex', 'items-start', 'gap-4')}>
+                          <MenuIcon icon={item.icon} />
+                          <div className={cn('flex', 'flex-col', 'gap-2')}>
+                            <p>{item.label}</p>
+                            {item.description && (
+                              <p className={cn('font-normal', 'text-[#929296]', 'text-[14px]', 'leading-4.5')}>{item.description}</p>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    </li>
+                  )
                 ))}
               </ul>
 
