@@ -67,7 +67,7 @@ export default function RefundPolicy() {
             <div className={cn('gap-4', 'grid', 'sm:grid-cols-2')}>
               {[
                 { label: "Free Plan", desc: "Limited usage per tool at no cost. Users can access basic features with monthly usage caps." },
-                { label: "Unlimited Plan", desc: "Full, unrestricted access to all tools with no usage limits. Available via paid subscription through Stripe." },
+                { label: "Unlimited Plan", desc: "Full, unrestricted access to all tools with no usage limits. Available via paid subscription through Paddle." },
               ].map((item) => (
                 <div key={item.label} className={cn('bg-[#fafafa]', 'p-5', 'border', 'border-border', 'rounded-xl')}>
                   <p className={cn('mb-2', 'font-mont', 'font-semibold', 'text-[13px]', 'text-foreground')}>{item.label}</p>
@@ -85,7 +85,7 @@ export default function RefundPolicy() {
 
           <PolicySection id="unlimited-plan" icon={<CreditCard size={18} />} title="3. Unlimited Plan">
             <p className={cn('mb-4', 'font-inter', 'text-[#555]', 'text-[15px]', 'leading-[1.8]')}>
-              The Unlimited Plan is a paid subscription billed on a recurring basis through Stripe. By subscribing, you agree to the following refund terms:
+              The Unlimited Plan is a paid subscription billed on a recurring basis through Paddle. By subscribing, you agree to the following refund terms:
             </p>
             <ul className="space-y-3">
               {[
@@ -137,7 +137,7 @@ export default function RefundPolicy() {
 
           <PolicySection id="processing-time" icon={<Clock size={18} />} title="6. Processing Time">
             <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[1.8]')}>
-              Approved refunds are processed within 5-10 business days. The funds will be returned to the original payment method used during checkout via Stripe. Your financial institution may take additional time to reflect the refund in your account.
+              Approved refunds are processed within 5-10 business days. The funds will be returned to the original payment method used during checkout via Paddle. Your financial institution may take additional time to reflect the refund in your account.
             </p>
           </PolicySection>
 

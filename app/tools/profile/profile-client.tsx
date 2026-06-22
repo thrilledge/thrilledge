@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { Loader2, LogOut, User, Mail, Crown, ArrowLeft } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { PaddleCheckoutButton } from '@/components/tools/paddle-checkout'
 
 interface UsageData {
   plan: string
@@ -128,15 +129,7 @@ export function ProfilePageClient() {
             {!isUnlimited && (
               <div className="mt-4 pt-4 border-t border-[#e5e5e5]">
                 <p className="text-sm text-neutral-600 mb-3">Need more? Upgrade to unlimited.</p>
-                <a
-                  href="https://billing.stripe.com/p/login/test_placeholder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#111212] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-                >
-                  <Crown size={15} />
-                  Upgrade to Unlimited
-                </a>
+                <PaddleCheckoutButton />
               </div>
             )}
           </div>
