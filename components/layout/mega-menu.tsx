@@ -68,23 +68,12 @@ const menus: MenuGroup[] = [
       {
         label: 'MVP & Product Strategy', href: '/services/mvp-product-strategy', icon: Rocket,
         description: 'We help you transform ideas into market-ready products, fast, focused, and scalable',
-        children: [
-          { label: 'Product Discovery & Research', href: '/services/mvp-product-strategy', icon: Search },
-          { label: 'MVP Development', href: '/services/mvp-product-strategy', icon: Zap },
-          { label: 'Product Roadmapping', href: '/services/mvp-product-strategy', icon: Map },
-        ],
       },
       { label: 'SaaS Solutions', href: '/services/saas-solutions', icon: Cloud, description: 'We build scalable, cloud-native software and multi-tenant platforms designed for high retention and recurring growth' },
       { label: 'AI Workflow Automation', href: '/services/ai-workflow-automation', icon: GitBranch, description: 'We automate complex business workflows using AI agents, LLMs, and intelligent pipelines that reduce manual effort and accelerate operations.' },
       {
         label: 'Digital Marketing Solutions', href: '/services/digital-marketing-solutions', icon: TrendingUp,
         description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.',
-        children: [
-          { label: 'SEO Optimization', href: '/services/digital-marketing-solutions', icon: Search },
-          { label: 'PPC & Paid Advertising', href: '/services/digital-marketing-solutions', icon: DollarSign },
-          { label: 'Social Media Marketing', href: '/services/digital-marketing-solutions', icon: Share2 },
-          { label: 'Content Marketing', href: '/services/digital-marketing-solutions', icon: FileText },
-        ],
       },
       { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart,  description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
     ],
