@@ -86,7 +86,7 @@ export default async function WorkPage() {
                 "leading-7",
               )}
             >
-              50+ products shipped across healthcare, fintech, eCommerce, and more.
+              50+ products shipped across healthcare, fintech, eCommerce, and beyond.
             </p>
 
 
