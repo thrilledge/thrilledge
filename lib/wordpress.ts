@@ -155,11 +155,26 @@ export interface WorkItem {
     industry?: string
     review?: number | number[]
     long_title?: string
-    challenge?: string
-    approach?: WorkAcfSectionWithImage
-    design_process?: WorkAcfSectionWithImage
-    development?: string
-    launch?: WorkAcfSectionWithImage
+    client?: string
+    role?: string
+    project_duration?: string
+    project_status?: string
+    project_url?: string
+    github_url?: string
+    overview?: string
+    problem?: string
+    solution?: string
+    features?: Array<{ title?: string; description?: string }>
+    technical_highlights?: Array<{ title?: string; description?: string }>
+    challenges?: Array<{ title?: string; description?: string }>
+    results?: string
+    tech_stack?: Array<{ name?: string; icon?: string }>
+    project_metrics?: Array<{ value?: string; label?: string }>
+    gallery?: Array<{ url?: string; alt?: string }>
+    faqs?: Array<{ question?: string; answer?: string }>
+    related_projects?: number[]
+    seo_meta_title?: string
+    seo_meta_description?: string
   }
   _embedded?: {
     'wp:featuredmedia'?: Array<{
