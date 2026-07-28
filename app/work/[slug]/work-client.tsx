@@ -58,6 +58,33 @@ export default function WorkPage({ params }: WorkPageProps) {
 
   const servicesText = services ? services.replace(/<[^>]*>/g, '') : ''
 
+  const parseListField = (val: string | Array<{ title?: string; description?: string }> | undefined | null): Array<{ title: string; description: string }> => {
+    if (!val) return []
+    if (Array.isArray(val)) return val.map(v => ({ title: v.title || '', description: v.description || '' }))
+    return val.split('\n').map(line => line.replace(/^[-•*]\s*/, '').trim()).filter(Boolean).map(v => ({ title: v, description: '' }))
+  }
+
+  const parseTechStack = (val: string | Array<{ name?: string; icon?: string }> | undefined | null): Array<{ name: string; icon: string }> => {
+    if (!val) return []
+    if (Array.isArray(val)) return val.map(v => ({ name: v.name || '', icon: v.icon || '' }))
+    return val.split('\n').map(line => line.replace(/^[-•*]\s*/, '').trim()).filter(Boolean).map(v => ({ name: v, icon: '' }))
+  }
+
+  const parseMetrics = (val: string | Array<{ value?: string; label?: string }> | undefined | null): Array<{ value: string; label: string }> => {
+    if (!val) return []
+    if (Array.isArray(val)) return val.map(v => ({ value: v.value || '', label: v.label || '' }))
+    return val.split('\n').map(line => line.replace(/^[-•*]\s*/, '').trim()).filter(Boolean).map(v => {
+      const parts = v.split(/•|-/).map(s => s.trim())
+      return parts.length >= 2 ? { value: parts[0], label: parts[1] } : { value: parts[0], label: '' }
+    })
+  }
+
+  const featuresList = parseListField(features)
+  const techHighlightsList = parseListField(technical_highlights)
+  const challengesList = parseListField(challenges)
+  const techStackList = parseTechStack(tech_stack)
+  const metricsList = parseMetrics(project_metrics)
+
   return (
     <>
       {featuredImage && (
@@ -186,15 +213,15 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Features */}
-        {features && features.length > 0 && (
+        {featuresList.length > 0 && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Features</h2>
               <div className={cn('grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-4')}>
-                {features.map((f, i) => (f.title || f.description) && (
+                {featuresList.map((f, i) => f.title && (
                   <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-6')}>
-                    {f.title && <h3 className={cn('font-mont', 'font-semibold', 'text-[18px]', 'text-[#111212]', 'mb-2')}>{f.title}</h3>}
-                    {f.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]')}>{f.description}</p>}
+                    <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{f.title}</h3>
+                    {f.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]', 'mt-1')}>{f.description}</p>}
                   </div>
                 ))}
               </div>
@@ -203,16 +230,16 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Technical Highlights */}
-        {technical_highlights && technical_highlights.length > 0 && (
+        {techHighlightsList.length > 0 && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Technical Highlights</h2>
               <div className={cn('flex', 'flex-col', 'gap-3')}>
-                {technical_highlights.map((t, i) => (t.title || t.description) && (
+                {techHighlightsList.map((t, i) => t.title && (
                   <div key={i} className={cn('flex', 'items-start', 'gap-3')}>
                     <CheckCircle2 size={20} className="text-[#111212] mt-0.5 shrink-0" />
                     <div>
-                      {t.title && <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{t.title}</h3>}
+                      <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{t.title}</h3>
                       {t.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]')}>{t.description}</p>}
                     </div>
                   </div>
@@ -223,15 +250,15 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Challenges */}
-        {challenges && challenges.length > 0 && (
+        {challengesList.length > 0 && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Challenges</h2>
               <div className={cn('flex', 'flex-col', 'gap-3')}>
-                {challenges.map((c, i) => (c.title || c.description) && (
+                {challengesList.map((c, i) => c.title && (
                   <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-5')}>
-                    {c.title && <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]', 'mb-1')}>{c.title}</h3>}
-                    {c.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]')}>{c.description}</p>}
+                    <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{c.title}</h3>
+                    {c.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]', 'mt-1')}>{c.description}</p>}
                   </div>
                 ))}
               </div>
@@ -251,14 +278,14 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Project Metrics */}
-        {project_metrics && project_metrics.length > 0 && (
+        {metricsList.length > 0 && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Project Metrics</h2>
               <div className={cn('grid', 'grid-cols-2', 'md:grid-cols-4', 'gap-4')}>
-                {project_metrics.map((m, i) => (m.value || m.label) && (
+                {metricsList.map((m, i) => m.value && (
                   <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-5', 'text-center')}>
-                    {m.value && <p className={cn('font-mont', 'font-bold', 'text-[28px]', 'text-[#111212]')}>{m.value}</p>}
+                    <p className={cn('font-mont', 'font-bold', 'text-[20px]', 'text-[#111212]')}>{m.value}</p>
                     {m.label && <p className={cn('font-inter', 'text-[13px]', 'text-[#929296]', 'mt-1')}>{m.label}</p>}
                   </div>
                 ))}
@@ -268,16 +295,13 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Tech Stack */}
-        {tech_stack && tech_stack.length > 0 && (
+        {techStackList.length > 0 && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Tech Stack</h2>
               <div className={cn('flex', 'flex-wrap', 'gap-3')}>
-                {tech_stack.map((t, i) => t.name && (
-                  <div key={i} className={cn('flex', 'items-center', 'gap-2', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-lg', 'px-4', 'py-2')}>
-                    {t.icon && (
-                      <Image src={t.icon} alt={t.name} width={20} height={20} className="rounded" />
-                    )}
+                {techStackList.map((t, i) => t.name && (
+                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-lg', 'px-4', 'py-2')}>
                     <span className={cn('font-inter', 'text-[14px]', 'font-medium', 'text-[#111212]')}>{t.name}</span>
                   </div>
                 ))}
@@ -287,12 +311,12 @@ export default function WorkPage({ params }: WorkPageProps) {
         )}
 
         {/* Gallery */}
-        {gallery && gallery.length > 0 && (
+        {gallery && typeof gallery !== 'boolean' && (Array.isArray(gallery) ? gallery.length > 0 : true) && (
           <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
             <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
               <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Gallery</h2>
               <div className={cn('grid', 'grid-cols-2', 'md:grid-cols-3', 'gap-4')}>
-                {gallery.map((img, i) => img.url && (
+                {Array.isArray(gallery) && gallery.map((img, i) => img.url && (
                   <div key={i} className={cn('relative', 'rounded-xl', 'overflow-hidden', 'aspect-video')}>
                     <Image src={img.url} alt={img.alt || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
                   </div>

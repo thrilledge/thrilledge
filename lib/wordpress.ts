@@ -153,7 +153,7 @@ export interface WorkItem {
     year?: string
     services?: string
     industry?: string
-    review?: number | number[]
+    review?: number | number[] | string
     long_title?: string
     client?: string
     role?: string
@@ -164,15 +164,15 @@ export interface WorkItem {
     overview?: string
     problem?: string
     solution?: string
-    features?: Array<{ title?: string; description?: string }>
-    technical_highlights?: Array<{ title?: string; description?: string }>
-    challenges?: Array<{ title?: string; description?: string }>
+    features?: string | Array<{ title?: string; description?: string }>
+    technical_highlights?: string | Array<{ title?: string; description?: string }>
+    challenges?: string | Array<{ title?: string; description?: string }>
     results?: string
-    tech_stack?: Array<{ name?: string; icon?: string }>
-    project_metrics?: Array<{ value?: string; label?: string }>
-    gallery?: Array<{ url?: string; alt?: string }>
-    faqs?: Array<{ question?: string; answer?: string }>
-    related_projects?: number[]
+    tech_stack?: string | Array<{ name?: string; icon?: string }>
+    project_metrics?: string | Array<{ value?: string; label?: string }>
+    gallery?: any
+    faqs?: string | Array<{ question?: string; answer?: string }>
+    related_projects?: string | number[]
     seo_meta_title?: string
     seo_meta_description?: string
   }
