@@ -4,7 +4,7 @@ import React from 'react'
 import { useWorkItem } from '@/hooks/use-work'
 import { useQuery } from '@tanstack/react-query'
 import { getTestimonial, getAdjacentWorkItems } from '@/lib/wordpress'
-import { Loader, ExternalLink, Github, CheckCircle2 } from 'lucide-react'
+import { Loader, ExternalLink, Github, CheckCircle2, ArrowRight, ArrowLeft, Lightbulb, Target, Layers, BarChart3, Code2, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -14,6 +14,37 @@ import { CTASection } from '@/components/sections/cta-section'
 
 interface WorkPageProps {
   params: Promise<{ slug: string }>
+}
+
+function MetaItem({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1.5 py-4 px-6 bg-white rounded-xl border border-[#e5e5e5]">
+      <span className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-[0.15em]">{label}</span>
+      <span className="text-[15px] font-mont font-semibold text-[#111212]">{children}</span>
+    </div>
+  )
+}
+
+function SectionHeader({ icon: Icon, title }: { icon?: React.ElementType; title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-8">
+      {Icon && (
+        <div className="w-9 h-9 rounded-lg bg-[#111212] flex items-center justify-center shrink-0">
+          <Icon size={18} className="text-white" />
+        </div>
+      )}
+      <h2 className="text-[26px] lg:text-[34px] font-mont font-bold text-[#111212] leading-tight">{title}</h2>
+      <div className="flex-1 h-px bg-[#e5e5e5] ml-4" />
+    </div>
+  )
+}
+
+function Section({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <section className={cn('w-full max-w-[1120px] mx-auto md:px-9 px-4', className)} {...props}>
+      {children}
+    </section>
+  )
 }
 
 export default function WorkPage({ params }: WorkPageProps) {
@@ -40,9 +71,12 @@ export default function WorkPage({ params }: WorkPageProps) {
 
   if (isLoading) {
     return (
-      <div className={cn('min-h-screen', 'bg-white')}>
-        <div className={cn('flex', 'items-center', 'justify-center', 'py-40')}>
-          <Loader size={32} className={cn('animate-spin', 'text-black')} />
+      <div className="min-h-screen bg-white">
+        <div className="flex items-center justify-center py-40">
+          <div className="flex flex-col items-center gap-3">
+            <Loader size={28} className="animate-spin text-[#111212]" />
+            <span className="text-[13px] font-inter text-[#929296]">Loading case study...</span>
+          </div>
         </div>
       </div>
     )
@@ -64,10 +98,24 @@ export default function WorkPage({ params }: WorkPageProps) {
     return val.split('\n').map(line => line.replace(/^[-•*]\s*/, '').trim()).filter(Boolean).map(v => ({ title: v, description: '' }))
   }
 
-  const parseTechStack = (val: string | Array<{ name?: string; icon?: string }> | undefined | null): Array<{ name: string; icon: string }> => {
+  const parseTechStack = (val: string | Array<{ name?: string; icon?: string }> | undefined | null): Array<{ name: string; icon: string; category?: string }> => {
     if (!val) return []
     if (Array.isArray(val)) return val.map(v => ({ name: v.name || '', icon: v.icon || '' }))
-    return val.split('\n').map(line => line.replace(/^[-•*]\s*/, '').trim()).filter(Boolean).map(v => ({ name: v, icon: '' }))
+    const lines = val.split('\n').map(l => l.trim()).filter(Boolean)
+    let currentCategory = ''
+    const result: Array<{ name: string; icon: string; category?: string }> = []
+    for (const line of lines) {
+      if (line.endsWith(':') || line.endsWith(':')) {
+        currentCategory = line.replace(/[:\-]/g, '').trim()
+      } else if (!line.startsWith('-') && !line.startsWith('•') && !line.startsWith('*')) {
+        const clean = line.replace(/^[-•*]\s*/, '').trim()
+        if (clean) result.push({ name: clean, icon: '', category: currentCategory || undefined })
+      } else {
+        const clean = line.replace(/^[-•*]\s*/, '').trim()
+        if (clean) result.push({ name: clean, icon: '', category: currentCategory || undefined })
+      }
+    }
+    return result
   }
 
   const parseMetrics = (val: string | Array<{ value?: string; label?: string }> | undefined | null): Array<{ value: string; label: string }> => {
@@ -85,350 +133,329 @@ export default function WorkPage({ params }: WorkPageProps) {
   const techStackList = parseTechStack(tech_stack)
   const metricsList = parseMetrics(project_metrics)
 
+  const groupedTech: Record<string, Array<{ name: string; icon: string }>> = {}
+  for (const t of techStackList) {
+    const cat = t.category || 'Other'
+    if (!groupedTech[cat]) groupedTech[cat] = []
+    groupedTech[cat].push(t)
+  }
+
+  const metaFields = [
+    { label: 'Year', value: year },
+    { label: 'Services', value: servicesText },
+    { label: 'Industry', value: industry },
+    { label: 'Client', value: client },
+    { label: 'Role', value: role },
+    { label: 'Duration', value: project_duration },
+    { label: 'Status', value: project_status },
+  ].filter(f => f.value)
+
   return (
     <>
       {featuredImage && (
-        <PageHero
-          label="Our Work portfolio"
-          title={work.title.rendered}
-          image={featuredImage}
-          imageAlt={work.title.rendered}
-        />
-      )}
-      <section className={cn('max-w-360', 'w-full', 'mx-auto', 'p-4', 'rounded-[20px]', 'overflow-hidden')}>
-        <div className={cn('relative', 'w-full', 'h-full', 'flex', 'flex-col')}>
-          <div className={cn('absolute', 'z-50', 'bottom-0', 'left-0', 'right-0', 'h-fit', 'w-full', 'flex', 'lg:flex-row', 'flex-col', 'justify-between', 'lg:items-center', 'lg:gap-6', 'gap-2', 'lg:px-9', 'px-5', 'lg:py-6', 'py-6')}>
-            <h1 className={cn('h-fit', 'text-[40px]', 'leading-10', 'lg:text-[64px]', 'lg:leading-16', 'font-mont', 'font-semibold', 'text-white')}
+        <div className="relative h-[60vh] min-h-[420px] max-h-[640px] overflow-hidden">
+          <Image
+            src={featuredImage}
+            alt={work.title.rendered}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111212]/90 via-[#111212]/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10 md:pb-14 max-w-[1120px] mx-auto">
+            <span className="inline-block mb-3 text-[11px] font-inter font-semibold text-white/50 uppercase tracking-[0.2em]">Case Study</span>
+            <h1 className="text-[36px] md:text-[56px] lg:text-[68px] font-mont font-bold text-white leading-[1.08] max-w-3xl"
               dangerouslySetInnerHTML={{ __html: work.title.rendered }}
             />
             {acf.long_title && (
-              <p className={cn('lg:text-[32px]', 'text-[24px]', 'font-mont', 'font-semibold', 'text-white', 'lg:max-w-lg', 'lg:leading-10', 'leading-7.5')}>
+              <p className="mt-3 text-[17px] md:text-[20px] font-inter text-white/70 max-w-xl leading-relaxed">
                 {acf.long_title}
               </p>
             )}
           </div>
-          <div
-            className={cn('absolute', 'inset-0', 'transition', 'duration-300', 'rounded-[20px]')}
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3), rgba(0,0,0,0), rgba(0,0,0,0))' }}
-          />
         </div>
-      </section>
-      <div className={cn('relative', 'bg-[#F3F3F3]')}>
+      )}
 
-        {/* Meta row: Year / Services / Industry */}
-        <div className={cn('relative', 'max-w-360', 'w-full', 'grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'lg:gap-1', 'gap-4', 'mx-auto', 'md:px-9', 'px-4', 'mt-8')}>
-          {year && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Year</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{year}</p>
-            </div>
-          )}
-          {servicesText && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Services</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black', 'max-w-90')}>{servicesText}</p>
-            </div>
-          )}
-          {industry && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Industry</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{industry}</p>
-            </div>
-          )}
-          {client && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Client</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{client}</p>
-            </div>
-          )}
-          {role && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Role</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{role}</p>
-            </div>
-          )}
-          {project_duration && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Duration</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{project_duration}</p>
-            </div>
-          )}
-          {project_status && (
-            <div className={cn('w-full', 'flex', 'flex-col', 'gap-2')}>
-              <h6 className={cn('text-[16px]', 'leading-6', 'font-inter', 'text-[#929296]')}>Status</h6>
-              <p className={cn('text-[20px]', 'font-semibold', 'font-mont', 'text-black')}>{project_status}</p>
-            </div>
-          )}
-        </div>
+      <div className="relative bg-[#F3F3F3]">
 
-        {/* Links row */}
-        {(project_url || github_url) && (
-          <div className={cn('relative', 'max-w-360', 'w-full', 'flex', 'gap-4', 'mx-auto', 'md:px-9', 'px-4', 'mt-6')}>
-            {project_url && (
-              <a href={project_url} target="_blank" rel="noopener noreferrer"
-                className={cn('inline-flex', 'items-center', 'gap-2', 'px-4', 'py-2', 'bg-[#111212]', 'text-white', 'rounded-lg', 'font-inter', 'text-[14px]', 'hover:bg-black/80', 'transition-colors')}>
-                <ExternalLink size={16} /> View Project
-              </a>
-            )}
-            {github_url && (
-              <a href={github_url} target="_blank" rel="noopener noreferrer"
-                className={cn('inline-flex', 'items-center', 'gap-2', 'px-4', 'py-2', 'bg-[#111212]', 'text-white', 'rounded-lg', 'font-inter', 'text-[14px]', 'hover:bg-black/80', 'transition-colors')}>
-                <Github size={16} /> GitHub
-              </a>
-            )}
+        {/* Meta Info Bar */}
+        <div className="relative -mt-7 z-10 max-w-[1120px] mx-auto px-4 md:px-9">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {metaFields.map(f => (
+              <MetaItem key={f.label} label={f.label}>{f.value}</MetaItem>
+            ))}
           </div>
+        </div>
+
+        {/* Links */}
+        {(project_url || github_url) && (
+          <Section className="pt-6">
+            <div className="flex flex-wrap gap-3">
+              {project_url && (
+                <a href={project_url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#111212] text-white rounded-lg font-inter text-[13px] font-medium hover:bg-[#2a2a2a] transition-colors">
+                  <ExternalLink size={15} /> View Live Project
+                </a>
+              )}
+              {github_url && (
+                <a href={github_url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#111212] border border-[#e5e5e5] rounded-lg font-inter text-[13px] font-medium hover:bg-[#f7f7f7] transition-colors">
+                  <Github size={15} /> View Source
+                </a>
+              )}
+            </div>
+          </Section>
         )}
 
         {/* Overview */}
         {overview && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'md:py-24', 'py-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Overview</h2>
-              <div className={cn('text-[16px]', 'leading-7', 'font-inter', 'text-[#525252]', 'work-content')}
+          <Section className="pt-16 md:pt-20">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader icon={Lightbulb} title="Overview" />
+              <div className="text-[15px] md:text-[16px] leading-[1.75] font-inter text-[#525252] work-content max-w-[720px]"
                 dangerouslySetInnerHTML={{ __html: overview }} />
             </div>
-          </section>
+          </Section>
         )}
 
-        {/* Problem */}
-        {problem && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Problem</h2>
-              <div className={cn('text-[16px]', 'leading-7', 'font-inter', 'text-[#525252]', 'work-content')}
-                dangerouslySetInnerHTML={{ __html: problem }} />
+        {/* Problem & Solution side by side */}
+        {(problem || solution) && (
+          <Section className="pt-10 md:pt-14">
+            <div className="grid md:grid-cols-2 gap-6">
+              {problem && (
+                <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+                  <SectionHeader icon={Target} title="Problem" />
+                  <div className="text-[15px] leading-[1.75] font-inter text-[#525252] work-content"
+                    dangerouslySetInnerHTML={{ __html: problem }} />
+                </div>
+              )}
+              {solution && (
+                <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+                  <SectionHeader icon={Layers} title="Solution" />
+                  <div className="text-[15px] leading-[1.75] font-inter text-[#525252] work-content"
+                    dangerouslySetInnerHTML={{ __html: solution }} />
+                </div>
+              )}
             </div>
-          </section>
-        )}
-
-        {/* Solution */}
-        {solution && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Solution</h2>
-              <div className={cn('text-[16px]', 'leading-7', 'font-inter', 'text-[#525252]', 'work-content')}
-                dangerouslySetInnerHTML={{ __html: solution }} />
-            </div>
-          </section>
+          </Section>
         )}
 
         {/* Features */}
         {featuresList.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Features</h2>
-              <div className={cn('grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-4')}>
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader icon={CheckCircle2} title="Features" />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {featuresList.map((f, i) => f.title && (
-                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-6')}>
-                    <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{f.title}</h3>
-                    {f.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]', 'mt-1')}>{f.description}</p>}
+                  <div key={i}
+                    className="group flex items-center gap-3 p-4 rounded-xl border border-[#e5e5e5] bg-white hover:bg-[#F3F3F3] hover:border-[#d0d0d0] transition-all duration-200 cursor-default">
+                    <div className="w-7 h-7 rounded-full bg-[#111212] flex items-center justify-center shrink-0">
+                      <ChevronRight size={14} className="text-white" />
+                    </div>
+                    <span className="text-[14px] font-inter font-medium text-[#111212] leading-snug">{f.title}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Technical Highlights */}
         {techHighlightsList.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Technical Highlights</h2>
-              <div className={cn('flex', 'flex-col', 'gap-3')}>
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader icon={Code2} title="Technical Highlights" />
+              <div className="grid sm:grid-cols-2 gap-4">
                 {techHighlightsList.map((t, i) => t.title && (
-                  <div key={i} className={cn('flex', 'items-start', 'gap-3')}>
-                    <CheckCircle2 size={20} className="text-[#111212] mt-0.5 shrink-0" />
+                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-[#F3F3F3]">
+                    <CheckCircle2 size={18} className="text-[#111212] mt-0.5 shrink-0" />
+                    <span className="text-[14px] font-inter leading-relaxed text-[#525252]">{t.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Section>
+        )}
+
+        {/* Challenges */}
+        {challengesList.length > 0 && (
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader title="Challenges" />
+              <div className="flex flex-col gap-3">
+                {challengesList.map((c, i) => c.title && (
+                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-[#F3F3F3]">
+                    <span className="w-6 h-6 rounded-full bg-[#111212] text-white text-[12px] font-bold font-mont flex items-center justify-center shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
                     <div>
-                      <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{t.title}</h3>
-                      {t.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]')}>{t.description}</p>}
+                      <span className="text-[15px] font-inter font-medium text-[#111212]">{c.title}</span>
+                      {c.description && <p className="text-[13px] font-inter text-[#525252] mt-1 leading-relaxed">{c.description}</p>}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
-        )}
-
-        {/* Challenges */}
-        {challengesList.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Challenges</h2>
-              <div className={cn('flex', 'flex-col', 'gap-3')}>
-                {challengesList.map((c, i) => c.title && (
-                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-5')}>
-                    <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]')}>{c.title}</h3>
-                    {c.description && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]', 'mt-1')}>{c.description}</p>}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          </Section>
         )}
 
         {/* Results */}
         {results && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Results</h2>
-              <div className={cn('text-[16px]', 'leading-7', 'font-inter', 'text-[#525252]', 'work-content')}
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader title="Results" />
+              <div className="text-[15px] md:text-[16px] leading-[1.75] font-inter text-[#525252] work-content max-w-[720px]"
                 dangerouslySetInnerHTML={{ __html: results }} />
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Project Metrics */}
         {metricsList.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Project Metrics</h2>
-              <div className={cn('grid', 'grid-cols-2', 'md:grid-cols-4', 'gap-4')}>
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader icon={BarChart3} title="Project Metrics" />
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {metricsList.map((m, i) => m.value && (
-                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-5', 'text-center')}>
-                    <p className={cn('font-mont', 'font-bold', 'text-[20px]', 'text-[#111212]')}>{m.value}</p>
-                    {m.label && <p className={cn('font-inter', 'text-[13px]', 'text-[#929296]', 'mt-1')}>{m.label}</p>}
+                  <div key={i} className="text-center p-5 rounded-xl bg-[#F3F3F3] border border-[#e5e5e5]">
+                    <p className="text-[24px] md:text-[30px] font-mont font-bold text-[#111212] leading-none">{m.value}</p>
+                    {m.label && <p className="text-[12px] font-inter text-[#929296] mt-1.5 uppercase tracking-[0.05em] font-medium">{m.label}</p>}
                   </div>
                 ))}
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Tech Stack */}
-        {techStackList.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Tech Stack</h2>
-              <div className={cn('flex', 'flex-wrap', 'gap-3')}>
-                {techStackList.map((t, i) => t.name && (
-                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-lg', 'px-4', 'py-2')}>
-                    <span className={cn('font-inter', 'text-[14px]', 'font-medium', 'text-[#111212]')}>{t.name}</span>
+        {Object.keys(groupedTech).length > 0 && (
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader title="Tech Stack" />
+              <div className="flex flex-col gap-6">
+                {Object.entries(groupedTech).map(([category, items]) => (
+                  <div key={category}>
+                    <h3 className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-[0.15em] mb-3">{category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {items.map((t, i) => t.name && (
+                        <span key={i}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#F3F3F3] rounded-lg text-[13px] font-inter font-medium text-[#111212] border border-[#e5e5e5]">
+                          {t.icon && (
+                            <Image src={t.icon} alt={t.name} width={16} height={16} className="rounded" />
+                          )}
+                          {t.name}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Gallery */}
         {gallery && typeof gallery !== 'boolean' && (Array.isArray(gallery) ? gallery.length > 0 : true) && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>Gallery</h2>
-              <div className={cn('grid', 'grid-cols-2', 'md:grid-cols-3', 'gap-4')}>
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader title="Gallery" />
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {Array.isArray(gallery) && gallery.map((img, i) => img.url && (
-                  <div key={i} className={cn('relative', 'rounded-xl', 'overflow-hidden', 'aspect-video')}>
-                    <Image src={img.url} alt={img.alt || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" />
+                  <div key={i} className="relative rounded-xl overflow-hidden aspect-[4/3] group cursor-pointer">
+                    <Image src={img.url} alt={img.alt || ''} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 33vw" />
                   </div>
                 ))}
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Post Content */}
         {work.content?.rendered && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'md:py-24', 'py-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'flex', 'flex-col', 'gap-8', 'mx-auto', 'work-content')}>
-              <div dangerouslySetInnerHTML={{ __html: work.content.rendered }} />
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <div className="max-w-[720px] mx-auto text-[15px] md:text-[16px] leading-[1.75] font-inter text-[#525252] work-content"
+                dangerouslySetInnerHTML={{ __html: work.content.rendered }} />
             </div>
-          </section>
+          </Section>
         )}
 
         {/* FAQs */}
         {faqs && faqs.length > 0 && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto')}>
-              <h2 className={cn('text-[28px]', 'lg:text-[36px]', 'font-mont', 'font-bold', 'text-[#111212]', 'mb-6')}>FAQs</h2>
-              <div className={cn('flex', 'flex-col', 'gap-4')}>
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
+              <SectionHeader title="FAQs" />
+              <div className="flex flex-col gap-4">
                 {faqs.map((faq, i) => (faq.question || faq.answer) && (
-                  <div key={i} className={cn('bg-white', 'border', 'border-[#e5e5e5]', 'rounded-xl', 'p-6')}>
-                    {faq.question && <h3 className={cn('font-mont', 'font-semibold', 'text-[16px]', 'text-[#111212]', 'mb-2')}>{faq.question}</h3>}
-                    {faq.answer && <p className={cn('font-inter', 'text-[14px]', 'leading-6', 'text-[#525252]')}>{faq.answer}</p>}
-                  </div>
+                  <details key={i} className="group rounded-xl border border-[#e5e5e5] overflow-hidden">
+                    <summary className="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-[#F3F3F3] transition-colors">
+                      <h3 className="text-[15px] font-inter font-semibold text-[#111212] pr-4">{faq.question}</h3>
+                      <ChevronRight size={16} className="text-[#929296] shrink-0 group-open:rotate-90 transition-transform duration-200" />
+                    </summary>
+                    {faq.answer && (
+                      <div className="px-5 pb-5 text-[14px] font-inter leading-relaxed text-[#525252] border-t border-[#e5e5e5] pt-4">
+                        {faq.answer}
+                      </div>
+                    )}
+                  </details>
                 ))}
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Testimonial / Review */}
         {testimonial && (
-          <section className={cn('w-full', 'max-w-360', 'md:px-9', 'px-4', 'pb-16', 'mx-auto')}>
-            <div className={cn('max-w-259.5', 'w-full', 'mx-auto', 'bg-[#f7f7f7]', 'border', 'border-[#e5e5e5]', 'rounded-2xl', 'p-8', 'flex', 'flex-col', 'gap-4')}>
-              <div
-                className={cn('text-[18px]', 'leading-7', 'font-inter', 'text-[#111212]', 'italic')}
-                dangerouslySetInnerHTML={{ __html: testimonial.content.rendered }}
-              />
-              <div className={cn('pt-4', 'border-t', 'border-[#e5e5e5]')}>
-                <p className={cn('font-semibold', 'font-mont', 'text-black', 'text-[16px]')}>
-                  {testimonial.acf?.author_name ?? testimonial.title.rendered}
-                </p>
-                {(testimonial.acf?.author_title || testimonial.acf?.author_company) && (
-                  <p className={cn('text-[14px]', 'text-[#929296]', 'font-inter')}>
-                    {[testimonial.acf.author_title, testimonial.acf.author_company].filter(Boolean).join(', ')}
-                  </p>
-                )}
+          <Section className="pt-10 md:pt-14">
+            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#F3F3F3] rounded-bl-[100%] -z-10" />
+              <div className="max-w-[600px]">
+                <span className="text-[11px] font-inter font-semibold text-[#929296] uppercase tracking-[0.15em]">Client Testimonial</span>
+                <div
+                  className="mt-4 text-[17px] md:text-[19px] leading-[1.7] font-inter text-[#111212] italic"
+                  dangerouslySetInnerHTML={{ __html: testimonial.content.rendered }} />
+                <div className="mt-6 pt-5 border-t border-[#e5e5e5] flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#111212] flex items-center justify-center text-white font-mont font-bold text-[14px]">
+                    {(testimonial.acf?.author_name ?? testimonial.title.rendered).charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold font-mont text-[#111212] text-[14px]">
+                      {testimonial.acf?.author_name ?? testimonial.title.rendered}
+                    </p>
+                    {(testimonial.acf?.author_title || testimonial.acf?.author_company) && (
+                      <p className="text-[12px] text-[#929296] font-inter">
+                        {[testimonial.acf.author_title, testimonial.acf.author_company].filter(Boolean).join(', ')}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Prev / Next Navigation */}
-        <div className={cn('w-full', 'max-w-360', 'flex', 'justify-between', 'items-center', 'mx-auto', 'md:px-9', 'px-4', 'py-6')}>
-          {adjacent?.prev ? (
-            <Link
-              href={`/work/${adjacent.prev.slug}`}
-              className={cn('flex', 'gap-2', 'text-[24px]', 'leading-6', 'font-bold', 'font-mont', 'group', 'items-center')}
-            >
-              <span className={cn('w-6', 'flex', 'items-center', 'justify-center')}>
-                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  className={cn('group-hover:-translate-x-0.5', 'transition-all', 'duration-300', 'ease-in-out')}>
-                  <path d="M7 1L1 6L7 11" stroke="#111212" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="pt-0.75">Previous</span>
-            </Link>
-          ) : (
-            <span className={cn('flex', 'gap-2', 'text-[24px]', 'leading-6', 'font-bold', 'font-mont', 'text-[#ccc]', 'items-center', 'cursor-not-allowed')}>
-              <span className={cn('w-6', 'flex', 'items-center', 'justify-center')}>
-                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 1L1 6L7 11" stroke="#ccc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="pt-0.75">Previous</span>
-            </span>
-          )}
+        <Section className="pt-14 pb-8">
+          <div className="flex justify-between items-center border-t border-[#e5e5e5] pt-8">
+            {adjacent?.prev ? (
+              <Link href={`/work/${adjacent.prev.slug}`}
+                className="group flex items-center gap-2.5 text-[14px] font-mont font-semibold text-[#111212] hover:text-[#525252] transition-colors">
+                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                <span>{adjacent.prev.title.rendered.replace(/<[^>]*>/g, '')}</span>
+              </Link>
+            ) : <div />}
+            {adjacent?.next ? (
+              <Link href={`/work/${adjacent.next.slug}`}
+                className="group flex items-center gap-2.5 text-[14px] font-mont font-semibold text-[#111212] hover:text-[#525252] transition-colors text-right">
+                <span>{adjacent.next.title.rendered.replace(/<[^>]*>/g, '')}</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            ) : <div />}
+          </div>
+        </Section>
 
-          {adjacent?.next ? (
-            <Link
-              href={`/work/${adjacent.next.slug}`}
-              className={cn('flex', 'items-center', 'gap-2', 'text-[24px]', 'leading-6', 'font-bold', 'font-mont', 'group')}
-            >
-              <span className="pt-0.75">Next</span>
-              <span className={cn('w-6', 'flex', 'items-center', 'justify-center')}>
-                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  className={cn('rotate-180', 'group-hover:translate-x-0.5', 'transition-all', 'duration-300', 'ease-in-out')}>
-                  <path d="M7 1L1 6L7 11" stroke="#111212" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </Link>
-          ) : (
-            <span className={cn('flex', 'items-center', 'gap-2', 'text-[24px]', 'leading-6', 'font-bold', 'font-mont', 'text-[#ccc]', 'cursor-not-allowed')}>
-              <span className="pt-0.75">Next</span>
-              <span className={cn('w-6', 'flex', 'items-center', 'justify-center')}>
-                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="rotate-180">
-                  <path d="M7 1L1 6L7 11" stroke="#ccc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-            </span>
-          )}
-        </div>
-
-        {/* CTA */}
-   <CTASection/>
-
-
+        <CTASection />
       </div>
     </>
   )
