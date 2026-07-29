@@ -39,7 +39,7 @@ Issues found across the codebase, organised by file with the required fix.
 |------|-------|-----|
 | 209 | Missing space after period | `revenue</span>.We deliver` → `revenue</span>. We deliver` |
 
-## `components/sections/work-section.tsx`
+## `components/sections/casestudy-section.tsx`
 
 | Line | Issue | Fix |
 |------|-------|-----|

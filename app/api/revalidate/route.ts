@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
       case 'work':
         if (action === 'published' || action === 'updated') {
-          revalidatePath(`/work/${slug}`)
+          revalidatePath(`/casestudy/${slug}`)
           revalidatePath('/')
           revalidateTag('work-items')
         }
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
 // GET endpoint for testing
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('Authorization')
-  
+
   if (authHeader !== `Bearer ${REVALIDATE_SECRET}`) {
     return NextResponse.json(
       { error: 'Unauthorized' },

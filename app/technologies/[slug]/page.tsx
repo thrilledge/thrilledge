@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { WorkSection } from '@/components/sections/work-section'
+import { WorkSection } from '@/components/sections/casestudy-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
@@ -400,7 +400,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
                 {tech.headline}
               </h2>
             </div>
-             <p
+            <p
               className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7"
             >
               {tech.description}
@@ -410,7 +410,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
       {/* stats */}
-      <div className={cn('gap-[20px]', 'text-center', 'md:mt-10','mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'md:mt-10', 'mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
           <Animate key={i} variant="fade-up" delay={i * 100}>
             <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -422,7 +422,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Description */}
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[56px]', 'pb-[26px]','w-full', 'md:mt-5', 'mt-2', 'max-w-[1440px]')}>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[56px]', 'pb-[26px]', 'w-full', 'md:mt-5', 'mt-2', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
       </div>
 
@@ -494,12 +494,12 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <div className="bg-[#F3F3F3]">
         <ValueFeaturesSection />
       </div>
-<div className='pb-20'>
-      {/* Industries */}
-      <IndustriesSection />
-</div>
+      <div className='pb-20'>
+        {/* Industries */}
+        <IndustriesSection />
+      </div>
       {/* CTA */}
-     <CTASection/>
+      <CTASection />
 
 
     </div>

@@ -167,7 +167,7 @@ const nextConfig = {
       },
       {
         source: '/our-projects',
-        destination: '/work-pending',
+        destination: '/casestudy',
         permanent: true,
       },
       {

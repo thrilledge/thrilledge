@@ -36,15 +36,15 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
                 const longTitle = work.acf?.long_title || work.title.rendered
                 const servicesTags = work.acf?.services
                   ? work.acf.services
-                      .replace(/<[^>]*>/g, '')
-                      .split(/[,\n]/)
-                      .map((s) => s.trim())
-                      .filter(Boolean)
-                      .slice(0, 3)
+                    .replace(/<[^>]*>/g, '')
+                    .split(/[,\n]/)
+                    .map((s) => s.trim())
+                    .filter(Boolean)
+                    .slice(0, 3)
                   : []
 
                 return (
-                  <Link key={work.id} href={`/work/${work.slug}`}>
+                  <Link key={work.id} href={`/casestudy/${work.slug}`}>
                     <div className="w-full h-full flex flex-col group">
                       {/* Image container */}
                       <div className="relative overflow-hidden rounded-[24px] aspect-[4/5]">
@@ -111,7 +111,7 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
 
             <div className="text-center pt-4">
               <Link
-                href="/work"
+                href="/casestudy"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#111212] text-[#111212] hover:bg-[#111212] hover:text-white transition-all duration-300 font-semibold text-sm capitalize"
               >
                 View All Work

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getTestimonials } from '@/lib/wordpress'
-import { WorkGrid } from './work-grid'
+import { WorkGrid } from './casestudy-grid'
 import BrandsMarquee from '@/components/sections/brands'
 import { TestimonialsMarquee } from '@/components/sections/testimonials-marquee'
 import ValuePropositionSection from '@/components/sections/value-proposition'
@@ -126,7 +126,7 @@ export default async function WorkPage() {
       )}
 
       {/* CTA */}
-   <CTASection/>
+      <CTASection />
 
 
     </div>

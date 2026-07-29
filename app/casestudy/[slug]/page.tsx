@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getWorkItem, getAllWorkSlugs } from '@/lib/wordpress'
-import WorkClient from './work-client'
+import WorkClient from './casestudy-client'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Work, Thrill Edge Technologies`,
     description,
-    alternates: { canonical: `https://thrilledge.com/work/${slug}` },
+    alternates: { canonical: `https://thrilledge.com/casestudy/${slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `https://thrilledge.com/work/${slug}`,
+      url: `https://thrilledge.com/casestudy/${slug}`,
       ...(image && { images: [{ url: image, width: 1200, height: 630, alt: title }] }),
     },
     twitter: {
@@ -44,26 +44,28 @@ export default async function WorkPage({ params }: Props) {
   const { slug } = await params
   const work = await getWorkItem(slug)
 
-  const caseStudySchema = work
+  const /casestudySchema = work
     ? {
-        '@context': 'https://schema.org',
-        '@type': 'CreativeWork',
-        name: work.title.rendered.replace(/<[^>]*>/g, ''),
-        description: work.acf?.long_title ?? '',
-        url: `https://thrilledge.com/work/${slug}`,
-        creator: { '@type': 'Organization', name: 'Thrill Edge Technologies' },
-        ...(work._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
-          image: work._embedded['wp:featuredmedia'][0].source_url,
-        }),
-      }
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      name: work.title.rendered.replace(/<[^>]*>/g, ''),
+      description: work.acf?.long_title ?? '',
+      url: `https://thrilledge.com/casestudy/${slug}`,
+      creator: { '@type': 'Organization', name: 'Thrill Edge Technologies' },
+      ...(work._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
+        image: work._embedded['wp:featuredmedia'][0].source_url,
+      }),
+    }
     : null
 
   return (
     <>
-      {caseStudySchema && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
-      )}
-      <WorkClient params={params} />
+      {/casestudySchema && (
+        < script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify(/casestudySchema) }} / >
+      )
+        }
+          < WorkClient params={params} />
     </>
   )
 }

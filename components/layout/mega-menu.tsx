@@ -12,7 +12,7 @@ import {
   Brain, Globe, Palette, Smartphone, Rocket, Cloud,
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
   Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
-  Wrench, TrendingUp, Search, Zap, Map, DollarSign, Share2, FileText,
+  Wrench, TrendingUp, Search, Zap, Map, DollarSign, Share2, FileText, BriefcaseBusiness,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -51,6 +51,7 @@ const menus: MenuGroup[] = [
     label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
     items: [
       { label: 'About', href: '/about', icon: Users, description: `Learn about our mission, team, and the innovative solutions driving businesses forward worldwide.` },
+      { label: 'Case Studies', href: '/casestudy', icon: BriefcaseBusiness, description: 'Explore our successful projects and learn how we helped businesses achieve their goals.' },
       { label: 'Reviews', href: '/client-reviews', icon: Star, description: 'Read client reviews and testimonials about our software, web, and IT solutions.' },
       { label: 'FAQs', href: '/faqs', icon: HelpCircle, description: 'Explore answers to frequently asked questions about our software, AI solutions, and partnership processes.' },
       { label: 'Careers', href: '/careers', icon: Briefcase, description: 'Join our growing team and build impactful digital products alongside talented developers and creatives.' },
@@ -75,7 +76,7 @@ const menus: MenuGroup[] = [
         label: 'Digital Marketing Solutions', href: '/services/digital-marketing-solutions', icon: TrendingUp,
         description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.',
       },
-      { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart,  description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
+      { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart, description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
     ],
   },
   {
@@ -187,7 +188,7 @@ export function MegaMenu() {
           onMouseEnter={() => setActive(activeMenu.label)}
           onMouseLeave={() => setActive(null)}
         >
-          <div className={cn('flex', 'flex-col', 'gap-6', 'bg-white', 'p-3', 'rounded-[20px]', 'w-full', 'max-w-360', 'mega-shadow','border border-[#f0f0f0]')}>
+          <div className={cn('flex', 'flex-col', 'gap-6', 'bg-white', 'p-3', 'rounded-[20px]', 'w-full', 'max-w-360', 'mega-shadow', 'border border-[#f0f0f0]')}>
             <div className={cn('px-8', 'py-10', 'w-full')}>
               <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
               <ul className={cn('gap-6', 'grid', 'grid-cols-3')}>

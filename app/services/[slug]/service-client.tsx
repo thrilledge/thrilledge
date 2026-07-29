@@ -501,7 +501,7 @@ function ProjectsMarquee({
     queryFn: async () => {
       if (!ids) return [];
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/work?include=${ids}&_embed&acf_format=standard&per_page=100`,
+        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/casestudy?include=${ids}&_embed&acf_format=standard&per_page=100`,
       );
       return res.json() as Promise<
         Array<{
@@ -551,7 +551,7 @@ function ProjectsMarquee({
           const img = imageMap[p.ID];
           return (
             <div key={i} className="shrink-0">
-              <Link href={`/work/${p.post_name}`}>
+              <Link href={`/casestudy/${p.post_name}`}>
                 <div className="group relative bg-[#111212] rounded-[20px] w-70 sm:w-95 lg:w-140 h-55 md:h-90 overflow-hidden">
                   {img && (
                     <Image

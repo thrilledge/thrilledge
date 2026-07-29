@@ -52,7 +52,7 @@ import {
   Globe,
   Linkedin,
   Instagram,
-  
+
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -78,6 +78,13 @@ const mobileNav = [
         href: '/client-reviews',
         desc: 'What clients say about us',
         icon: Star,
+      },
+
+      {
+        label: 'Case Studies',
+        href: '/casestudy',
+        desc: 'Explore our successful projects',
+        icon: BriefcaseBusiness,
       },
 
       {
@@ -655,7 +662,7 @@ function MobileDrawer({
                     transition-all
                   "
                 >
-                 <Instagram size={18} />
+                  <Instagram size={18} />
                 </Link>
               </div>
             </div>

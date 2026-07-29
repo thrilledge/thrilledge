@@ -55,16 +55,19 @@ export default function WorkPage({ params }: WorkPageProps) {
     ? work.acf.review[0]
     : work?.acf?.review
 
+  const reviewIdNumber = typeof reviewId === 'string' ? Number(reviewId) : reviewId
+  const workId = typeof work?.id === 'string' ? Number(work.id) : work?.id
+
   const { data: testimonial } = useQuery({
-    queryKey: ['testimonial', reviewId],
-    queryFn: () => getTestimonial(reviewId!),
-    enabled: !!reviewId,
+    queryKey: ['testimonial', reviewIdNumber],
+    queryFn: () => getTestimonial(reviewIdNumber!),
+    enabled: !!reviewIdNumber,
   })
 
   const { data: adjacent } = useQuery({
-    queryKey: ['adjacent-work', work?.id],
-    queryFn: () => getAdjacentWorkItems(work!.id),
-    enabled: !!work?.id,
+    queryKey: ['adjacent-work', workId],
+    queryFn: () => getAdjacentWorkItems(workId!),
+    enabled: !!workId,
   })
 
   if (error) notFound()
@@ -153,31 +156,15 @@ export default function WorkPage({ params }: WorkPageProps) {
   return (
     <>
       {featuredImage && (
-        <div className="relative h-[60vh] min-h-[420px] max-h-[640px] overflow-hidden">
-          <Image
-            src={featuredImage}
-            alt={work.title.rendered}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111212]/90 via-[#111212]/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10 md:pb-14 max-w-[1120px] mx-auto">
-            <span className="inline-block mb-3 text-[11px] font-inter font-semibold text-white/50 uppercase tracking-[0.2em]">Case Study</span>
-            <h1 className="text-[36px] md:text-[56px] lg:text-[68px] font-mont font-bold text-white leading-[1.08] max-w-3xl"
-              dangerouslySetInnerHTML={{ __html: work.title.rendered }}
-            />
-            {acf.long_title && (
-              <p className="mt-3 text-[17px] md:text-[20px] font-inter text-white/70 max-w-xl leading-relaxed">
-                {acf.long_title}
-              </p>
-            )}
-          </div>
-        </div>
+        <PageHero
+          label="Our Work portfolio"
+          title={work.title.rendered}
+          image={featuredImage}
+          imageAlt={work.title.rendered}
+        />
       )}
 
-      <div className="relative bg-[#F3F3F3]">
+      <div className="relative bg-[#F3F3F3] pt-[100px]">
 
         {/* Meta Info Bar */}
         <div className="relative -mt-7 z-10 max-w-[1120px] mx-auto px-4 md:px-9">
@@ -371,15 +358,6 @@ export default function WorkPage({ params }: WorkPageProps) {
           </Section>
         )}
 
-        {/* Post Content */}
-        {work.content?.rendered && (
-          <Section className="pt-10 md:pt-14">
-            <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
-              <div className="max-w-[720px] mx-auto text-[15px] md:text-[16px] leading-[1.75] font-inter text-[#525252] work-content"
-                dangerouslySetInnerHTML={{ __html: work.content.rendered }} />
-            </div>
-          </Section>
-        )}
 
         {/* FAQs */}
         {faqs && faqs.length > 0 && (
@@ -439,14 +417,14 @@ export default function WorkPage({ params }: WorkPageProps) {
         <Section className="pt-14 pb-8">
           <div className="flex justify-between items-center border-t border-[#e5e5e5] pt-8">
             {adjacent?.prev ? (
-              <Link href={`/work/${adjacent.prev.slug}`}
+              <Link href={`/casestudy/${adjacent.prev.slug}`}
                 className="group flex items-center gap-2.5 text-[14px] font-mont font-semibold text-[#111212] hover:text-[#525252] transition-colors">
                 <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                 <span>{adjacent.prev.title.rendered.replace(/<[^>]*>/g, '')}</span>
               </Link>
             ) : <div />}
             {adjacent?.next ? (
-              <Link href={`/work/${adjacent.next.slug}`}
+              <Link href={`/casestudy/${adjacent.next.slug}`}
                 className="group flex items-center gap-2.5 text-[14px] font-mont font-semibold text-[#111212] hover:text-[#525252] transition-colors text-right">
                 <span>{adjacent.next.title.rendered.replace(/<[^>]*>/g, '')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

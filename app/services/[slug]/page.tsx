@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import { WorkSection } from '@/components/sections/work-section'
+import { WorkSection } from '@/components/sections/casestudy-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ServiceClient } from './service-client'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </Suspense>
 
       {/* CTA */}
-   <CTASection/>
+      <CTASection />
 
     </>
   )

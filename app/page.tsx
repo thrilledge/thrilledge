@@ -7,7 +7,7 @@ import { Metadata } from 'next'
 import HeroSection from '@/components/sections/hero-section'
 import ValuePropositionSection from '@/components/sections/value-proposition'
 import { ServicesSection } from '@/components/sections/services-section'
-import { WorkSection } from '@/components/sections/work-section'
+import { WorkSection } from '@/components/sections/casestudy-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import { IndustriesSection } from '@/components/sections/industries-section'
@@ -85,7 +85,7 @@ export default function Home() {
       <TestimonialsSection show={12} />
       <ProcessSection />
       <div className="py-20 lg:py-25 bg-[#eee]">
-      <IndustriesSection />
+        <IndustriesSection />
       </div>
       <ValueFeaturesSection />
       <LatestArticlesSection show={3} />
