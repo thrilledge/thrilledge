@@ -393,7 +393,7 @@ export async function getWorkItems(
 ): Promise<WorkItem[]> {
   try {
     return await fetchFromWordPress<WorkItem[]>(
-      `/wp/v2/casestudy?page=${page}&per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=desc`
+      `/wp/v2/work?page=${page}&per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=desc`
     )
   } catch {
     return []
@@ -403,7 +403,7 @@ export async function getWorkItems(
 export async function getWorkItem(slug: string): Promise<WorkItem | null> {
   try {
     const items = await fetchFromWordPress<WorkItem[]>(
-      `/wp/v2/casestudy?slug=${slug}&_embed&acf_format=standard`
+      `/wp/v2/work?slug=${slug}&_embed&acf_format=standard`
     )
     return items.length > 0 ? items[0] : null
   } catch {
@@ -413,7 +413,7 @@ export async function getWorkItem(slug: string): Promise<WorkItem | null> {
 
 export async function getAdjacentWorkItems(currentId: number): Promise<{ prev: WorkItem | null; next: WorkItem | null }> {
   try {
-    const all = await fetchFromWordPress<WorkItem[]>(`/wp/v2/casestudy?per_page=100&orderby=date&order=desc`)
+    const all = await fetchFromWordPress<WorkItem[]>(`/wp/v2/work?per_page=100&orderby=date&order=desc`)
     const idx = all.findIndex(i => i.id === currentId)
     return {
       prev: idx > 0 ? all[idx - 1] : null,
@@ -600,7 +600,7 @@ export async function getAllWorkSlugs(): Promise<string[]> {
 
     do {
       const { data, totalPages: tp } = await fetchPagedFromWordPress<WorkItem[]>(
-        `/wp/v2/casestudy?page=${page}&per_page=100`
+        `/wp/v2/work?page=${page}&per_page=100`
       )
       totalPages = tp
       allItems.push(...data)
