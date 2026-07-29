@@ -44,7 +44,7 @@ export default async function WorkPage({ params }: Props) {
   const { slug } = await params
   const work = await getWorkItem(slug)
 
-  const /casestudySchema = work
+  const casestudySchema = work
     ? {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
@@ -60,9 +60,9 @@ export default async function WorkPage({ params }: Props) {
 
   return (
     <>
-      {/casestudySchema && (
+      {casestudySchema && (
         < script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify(/casestudySchema) }} / >
+          __html: JSON.stringify(casestudySchema) }} / >
       )
         }
           < WorkClient params={params} />
