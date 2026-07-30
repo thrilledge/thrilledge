@@ -161,6 +161,7 @@ export default function WorkPage({ params }: WorkPageProps) {
           title={work.title.rendered}
           image={featuredImage}
           imageAlt={work.title.rendered}
+          className="object-contain"
         />
       )}
 
