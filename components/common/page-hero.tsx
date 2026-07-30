@@ -105,7 +105,7 @@ export function PageHero({
               src={image}
               alt={imageAlt || "Hero Image"}
               fill
-              className={cn('object-cover', 'rounded-2xl')}
+              className={cn('object-contain', 'rounded-2xl')}
               priority
             />
           </div>

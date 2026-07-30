@@ -26,7 +26,7 @@ export default async function WorkPage() {
             src={"/our-work.png"}
             alt={"Our Work"}
             fill
-            className={cn('object-center', 'object-cover')}
+            className={cn('object-center', 'object-contain')}
             sizes="100vw"
             priority
           />
