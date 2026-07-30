@@ -59,7 +59,7 @@ export function PageHero({
             src={bgImage}
             alt="Background"
             fill
-            className="object-cover"
+            className="object-contain"
             priority
           />
         </div>

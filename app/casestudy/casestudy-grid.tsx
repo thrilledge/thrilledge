@@ -83,7 +83,7 @@ export function WorkGrid() {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         priority={idx < 3}
                         loading={idx < 3 ? 'eager' : 'lazy'}
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        className="object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     ) : (
                       <div className="absolute inset-0 bg-linear-to-br from-[#F3F3F3] to-[#e5e5e5]" />
