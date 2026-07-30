@@ -306,7 +306,7 @@ export default function WorkPage({ params }: WorkPageProps) {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {metricsList.map((m, i) => m.value && (
                   <div key={i} className="text-center p-5 rounded-xl bg-[#F3F3F3] border border-[#e5e5e5]">
-                    <p className="text-[24px] md:text-[30px] font-mont font-bold text-[#111212] leading-none">{m.value}</p>
+                    <p className="text-[14px] font-mont font-bold text-[#111212] leading-none">{m.value}</p>
                     {m.label && <p className="text-[12px] font-inter text-[#929296] mt-1.5 uppercase tracking-[0.05em] font-medium">{m.label}</p>}
                   </div>
                 ))}

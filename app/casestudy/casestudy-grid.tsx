@@ -31,7 +31,7 @@ export function WorkGrid() {
   )
 
   return (
-    <>
+    <div className="w-full py-24">
       <div className="mx-auto px-4 md:px-9 max-w-[1120px]">
         <div className="flex flex-wrap gap-2 pb-1">
           {industries.map(ind => {
@@ -57,7 +57,7 @@ export function WorkGrid() {
         </div>
       </div>
 
-      <div className="mx-auto px-4 md:px-9 py-12 max-w-[1120px]">
+      <div className="mx-auto px-4 md:px-9 mt-10 max-w-[1120px]">
         {filtered.length === 0 ? (
           <div className="py-24 border border-[#e5e5e5] border-dashed rounded-2xl text-center">
             <p className="mb-2 font-mont font-semibold text-[#111212] text-[20px]">No projects in this category yet</p>
@@ -127,6 +127,6 @@ export function WorkGrid() {
           </div>
         )}
       </div>
-    </>
+    </div>
   )
 }
