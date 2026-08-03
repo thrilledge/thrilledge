@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Work, Thrill Edge Technologies`,
     description,
-    alternates: { canonical: `https://thrilledge.com/casestudy/${slug}` },
+    alternates: { canonical: `https://www.thrilledge.com/casestudy/${slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `https://thrilledge.com/casestudy/${slug}`,
+      url: `https://www.thrilledge.com/casestudy/${slug}`,
       ...(image && { images: [{ url: image, width: 1200, height: 630, alt: title }] }),
     },
     twitter: {
@@ -50,7 +50,7 @@ export default async function WorkPage({ params }: Props) {
       '@type': 'CreativeWork',
       name: work.title.rendered.replace(/<[^>]*>/g, ''),
       description: work.acf?.long_title ?? '',
-      url: `https://thrilledge.com/casestudy/${slug}`,
+      url: `https://www.thrilledge.com/casestudy/${slug}`,
       creator: { '@type': 'Organization', name: 'Thrill Edge Technologies' },
       ...(work._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
         image: work._embedded['wp:featuredmedia'][0].source_url,

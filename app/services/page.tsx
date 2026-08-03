@@ -12,7 +12,7 @@ import { CTASection } from '@/components/sections/cta-section'
 export const metadata: Metadata = {
   title: 'Services | Thrill Edge Technologies',
   description: 'Comprehensive software development services AI, web, mobile, backend, and more.',
-  alternates: { canonical: 'https://thrilledge.com/services' },
+  alternates: { canonical: 'https://www.thrilledge.com/services' },
 }
 
 export default async function ServicesPage() {

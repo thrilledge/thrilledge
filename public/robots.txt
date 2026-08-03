@@ -20,4 +20,7 @@ Crawl-delay: 1
 Allow: /
 
 # Sitemap location
-Sitemap: https://thrilledge.com/sitemap.xml
+Sitemap: https://www.thrilledge.com/sitemap.xml
+
+# LLM/AI documentation
+# LLMs.txt: https://www.thrilledge.com/llms.txt

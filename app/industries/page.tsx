@@ -10,7 +10,7 @@ import { CTASection } from '@/components/sections/cta-section'
 export const metadata: Metadata = {
   title: 'Industries | Thrill Edge Technologies',
   description: 'Deep domain expertise across healthcare, fintech, edtech, real estate, blockchain, and logistics.',
-  alternates: { canonical: 'https://thrilledge.com/industries' },
+  alternates: { canonical: 'https://www.thrilledge.com/industries' },
 }
 
 const INDUSTRIES = [

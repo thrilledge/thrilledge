@@ -1,0 +1,35 @@
+# Thrill Edge Technologies
+
+> Thrill Edge Technologies is a custom software development company delivering AI, web, mobile, and SaaS products. We ship production-ready software for startups and enterprises across the United States, UK, Canada, and Australia.
+
+## Services
+
+- [AI & ML Solutions](https://www.thrilledge.com/services/ai-ml-solutions): custom AI models, NLP, computer vision, predictive analytics, and generative AI integrations.
+- [AI Workflow Automation](https://www.thrilledge.com/services/ai-workflow-automation): automated business processes and AI-powered workflow systems.
+- [Custom Web Development](https://www.thrilledge.com/services/custom-web-development): scalable web platforms, portals, and enterprise applications.
+- [UI/UX Design](https://www.thrilledge.com/services/ui-ux-design): product design, research, and interface design for web and mobile.
+- [Mobile App Development](https://www.thrilledge.com/services/mobile-app-development): native and cross-platform iOS and Android apps.
+- [MVP & Product Strategy](https://www.thrilledge.com/services/mvp-product-strategy): validation, scoping, and rapid MVP delivery for founders.
+- [SaaS Solutions](https://www.thrilledge.com/services/saas-solutions): multi-tenant SaaS platforms, subscriptions, and billing.
+- [Shopify Plus Agency](https://www.thrilledge.com/services/shopify-plus-agency): high-growth eCommerce builds on Shopify Plus.
+
+## Industries
+
+- Healthcare, Fintech, eCommerce, Real Estate, Education, Logistics, and Blockchain.
+
+## Key Pages
+
+- [Home](https://www.thrilledge.com)
+- [About](https://www.thrilledge.com/about)
+- [Case Studies](https://www.thrilledge.com/casestudy)
+- [Blog](https://www.thrilledge.com/blog)
+- [Careers](https://www.thrilledge.com/careers)
+- [FAQs](https://www.thrilledge.com/faqs)
+- [Contact](https://www.thrilledge.com/contact)
+- [Client Reviews](https://www.thrilledge.com/client-reviews)
+
+## Contact
+
+- Email: info@thrilledge.com
+- Phone: +44 7853 746775
+- Address: 25 Luke Street, London EC2A 4DS, United Kingdom

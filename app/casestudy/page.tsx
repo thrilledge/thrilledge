@@ -13,6 +13,7 @@ import { CTASection } from '@/components/sections/cta-section'
 export const metadata: Metadata = {
   title: 'Our Work | Thrill Edge Technologies',
   description: 'Explore our portfolio of products shipped across healthcare, fintech, eCommerce and more.',
+  alternates: { canonical: 'https://www.thrilledge.com/casestudy' },
 }
 
 export default async function WorkPage() {

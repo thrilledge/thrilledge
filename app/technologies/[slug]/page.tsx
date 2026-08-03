@@ -335,12 +335,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${tech.title} | Thrill Edge Technologies`,
     description: tech.description,
-    alternates: { canonical: `https://thrilledge.com/technologies/${slug}` },
+    alternates: { canonical: `https://www.thrilledge.com/technologies/${slug}` },
     openGraph: {
       title: `${tech.title} | Thrill Edge Technologies`,
       description: tech.description,
       type: 'website',
-      url: `https://thrilledge.com/technologies/${slug}`,
+      url: `https://www.thrilledge.com/technologies/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -364,8 +364,8 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
     '@type': 'Service',
     name: tech.title,
     description: tech.description,
-    provider: { '@type': 'Organization', name: 'Thrill Edge Technologies', url: 'https://thrilledge.com' },
-    url: `https://thrilledge.com/technologies/${slug}`,
+    provider: { '@type': 'Organization', name: 'Thrill Edge Technologies', url: 'https://www.thrilledge.com' },
+    url: `https://www.thrilledge.com/technologies/${slug}`,
     areaServed: ['GB', 'US', 'AU', 'CA'],
   }
 

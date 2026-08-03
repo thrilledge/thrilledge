@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
+import { SITE_URL } from '@/lib/site'
 import './globals.css'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/layout/header'
@@ -10,6 +12,8 @@ import Footer from '@/components/layout/footer'
 import { ChatWidget } from '@/components/chat/chat-widget'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   title: 'Thrill Edge Technologies | Innovation Redefined',
@@ -33,13 +37,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://thrilledge.com',
+    url: `${SITE_URL}`,
     siteName: 'Thrill Edge Technologies',
     title: 'Thrill Edge Technologies | Innovation Redefined',
     description: 'Cutting-edge technology solutions for modern enterprises.',
     images: [
       {
-        url: 'https://thrilledge.com/og-image.jpg',
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: 'Thrill Edge Technologies',
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
     site: '@thrilledge',
     title: 'Thrill Edge Technologies | Innovation Redefined',
     description: 'Cutting-edge technology solutions for modern enterprises.',
-    images: ['https://thrilledge.com/twitter-image.jpg'],
+    images: [`${SITE_URL}/twitter-image.jpg`],
   },
   icons: {
     icon: [
@@ -95,6 +99,18 @@ export default function RootLayout({
         </ClerkProvider>
         <Analytics />
         <SpeedInsights />
+        {GA_ID && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )

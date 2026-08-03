@@ -20,13 +20,13 @@ export const metadata: Metadata = {
   description: 'Custom software development company specialising in AI, web, mobile, and SaaS. Trusted by startups and enterprises across the US, UK, and Australia.',
   keywords: ['software development company', 'custom web development', 'AI development', 'mobile app development', 'SaaS development', 'UK software agency'],
   alternates: {
-    canonical: 'https://thrilledge.com',
+    canonical: 'https://www.thrilledge.com',
   },
   openGraph: {
     title: 'Thrill Edge Technologies | We Ship Software That Actually Works',
     description: 'Custom software development company specialising in AI, web, mobile, and SaaS.',
     type: 'website',
-    url: 'https://thrilledge.com',
+    url: 'https://www.thrilledge.com',
   },
   robots: {
     index: true,
@@ -38,8 +38,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Thrill Edge Technologies',
-  url: 'https://thrilledge.com',
-  logo: 'https://thrilledge.com/logo.svg',
+  url: 'https://www.thrilledge.com',
+  logo: 'https://www.thrilledge.com/logo.svg',
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+44-7853-746775',
@@ -64,10 +64,10 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Thrill Edge Technologies',
-  url: 'https://thrilledge.com',
+  url: 'https://www.thrilledge.com',
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://thrilledge.com/blog?q={search_term_string}',
+    target: 'https://www.thrilledge.com/blog?q={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
 }

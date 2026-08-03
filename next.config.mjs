@@ -12,6 +12,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.thrilledge.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'admin.thrilledge.com',
         pathname: '/**',
       },
@@ -213,6 +218,26 @@ const nextConfig = {
       {
         source: '/a-complete-guide-about-web-1-web-2-and-web-3',
         destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/amazon-ppc-advertising',
+        destination: '/blog/amazon-ppc-campaign-strategy-a-complete-guide-to-boost-your-sales-in-2025',
+        permanent: true,
+      },
+      {
+        source: '/category/:path*',
+        destination: '/categories/:path*',
+        permanent: true,
+      },
+      {
+        source: '/web-development-services-small-business-wordpress-vs-custom',
+        destination: '/blog/web-development-services-small-business-wordpress-vs-custom',
+        permanent: true,
+      },
+      {
+        source: '/our-projects/:path*',
+        destination: '/casestudy',
         permanent: true,
       },
     ]

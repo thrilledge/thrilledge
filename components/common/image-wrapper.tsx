@@ -36,7 +36,7 @@ export function ImageWrapper({
   objectPosition = 'center',
 }: ImageWrapperProps) {
   // Ensure URL is absolute
-  const imageUrl = src.startsWith('http') ? src : `https://thrilledge.com${src}`
+  const imageUrl = src.startsWith('http') ? src : `https://www.thrilledge.com${src}`
 
   return (
     <div className={`relative overflow-hidden ${fill ? 'w-full h-full' : ''}`}>

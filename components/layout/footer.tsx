@@ -74,7 +74,7 @@ export default function Footer() {
                     <Link className="text-sm text-white/40" href="/contact">Contact</Link>
                   </li>
                   <li>
-                    <Link className="text-sm text-white/40" href="/casestudy">/Casestudy</Link>
+                    <Link className="text-sm text-white/40" href="/casestudy">Case Studies</Link>
                   </li>
 
                   <li>

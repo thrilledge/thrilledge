@@ -1,9 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { cn } from "../../lib/utils";
 import MeetingBooker from "../../components/sections/meeting-booker";
 import { Animate } from "@/components/common/animate";
 import { CTASection } from "@/components/sections/cta-section";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Thrill Edge Technologies",
+  description:
+    "Tell us what you're building. Get a response within one business day from our senior team — email, WhatsApp, or book a meeting.",
+  alternates: { canonical: "https://www.thrilledge.com/contact" },
+};
 
 export default function Contact() {
   return (
@@ -120,7 +128,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="tel:+923094701831"
+                  href="tel:+447853746775"
                   className="flex items-center gap-3 group w-fit"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
@@ -139,7 +147,7 @@ export default function Contact() {
                   </span>
 
                   <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">
-                    +44 7576 532096
+                    +44 7853 746775
                   </span>
                 </a>
               </div>

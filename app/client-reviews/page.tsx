@@ -9,6 +9,7 @@ import { CTASection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Client Reviews | Thrill Edge Technologies",
   description: "Read what our clients say about working with Thrill Edge Technologies.",
+  alternates: { canonical: "https://www.thrilledge.com/client-reviews" },
 };
 
 function StarRating({ rating = 5 }: { rating?: number }) {

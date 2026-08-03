@@ -521,7 +521,7 @@ export async function generateMetadata({
       title: industry.metaTitle,
       description: industry.metaDescription,
       type: "website",
-      url: `https://thrilledge.com/industries/${slug}`,
+      url: `https://www.thrilledge.com/industries/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -529,7 +529,7 @@ export async function generateMetadata({
       description: industry.metaDescription,
     },
     alternates: {
-      canonical: `https://thrilledge.com/industries/${slug}`,
+      canonical: `https://www.thrilledge.com/industries/${slug}`,
     },
   };
 }
@@ -555,9 +555,9 @@ export default async function IndustryPage({
     provider: {
       "@type": "Organization",
       name: "Thrill Edge Technologies",
-      url: "https://thrilledge.com",
+      url: "https://www.thrilledge.com",
     },
-    url: `https://thrilledge.com/industries/${slug}`,
+    url: `https://www.thrilledge.com/industries/${slug}`,
     areaServed: ["GB", "US", "AU", "CA"],
   };
 

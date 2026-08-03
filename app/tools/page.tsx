@@ -4,7 +4,7 @@ import { FreelancerToolsClient } from '@/components/tools/tools-page-client'
 export const metadata: Metadata = {
   title: 'Tools | Thrill Edge Technologies',
   description: 'AI-powered freelancer toolkit — Upwork proposal writer, cold email generator, cold calling scripts, and more.',
-  alternates: { canonical: 'https://thrilledge.com/tools' },
+  alternates: { canonical: 'https://www.thrilledge.com/tools' },
 }
 
 export default function FreelancerToolsPage() {

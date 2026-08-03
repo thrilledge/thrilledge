@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Thrill Edge Technologies`,
     description,
-    alternates: { canonical: `https://thrilledge.com/blog/${slug}` },
+    alternates: { canonical: `https://www.thrilledge.com/blog/${slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `https://thrilledge.com/blog/${slug}`,
+      url: `https://www.thrilledge.com/blog/${slug}`,
       publishedTime: post.date,
       ...(image && { images: [{ url: image, width: 1200, height: 630, alt: title }] }),
     },
@@ -57,9 +57,9 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
           '@type': 'Organization',
           name: 'Thrill Edge Technologies',
-          logo: { '@type': 'ImageObject', url: 'https://thrilledge.com/logo.svg' },
+          logo: { '@type': 'ImageObject', url: 'https://www.thrilledge.com/logo.svg' },
         },
-        url: `https://thrilledge.com/blog/${slug}`,
+        url: `https://www.thrilledge.com/blog/${slug}`,
         ...(post._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
           image: post._embedded['wp:featuredmedia'][0].source_url,
         }),

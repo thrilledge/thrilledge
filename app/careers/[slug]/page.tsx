@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description: `Apply for the ${job.title.rendered} role at Thrill Edge Technologies. ${job.acf?.position ? job.acf.position + ' position.' : ''}`,
-    alternates: { canonical: `https://thrilledge.com/careers/${slug}` },
+    alternates: { canonical: `https://www.thrilledge.com/careers/${slug}` },
     openGraph: {
       title,
       type: 'website',
-      url: `https://thrilledge.com/careers/${slug}`,
+      url: `https://www.thrilledge.com/careers/${slug}`,
     },
   }
 }
