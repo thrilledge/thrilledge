@@ -9,8 +9,7 @@ import { ServicesSection } from "@/components/sections/services-section";
 import ValuePropositionSection from "@/components/sections/value-proposition";
 import { cn } from "@/lib/utils";
 import { Animate } from "@/components/common/animate";
-import { CTASection } from "@/components/sections/cta-section";
-
+import { CTASection } from "@/components/sections/cta-section"; import { getIndustrySubServices } from '@/lib/industry-sub-services'
 interface IndustryData {
   title: string;
   headline: string;
@@ -547,6 +546,8 @@ export default async function IndustryPage({
   const industry = INDUSTRIES[slug];
   if (!industry) notFound();
 
+  const industrySubServices = getIndustrySubServices(slug)
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -632,7 +633,7 @@ export default async function IndustryPage({
 
 
 
-      <div className={cn('gap-[20px]', 'text-center', 'mt-10','md:mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'mt-10', 'md:mt-20', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {industry.stats.map((s, i) => (
           <Animate key={i} variant="fade-up" delay={i * 100}>
             <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -650,7 +651,7 @@ export default async function IndustryPage({
       </div> */}
 
       <div className={cn('bg-white', 'w-full')}>
-        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:py-[96px]', 'py-[70px]',  'w-full', 'max-w-[1440px]')}>
+        <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:py-[96px]', 'py-[70px]', 'w-full', 'max-w-[1440px]')}>
           <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
             <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
               Challenges we solve in {industry.title}
@@ -697,6 +698,36 @@ export default async function IndustryPage({
         </div>
       </div>
 
+      {industrySubServices && (
+        <section className="bg-white py-16 md:py-24">
+          <div className="max-w-360 mx-auto px-4">
+            <div className="mb-10">
+              <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
+                Sub Services
+              </span>
+              <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
+                {industrySubServices.heading}
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {industrySubServices.items.map((item, index) => (
+                <div
+                  key={`${item}-${index}`}
+                  className="flex items-start gap-3 rounded-[18px] border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-4"
+                >
+                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-inter text-[16px] leading-7 text-[#111212] md:text-[17px]">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <ValuePropositionSection />
 
       {/* <div className="bg-[#F3F3F3]">
@@ -720,7 +751,7 @@ export default async function IndustryPage({
       </div>
 
       {/* CTA */}
-   <CTASection/>
+      <CTASection />
 
     </div>
   );
