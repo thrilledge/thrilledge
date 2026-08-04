@@ -130,11 +130,25 @@ export default function WorkPage({ params }: WorkPageProps) {
     })
   }
 
+  const parseFaqs = (val: string | Array<{ question?: string; answer?: string }> | undefined | null): Array<{ question: string; answer: string }> => {
+    if (!val) return []
+    if (Array.isArray(val)) return val
+      .map(f => ({ question: f.question || '', answer: f.answer || '' }))
+      .filter(f => f.question || f.answer)
+
+    return val
+      .split('\n')
+      .map(line => line.replace(/^[-•*]\s*/, '').trim())
+      .filter(Boolean)
+      .map(line => ({ question: line, answer: '' }))
+  }
+
   const featuresList = parseListField(features)
   const techHighlightsList = parseListField(technical_highlights)
   const challengesList = parseListField(challenges)
   const techStackList = parseTechStack(tech_stack)
   const metricsList = parseMetrics(project_metrics)
+  const faqList = parseFaqs(faqs)
 
   const groupedTech: Record<string, Array<{ name: string; icon: string }>> = {}
   for (const t of techStackList) {
@@ -361,12 +375,12 @@ export default function WorkPage({ params }: WorkPageProps) {
 
 
         {/* FAQs */}
-        {faqs && faqs.length > 0 && (
+        {faqList.length > 0 && (
           <Section className="pt-10 md:pt-14">
             <div className="bg-white rounded-2xl border border-[#e5e5e5] p-8 md:p-10">
               <SectionHeader title="FAQs" />
               <div className="flex flex-col gap-4">
-                {faqs.map((faq, i) => (faq.question || faq.answer) && (
+                {faqList.map((faq, i) => (faq.question || faq.answer) && (
                   <details key={i} className="group rounded-xl border border-[#e5e5e5] overflow-hidden">
                     <summary className="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-[#F3F3F3] transition-colors">
                       <h3 className="text-[15px] font-inter font-semibold text-[#111212] pr-4">{faq.question}</h3>
