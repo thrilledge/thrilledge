@@ -32,35 +32,35 @@ export async function POST(request: NextRequest) {
         if (action === 'published' || action === 'updated') {
           revalidatePath(`/blog/${slug}`)
           revalidatePath('/blog')
-          revalidateTag('posts')
+          revalidateTag('posts', 'default-cache')
         } else if (action === 'deleted') {
           revalidatePath('/blog')
-          revalidateTag('posts')
+          revalidateTag('posts', 'default-cache')
         }
         break
 
       case 'category':
         revalidatePath(`/categories/${slug}`)
         revalidatePath('/categories')
-        revalidateTag('categories')
+        revalidateTag('categories', 'default-cache')
         break
 
       case 'work':
         if (action === 'published' || action === 'updated') {
           revalidatePath(`/casestudy/${slug}`)
           revalidatePath('/')
-          revalidateTag('work-items')
+          revalidateTag('work-items', 'default-cache')
         }
         break
 
       case 'service':
         revalidatePath('/')
-        revalidateTag('services')
+        revalidateTag('services', 'default-cache')
         break
 
       case 'testimonial':
         revalidatePath('/')
-        revalidateTag('testimonials')
+        revalidateTag('testimonials', 'default-cache')
         break
 
       case 'all':
