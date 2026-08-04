@@ -396,12 +396,12 @@ function AccordionItem({
         )}
       >
         <div className="pl-2 pb-3 flex flex-col gap-2">
-          {item.children.map((child) => {
+          {item.children.map((child, index) => {
             const ChildIcon = child.icon
 
             return (
               <Link
-                key={child.href}
+                key={`${child.href}-${child.label}-${index}`}
                 href={child.href}
                 onClick={onClose}
                 className="

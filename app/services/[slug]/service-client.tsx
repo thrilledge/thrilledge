@@ -11,6 +11,7 @@ import { ProcessSection } from "@/components/sections/process-section";
 import { ValueFeaturesSection } from "@/components/sections/value-features-section";
 import { cn } from "@/lib/utils";
 import { Animate } from "@/components/common/animate";
+import { getServiceSubServices } from "@/lib/service-sub-services";
 
 export function ServiceClient({ slug }: { slug: string }) {
   const { data: service, isLoading, error } = useService(slug);
@@ -52,6 +53,7 @@ export function ServiceClient({ slug }: { slug: string }) {
     acf.service_count?.count_3,
   ].filter(Boolean);
   const projects = acf.projects ?? [];
+  const serviceSubServices = getServiceSubServices(slug, acf as Record<string, unknown> | undefined);
 
   return (
     <div className="relative bg-[#F3F3F3]">
@@ -177,6 +179,37 @@ export function ServiceClient({ slug }: { slug: string }) {
             <ProjectsMarquee projects={projects} />
           </div>
         </div>
+      )}
+
+      {/* Sub Services List */}
+      {serviceSubServices && (
+        <section className="bg-white py-16 md:py-24">
+          <div className="max-w-360 mx-auto px-4">
+            <div className="mb-10">
+              <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
+                Sub Services
+              </span>
+              <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
+                {toTitleCase(serviceSubServices.heading)}
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {serviceSubServices.items.map((item, index) => (
+                <div
+                  key={`${item}-${index}`}
+                  className="flex items-start gap-3 rounded-[18px] border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-4"
+                >
+                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-inter text-[16px] leading-7 text-[#111212] md:text-[17px]">
+                    {toTitleCase(item)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* How We Work */}
@@ -582,6 +615,60 @@ function ProjectsMarquee({
 }
 
 /* ── Marquee text strip ── */
+function toTitleCase(value: string) {
+  const acronyms = new Set([
+    'AI',
+    'ML',
+    'LLM',
+    'LLMs',
+    'MLOps',
+    'PWA',
+    'SEO',
+    'CRO',
+    'MVP',
+    'SaaS',
+    'iOS',
+    'Android',
+    'CRM',
+    'ERP',
+    'NLP',
+    'CMS',
+    'API',
+    'APIs',
+    'UI',
+    'UX',
+    'OpenAI',
+    'Claude',
+    'Gemini',
+    'No-Code',
+    'Low-Code',
+    'E-Commerce',
+    'PPC',
+  ]);
+
+  return value
+    .split(/\s+/)
+    .map((word) => {
+      if (!word) return word;
+      const normalized = word.replace(/[^A-Za-z0-9&-]/g, '');
+      if (!normalized) return word;
+
+      if (acronyms.has(normalized)) return normalized;
+      if (normalized === '&') return '&';
+
+      const parts = normalized.split('-').map((part) => {
+        if (!part) return part;
+        if (acronyms.has(part)) return part;
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      });
+
+      return parts.join('-');
+    })
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function MarqueeStrip() {
   const trackRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(0);

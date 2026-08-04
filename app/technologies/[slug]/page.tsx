@@ -1,18 +1,16 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
-import { WorkSection } from '@/components/sections/casestudy-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
 import { IndustriesSection } from '@/components/sections/industries-section'
 import ValuePropositionSection from '@/components/sections/value-proposition'
-import { PageHero } from '@/components/common/page-hero'
 import { cn } from '@/lib/utils'
 import { Animate } from '@/components/common/animate'
 import { CTASection } from '@/components/sections/cta-section'
+
 
 interface TechData {
   title: string
@@ -79,8 +77,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'GraphQL', icon: '/graphql.svg' },
       { name: 'WordPress', icon: '/wordpress.svg' },
       { name: 'REST API', icon: '/api.svg' },
-      { name: 'Supabase', icon: '/supabase.svg' },
-      { name: 'Firebase', icon: '/firebase.svg' },
       { name: 'Expo', icon: '/expo.svg' },
     ],
     capabilities: [
@@ -327,6 +323,10 @@ const TECHNOLOGIES: Record<string, TechData> = {
   },
 }
 
+const allTools = Object.values(TECHNOLOGIES).flatMap((tech) => tech.tools)
+const uniqueTools = Array.from(new Set(allTools.map((tool) => tool.name)))
+  .map((name) => allTools.find((tool) => tool.name === name))
+  .filter((tool): tool is { name: string; icon: string } => Boolean(tool))
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
@@ -409,6 +409,26 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </div>
         </div>
       </section>
+
+      {/* Brands Marquee */}
+      <div className={cn('w-full', 'bg-[#F3F3F3]', 'py-[32px]', 'md:py-[48px]')}>
+        <div className={cn('relative', 'overflow-hidden', 'w-full', 'max-w-[1440px]', 'mx-auto')}>
+          <div className={cn('flex', 'w-max', 'animate-marquee', 'gap-[32px]')}>
+            {[...uniqueTools, ...uniqueTools].map((tool, index) => (
+              <div
+                key={`${tool.name}-${index}`}
+                className={cn('flex', 'shrink-0', 'items-center', 'justify-center', 'w-[120px]', 'h-[60px]', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-[12px]', 'p-[12px]')}
+                aria-hidden={index >= uniqueTools.length}
+              >
+                <Image src={tool.icon} alt={tool.name} width={40} height={40} className="object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
+
       {/* stats */}
       <div className={cn('gap-[20px]', 'text-center', 'md:mt-10', 'mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (

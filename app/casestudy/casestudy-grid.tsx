@@ -74,7 +74,7 @@ export function WorkGrid() {
               return (
                 <Link key={work.id} href={`/casestudy/${work.slug}`}
                   className="group flex flex-col bg-white rounded-2xl border border-[#e5e5e5] overflow-hidden hover:border-[#d0d0d0] transition-all duration-300">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-black">
                     {img ? (
                       <Image
                         src={img}
