@@ -11,14 +11,60 @@ import { cn } from '@/lib/utils'
 import { Animate } from '@/components/common/animate'
 import { CTASection } from '@/components/sections/cta-section'
 import { getTechnologySubServices } from '@/lib/technology-sub-services'
+import {
+  AppWindow,
+  BarChart3,
+  BrainCircuit,
+  BrainCog,
+  Bug,
+  CircleCheck,
+  CircleDot,
+  CloudCog,
+  Cloudy,
+  Coffee,
+  DatabaseZap,
+  FileSearch,
+  Flame,
+  FlaskConical,
+  Gauge,
+  GitGraph,
+  KeyRound,
+  Languages,
+  Layers2,
+  Layers3,
+  Leaf,
+  Lock,
+  LockKeyhole,
+  Network,
+  Orbit,
+  Radar,
+  ScanEye,
+  Send,
+  ShieldAlert,
+  ShieldCheck,
+  Snowflake,
+  Sparkles,
+  TreePine,
+  Warehouse,
+  Waypoints,
+  Workflow,
+  Zap,
+  type LucideIcon,
+} from 'lucide-react'
 
+
+interface TechTool {
+  name: string
+  icon?: string
+  lucide?: LucideIcon
+}
 
 interface TechData {
   title: string
   headline: string
   description: string
   stats: { number: string; label: string }[]
-  tools: { name: string; icon: string }[]
+  tools: TechTool[]
   capabilities: { title: string; desc: string }[]
   image: string
   workIndustry?: string
@@ -39,13 +85,13 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'TensorFlow', icon: '/tensorflow.svg' },
       { name: 'PyTorch', icon: '/pytorch.svg' },
       { name: 'OpenAI', icon: '/openai.svg' },
-      { name: 'Claude', icon: '/openai.svg' },
-      { name: 'Gemini', icon: '/openai.svg' },
+      { name: 'Claude', lucide: Sparkles },
+      { name: 'Gemini', lucide: Orbit },
       { name: 'LangChain', icon: '/langchain.svg' },
-      { name: 'LangGraph', icon: '/langchain.svg' },
+      { name: 'LangGraph', lucide: GitGraph },
       { name: 'Hugging Face', icon: '/huggingface.svg' },
-      { name: 'OpenCV', icon: '/python.svg' },
-      { name: 'spaCy', icon: '/python.svg' },
+      { name: 'OpenCV', lucide: ScanEye },
+      { name: 'spaCy', lucide: Languages },
       { name: 'AWS SageMaker', icon: '/aws.svg' },
       { name: 'Scikit-learn', icon: '/scikitlearn.svg' },
       { name: 'n8n', icon: '/n8n.svg' },
@@ -74,18 +120,18 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { number: '5x', label: 'Faster reporting and query delivery' },
     ],
     tools: [
-      { name: 'Airflow', icon: '/docker.svg' },
-      { name: 'dbt', icon: '/docker.svg' },
-      { name: 'Kafka', icon: '/redis.svg' },
-      { name: 'Spark', icon: '/python.svg' },
-      { name: 'BigQuery', icon: '/aws.svg' },
-      { name: 'Snowflake', icon: '/aws.svg' },
+      { name: 'Airflow', lucide: Waypoints },
+      { name: 'dbt', lucide: Layers2 },
+      { name: 'Kafka', lucide: Network },
+      { name: 'Spark', lucide: Flame },
+      { name: 'BigQuery', lucide: DatabaseZap },
+      { name: 'Snowflake', lucide: Snowflake },
       { name: 'PostgreSQL', icon: '/postgresql.svg' },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
       { name: 'Python', icon: '/python.svg' },
-      { name: 'Warehouse', icon: '/database.png' },
-      { name: 'BI Tools', icon: '/aws.svg' },
+      { name: 'Warehouse', lucide: Warehouse },
+      { name: 'BI Tools', lucide: BarChart3 },
     ],
     capabilities: [
       { title: 'Data Pipeline Design', desc: 'Event-driven ingestion and transformation pipelines that consolidate data from apps, CRMs, ERPs, and third-party systems.' },
@@ -107,17 +153,17 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { number: 'SOC 2', label: 'Alignment for enterprise clients' },
     ],
     tools: [
-      { name: 'Zero Trust', icon: '/aws.svg' },
-      { name: 'OWASP', icon: '/aws.svg' },
-      { name: 'IAM', icon: '/aws.svg' },
-      { name: 'SIEM', icon: '/aws.svg' },
-      { name: 'WAF', icon: '/aws.svg' },
-      { name: 'Encryption', icon: '/aws.svg' },
-      { name: 'Pen Testing', icon: '/aws.svg' },
-      { name: 'Security Audits', icon: '/aws.svg' },
+      { name: 'Zero Trust', lucide: ShieldCheck },
+      { name: 'OWASP', lucide: ShieldAlert },
+      { name: 'IAM', lucide: KeyRound },
+      { name: 'SIEM', lucide: Radar },
+      { name: 'WAF', lucide: Lock },
+      { name: 'Encryption', lucide: LockKeyhole },
+      { name: 'Pen Testing', lucide: Bug },
+      { name: 'Security Audits', lucide: FileSearch },
       { name: 'Kubernetes', icon: '/kubernetes.svg' },
       { name: 'Docker', icon: '/docker.svg' },
-      { name: 'Terraform', icon: '/docker.svg' },
+      { name: 'Terraform', lucide: Layers3 },
       { name: 'AWS', icon: '/aws.svg' },
     ],
     capabilities: [
@@ -141,13 +187,13 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     tools: [
       { name: 'Playwright', icon: '/playwright.svg' },
-      { name: 'Cypress', icon: '/playwright.svg' },
-      { name: 'Selenium', icon: '/playwright.svg' },
-      { name: 'Jest', icon: '/playwright.svg' },
-      { name: 'Postman', icon: '/playwright.svg' },
+      { name: 'Cypress', lucide: CircleDot },
+      { name: 'Selenium', lucide: FlaskConical },
+      { name: 'Jest', lucide: CircleCheck },
+      { name: 'Postman', lucide: Send },
       { name: 'API Testing', icon: '/api.svg' },
-      { name: 'Performance Testing', icon: '/aws.svg' },
-      { name: 'CI/CD', icon: '/docker.svg' },
+      { name: 'Performance Testing', lucide: Gauge },
+      { name: 'CI/CD', lucide: Workflow },
       { name: 'GitHub Actions', icon: '/github.svg' },
       { name: 'Docker', icon: '/docker.svg' },
       { name: 'Node.js', icon: '/nodejs.svg' },
@@ -206,10 +252,10 @@ const TECHNOLOGIES: Record<string, TechData> = {
     tools: [
       { name: 'Node.js', icon: '/nodejs.svg' },
       { name: 'Python', icon: '/python.svg' },
-      { name: 'Django', icon: '/python.svg' },
-      { name: 'FastAPI', icon: '/python.svg' },
-      { name: 'Java', icon: '/go.svg' },
-      { name: '.NET', icon: '/api.svg' },
+      { name: 'Django', lucide: Leaf },
+      { name: 'FastAPI', lucide: Zap },
+      { name: 'Java', lucide: Coffee },
+      { name: '.NET', lucide: AppWindow },
       { name: 'Go', icon: '/go.svg' },
       { name: 'GraphQL', icon: '/graphql.svg' },
       { name: 'REST APIs', icon: '/api.svg' },
@@ -245,8 +291,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'Flutter', icon: '/flutter.svg' },
       { name: 'Swift', icon: '/swift.svg' },
       { name: 'Kotlin', icon: '/kotlin.svg' },
-      { name: 'Core ML', icon: '/swift.svg' },
-      { name: 'ML Kit', icon: '/kotlin.svg' },
+      { name: 'Core ML', lucide: BrainCircuit },
+      { name: 'ML Kit', lucide: BrainCog },
       { name: 'Expo', icon: '/expo.svg' },
       { name: 'Firebase', icon: '/firebase.svg' },
       { name: 'App Store', icon: '/appstore.svg' },
@@ -281,8 +327,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'MongoDB', icon: '/mongodb.svg' },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'MySQL', icon: '/mysql.svg' },
-      { name: 'Pinecone', icon: '/aws.svg' },
-      { name: 'Weaviate', icon: '/aws.svg' },
+      { name: 'Pinecone', lucide: TreePine },
+      { name: 'Weaviate', lucide: DatabaseZap },
       { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
       { name: 'Supabase', icon: '/supabase.svg' },
       { name: 'PlanetScale', icon: '/planetscale.svg' },
@@ -348,12 +394,12 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     tools: [
       { name: 'AWS', icon: '/aws.svg' },
-      { name: 'Azure', icon: '/aws.svg' },
-      { name: 'GCP', icon: '/aws.svg' },
+      { name: 'Azure', lucide: CloudCog },
+      { name: 'GCP', lucide: Cloudy },
       { name: 'Docker', icon: '/docker.svg' },
       { name: 'Kubernetes', icon: '/kubernetes.svg' },
-      { name: 'CI/CD', icon: '/github.svg' },
-      { name: 'Terraform', icon: '/docker.svg' },
+      { name: 'CI/CD', lucide: Workflow },
+      { name: 'Terraform', lucide: Layers3 },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'PostgreSQL', icon: '/postgresql.svg' },
       { name: 'Python', icon: '/python.svg' },
@@ -473,9 +519,9 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   const tech = TECHNOLOGIES[slug]
   if (!tech) notFound()
 
-  const techTools = Array.from(new Set(tech.tools.map((tool) => tool.icon)))
-    .map((icon) => tech.tools.find((tool) => tool.icon === icon))
-    .filter((tool): tool is { name: string; icon: string } => Boolean(tool))
+  const techTools = Array.from(new Set(tech.tools.map((tool) => tool.name)))
+    .map((name) => tech.tools.find((tool) => tool.name === name))
+    .filter((tool): tool is TechTool => Boolean(tool))
 
   const subServices = getTechnologySubServices(slug)
 
@@ -561,7 +607,11 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
                 className={cn('flex', 'shrink-0', 'items-center', 'justify-center', 'w-[120px]', 'h-[60px]', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-[12px]', 'p-[12px]')}
                 aria-hidden={index >= techTools.length}
               >
-                <Image src={tool.icon} alt={tool.name} width={40} height={40} className="object-contain" />
+                {tool.lucide ? (
+                  <ToolIcon icon={tool.lucide} />
+                ) : (
+                  <Image src={tool.icon!} alt={tool.name} width={40} height={40} className="object-contain" />
+                )}
               </div>
             ))}
           </div>
@@ -632,8 +682,12 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           {tech.tools.map((tool, i) => (
             <Animate key={tool.name} variant="scale-in" delay={i * 50}>
               <div className={cn('flex', 'flex-col', 'items-center', 'gap-[12px]', 'bg-white', 'p-[24px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
-                <div className={cn('relative', 'w-[40px]', 'h-[40px]')}>
-                  <Image src={tool.icon} alt={tool.name} fill sizes="40px" className="object-contain" />
+                <div className={cn('relative', 'flex', 'items-center', 'justify-center', 'w-[40px]', 'h-[40px]')}>
+                  {tool.lucide ? (
+                    <ToolIcon icon={tool.lucide} />
+                  ) : (
+                    <Image src={tool.icon!} alt={tool.name} fill sizes="40px" className="object-contain" />
+                  )}
                 </div>
                 <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'text-center')}>{tool.name}</p>
               </div>
@@ -676,4 +730,8 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
 
     </div>
   )
+}
+
+function ToolIcon({ icon: Icon }: { icon: LucideIcon }) {
+  return <Icon size={36} strokeWidth={1.5} className="text-[#111212]" />
 }

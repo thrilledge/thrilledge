@@ -69,7 +69,7 @@ function RichText({ html, className }: { html: string; className?: string }) {
   return (
     <div
       className={cn(
-        'text-[16px] md:text-[17px] leading-[1.85] font-inter text-zinc-400 work-content space-y-4',
+        'text-[16px] md:text-[17px] leading-[1.85] font-inter text-zinc-400 space-y-4',
         'prose prose-invert max-w-none', 'casestudy-content',
         className,
       )}
@@ -535,8 +535,14 @@ export default function WorkPage({ params }: WorkPageProps) {
         {/* Metrics Banner */}
         {metricsList.length > 0 && (
           <BodySection>
+            <Animate variant="fade-up">
+              <div>
+                <Eyebrow index="08">Metrics</Eyebrow>
+                <SectionTitle> Project Metrics </SectionTitle>
+              </div>
+            </Animate>
             <Animate variant="scale-in">
-              <div className="relative overflow-hidden rounded-[36px] bg-zinc-950 p-2 md:p-3 border border-white/20 shadow-2xl">
+              <div className="relative overflow-hidden rounded-[36px] bg-zinc-950 p-2 md:p-3 border border-white/20 shadow-2xl mt-10">
                 <div
                   className="absolute inset-0 opacity-[0.03]"
                   style={{
@@ -564,12 +570,16 @@ export default function WorkPage({ params }: WorkPageProps) {
           </BodySection>
         )}
 
+
+
+
+
         {/* Tech Stack Matrix */}
         {Object.keys(groupedTech).length > 0 && (
           <BodySection>
             <Animate variant="fade-up">
               <div>
-                <Eyebrow index="08">Stack</Eyebrow>
+                <Eyebrow index="09">Stack</Eyebrow>
                 <SectionTitle>Technology used</SectionTitle>
               </div>
             </Animate>
@@ -603,7 +613,7 @@ export default function WorkPage({ params }: WorkPageProps) {
           <BodySection>
             <Animate variant="fade-up">
               <div>
-                <Eyebrow index="09">Gallery</Eyebrow>
+                <Eyebrow index="10">Gallery</Eyebrow>
                 <SectionTitle>In the product</SectionTitle>
               </div>
             </Animate>
@@ -631,7 +641,7 @@ export default function WorkPage({ params }: WorkPageProps) {
           <BodySection>
             <Animate variant="fade-up">
               <div>
-                <Eyebrow index="10">Testimonial</Eyebrow>
+                <Eyebrow index="11">Testimonial</Eyebrow>
                 <SectionTitle>What the client says</SectionTitle>
               </div>
             </Animate>
@@ -646,7 +656,7 @@ export default function WorkPage({ params }: WorkPageProps) {
           <BodySection>
             <Animate variant="fade-up">
               <div>
-                <Eyebrow index="11">FAQs</Eyebrow>
+                <Eyebrow index="12">FAQs</Eyebrow>
                 <SectionTitle>Common questions</SectionTitle>
               </div>
             </Animate>
