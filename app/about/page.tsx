@@ -259,7 +259,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Today,{" "}
-                Thrill Edge Technologies{" "}
+                  Thrill Edge Technologies{" "}
                   operates as a fully integrated software partner, delivering
                   product strategy, UI/UX design, frontend, backend, mobile
                   development, cloud infrastructure, and AI solutions.
@@ -422,6 +422,17 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Add button on the left section space empty “ Explore Our Services” */}
+              <div className="mt-8">
+                <Link
+                  href="/services"
+                  className="w-fit bg-black text-white px-[32px] py-[16px] rounded-full font-mont font-semibold text-[16px] hover:scale-105 transition-all duration-300 capitalize"
+                >
+                  Explore Our Services
+                </Link>
+              </div>
+
             </Animate>
           </div>
         </div>
@@ -562,10 +573,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}<section className="bg-white px-4">
-      <Animate variant="scale-in">
-        <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[24px] overflow-hidden">
-          <div
-            className="
+        <Animate variant="scale-in">
+          <div className="bg-[#111212] max-w-[1440px] mx-auto rounded-[24px] overflow-hidden">
+            <div
+              className="
           flex
           flex-col
           lg:flex-row
@@ -578,11 +589,11 @@ export default function AboutPage() {
           py-[32px]
           md:py-[48px]
         "
-          >
-            {/* Left Content */}
-            <div className="flex flex-col gap-[12px] max-w-[520px]">
-              <h2
-                className="
+            >
+              {/* Left Content */}
+              <div className="flex flex-col gap-[12px] max-w-[520px]">
+                <h2
+                  className="
               font-mont
               font-bold
               text-[28px]
@@ -593,29 +604,29 @@ export default function AboutPage() {
               md:leading-[52px]
               text-white
             "
-              >
-                Not sure which service fits?
-              </h2>
+                >
+                  Not sure which service fits?
+                </h2>
 
-              <p
-                className="
+                <p
+                  className="
               font-inter
               text-[14px]
               md:text-[16px]
               leading-[1.7]
               text-[#b7b7b9]
             "
-              >
-                Tell us about your project and we’ll recommend the right
-                approach within 48 hours.
-              </p>
-            </div>
+                >
+                  Tell us about your project and we’ll recommend the right
+                  approach within 48 hours.
+                </p>
+              </div>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-[12px] w-full lg:w-auto">
-              <Link
-                href="/contact"
-                className="
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-[12px] w-full lg:w-auto">
+                <Link
+                  href="/contact"
+                  className="
               flex
               justify-center
               items-center
@@ -631,13 +642,13 @@ export default function AboutPage() {
               transition-all
               duration-300
             "
-              >
-                Book a call
-              </Link>
+                >
+                  Book a call
+                </Link>
 
-              <Link
-                href="/project-cost-estimation"
-                className="
+                <Link
+                  href="/project-cost-estimation"
+                  className="
               flex
               justify-center
               items-center
@@ -655,14 +666,14 @@ export default function AboutPage() {
               transition-all
               duration-300
             "
-              >
-                Get Project Estimate
-              </Link>
+                >
+                  Get Project Estimate
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </Animate>
-    </section>
+        </Animate>
+      </section>
     </div>
   );
 }

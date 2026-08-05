@@ -528,7 +528,7 @@ figure.wp-block-image.size-large {
 }
 
 .animate-marquee {
-  animation: marquee 38s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
 /* ─── Job description content ───────────────────────────────────────────────── */
@@ -828,4 +828,9 @@ figure.wp-block-image.size-large {
 
 .cl-footerItem {
   display: none;
+}
+
+.casestudy-content p,
+.casestudy-content ul {
+  color: #868686 !important;
 }

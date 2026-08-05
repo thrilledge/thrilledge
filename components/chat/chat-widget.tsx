@@ -166,12 +166,34 @@ export function ChatWidget() {
   const pricingQuestionCount = useRef(0)
   const nudgeShown = useRef(false)
 
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // Tracks how much of the viewport is covered by the on-screen keyboard
+  // so the chat panel stays above it instead of sliding out of view.
+  const [keyboardOffset, setKeyboardOffset] = useState(0)
+
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const messagesEl = messagesRef.current
+    if (messagesEl) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' })
   }, [messages, loading, bookingStep])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const vv = window.visualViewport
+    if (!vv) return
+    const update = () => {
+      const gap = window.innerHeight - (vv.offsetTop + vv.height)
+      setKeyboardOffset(Math.max(0, Math.round(gap)))
+    }
+    update()
+    vv.addEventListener('resize', update)
+    vv.addEventListener('scroll', update)
+    return () => {
+      vv.removeEventListener('resize', update)
+      vv.removeEventListener('scroll', update)
+    }
+  }, [])
 
   // Auto-open after 2 seconds on first mount
   useEffect(() => {
@@ -180,7 +202,13 @@ export function ChatWidget() {
   }, [])
 
   useEffect(() => {
-    if (isChatOpen) setTimeout(() => inputRef.current?.focus(), 300)
+    if (isChatOpen) setTimeout(() => {
+      // Only auto-focus on fine-pointer (desktop) devices. On mobile this
+      // would pop the on-screen keyboard open right after the auto-open.
+      if (typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
+        inputRef.current?.focus()
+      }
+    }, 300)
   }, [isChatOpen])
 
   // ── Add message ────────────────────────────────────────────────────────
@@ -421,13 +449,19 @@ export function ChatWidget() {
       {/* Chat panel */}
       <div
         className={cn(
-          'fixed bottom-6 right-6 z-[9999] w-[370px] max-w-[calc(100vw-24px)]',
+          'fixed right-6 z-[9999] w-[370px] max-w-[calc(100vw-24px)]',
           'flex flex-col bg-white rounded-[20px] shadow-[0_24px_80px_rgba(0,0,0,0.18)]',
           'border border-[#e5e5e5] overflow-hidden',
           'transition-all duration-300 origin-bottom-right',
           isChatOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0 pointer-events-none'
         )}
-        style={{ height: '560px', maxHeight: 'calc(100vh - 100px)' }}
+        style={{
+          bottom: keyboardOffset > 0 ? keyboardOffset + 12 : 24,
+          height: '560px',
+          maxHeight: keyboardOffset > 0
+            ? `calc(100dvh - ${keyboardOffset + 36}px)`
+            : 'calc(100dvh - 100px)',
+        }}
       >
         {/* Header */}
         <div className="bg-[#111212] px-5 py-4 flex items-center justify-between shrink-0">
@@ -453,7 +487,7 @@ export function ChatWidget() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3 scroll-smooth">
+        <div ref={messagesRef} className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3 scroll-smooth">
           {messages.map(msg => (
             <div
               key={msg.id}
@@ -580,7 +614,6 @@ export function ChatWidget() {
             </div>
           )}
 
-          <div ref={bottomRef} />
         </div>
 
         {/* Quick replies */}

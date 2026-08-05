@@ -52,7 +52,9 @@ import {
   Globe,
   Linkedin,
   Instagram,
-
+  ShieldCheck,
+  BarChart3,
+  Bug,
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -274,6 +276,34 @@ const mobileNav = [
         href: '/technologies/databases',
         desc: 'Secure scalable databases',
         icon: Database,
+      },
+
+      {
+        label: 'Cloud & DevOps',
+        href: '/technologies/cloud-devops',
+        desc: 'AWS, Azure, GCP & CI/CD',
+        icon: Cloud,
+      },
+
+      {
+        label: 'Data Engineering & Big Data',
+        href: '/technologies/data-engineering-big-data',
+        desc: 'Pipelines & warehousing',
+        icon: BarChart3,
+      },
+
+      {
+        label: 'Cybersecurity',
+        href: '/technologies/cybersecurity',
+        desc: 'Security-first engineering',
+        icon: ShieldCheck,
+      },
+
+      {
+        label: 'QA & Testing Automation',
+        href: '/technologies/qa-testing-automation',
+        desc: 'Automated quality assurance',
+        icon: Bug,
       },
     ],
   },

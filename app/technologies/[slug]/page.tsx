@@ -10,6 +10,7 @@ import ValuePropositionSection from '@/components/sections/value-proposition'
 import { cn } from '@/lib/utils'
 import { Animate } from '@/components/common/animate'
 import { CTASection } from '@/components/sections/cta-section'
+import { getTechnologySubServices } from '@/lib/technology-sub-services'
 
 
 interface TechData {
@@ -41,7 +42,10 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'Claude', icon: '/openai.svg' },
       { name: 'Gemini', icon: '/openai.svg' },
       { name: 'LangChain', icon: '/langchain.svg' },
+      { name: 'LangGraph', icon: '/langchain.svg' },
       { name: 'Hugging Face', icon: '/huggingface.svg' },
+      { name: 'OpenCV', icon: '/python.svg' },
+      { name: 'spaCy', icon: '/python.svg' },
       { name: 'AWS SageMaker', icon: '/aws.svg' },
       { name: 'Scikit-learn', icon: '/scikitlearn.svg' },
       { name: 'n8n', icon: '/n8n.svg' },
@@ -50,7 +54,9 @@ const TECHNOLOGIES: Record<string, TechData> = {
     capabilities: [
       { title: 'LLM & Generative AI', desc: 'We design AI products powered by GPT, Claude, Gemini, and custom tuning workflows for chat, search, summarization, and enterprise copilots.' },
       { title: 'Custom Model Training', desc: 'We train and fine-tune models on your proprietary data for domain-specific accuracy that off-the-shelf APIs cannot match.' },
-      { title: 'Agentic AI & Automation', desc: 'We build agent workflows that reason over tasks, tools, and context to automate operations with supervision and guardrails.' },
+      { title: 'Agentic AI & Automation', desc: 'We build agent workflows with LangChain and LangGraph that reason over tasks, tools, and context to automate operations with supervision and guardrails.' },
+      { title: 'Computer Vision (OpenCV)', desc: 'Image recognition, object detection, OCR, and video analytics systems built on OpenCV and deep learning pipelines.' },
+      { title: 'NLP & Text Processing', desc: 'Sentiment analysis, entity extraction, document classification, and language understanding with spaCy and transformer models.' },
       { title: 'RAG & Knowledge Bases', desc: 'Retrieval-augmented generation systems that ground AI responses in your own documents and data sources.' },
       { title: 'Predictive Analytics', desc: 'Forecasting models that help you anticipate demand, detect anomalies, and make data-driven decisions at scale.' },
       { title: 'MLOps & Deployment', desc: 'End-to-end ML pipelines with monitoring, retraining, and CI/CD so your models stay accurate over time.' },
@@ -200,6 +206,10 @@ const TECHNOLOGIES: Record<string, TechData> = {
     tools: [
       { name: 'Node.js', icon: '/nodejs.svg' },
       { name: 'Python', icon: '/python.svg' },
+      { name: 'Django', icon: '/python.svg' },
+      { name: 'FastAPI', icon: '/python.svg' },
+      { name: 'Java', icon: '/go.svg' },
+      { name: '.NET', icon: '/api.svg' },
       { name: 'Go', icon: '/go.svg' },
       { name: 'GraphQL', icon: '/graphql.svg' },
       { name: 'REST APIs', icon: '/api.svg' },
@@ -235,6 +245,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'Flutter', icon: '/flutter.svg' },
       { name: 'Swift', icon: '/swift.svg' },
       { name: 'Kotlin', icon: '/kotlin.svg' },
+      { name: 'Core ML', icon: '/swift.svg' },
+      { name: 'ML Kit', icon: '/kotlin.svg' },
       { name: 'Expo', icon: '/expo.svg' },
       { name: 'Firebase', icon: '/firebase.svg' },
       { name: 'App Store', icon: '/appstore.svg' },
@@ -248,6 +260,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Cross-Platform with Flutter', desc: 'Single codebase, native performance. Flutter lets us ship iOS and Android simultaneously without compromising on feel.' },
       { title: 'React Native Apps', desc: 'JavaScript-based cross-platform development with access to native modules for camera, biometrics, and push notifications.' },
       { title: 'Native iOS & Android', desc: 'When performance and platform-specific features matter most, we build fully native with Swift and Kotlin.' },
+      { title: 'On-Device AI & ML', desc: 'Offline intelligence with Core ML and ML Kit for on-device inference, image classification, text recognition, and recommendations.' },
       { title: 'Offline-First Architecture', desc: 'Apps that work without a connection and sync seamlessly when back online, critical for field and enterprise use cases.' },
       { title: 'App Store Optimization', desc: 'We handle submission, metadata, screenshots, and ASO strategy to maximize visibility and conversion on both stores.' },
       { title: 'Push Notifications & Analytics', desc: 'Firebase, OneSignal, and Mixpanel integrations to keep users engaged and give you visibility into behavior.' },
@@ -268,6 +281,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'MongoDB', icon: '/mongodb.svg' },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'MySQL', icon: '/mysql.svg' },
+      { name: 'Pinecone', icon: '/aws.svg' },
+      { name: 'Weaviate', icon: '/aws.svg' },
       { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
       { name: 'Supabase', icon: '/supabase.svg' },
       { name: 'PlanetScale', icon: '/planetscale.svg' },
@@ -283,6 +298,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Database Migrations', desc: 'Zero-downtime migrations from legacy systems to modern databases with full data integrity validation.' },
       { title: 'Replication & High Availability', desc: 'Read replicas, failover clusters, and multi-region setups that keep your data available even when things go wrong.' },
       { title: 'Search & Analytics', desc: 'Elasticsearch and vector database integrations for full-text search, semantic search, and real-time analytics.' },
+      { title: 'Vector Databases & RAG', desc: 'Pinecone, Weaviate, and pgvector setups that power semantic search, embeddings, and retrieval-augmented generation for AI products.' },
       { title: 'Backup & Disaster Recovery', desc: 'Automated backup strategies, point-in-time recovery, and tested restore procedures for every production system.' },
     ],
     image: '/database.png',
@@ -332,8 +348,12 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     tools: [
       { name: 'AWS', icon: '/aws.svg' },
+      { name: 'Azure', icon: '/aws.svg' },
+      { name: 'GCP', icon: '/aws.svg' },
       { name: 'Docker', icon: '/docker.svg' },
       { name: 'Kubernetes', icon: '/kubernetes.svg' },
+      { name: 'CI/CD', icon: '/github.svg' },
+      { name: 'Terraform', icon: '/docker.svg' },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'PostgreSQL', icon: '/postgresql.svg' },
       { name: 'Python', icon: '/python.svg' },
@@ -422,11 +442,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
   },
 }
 
-const allTools = Object.values(TECHNOLOGIES).flatMap((tech) => tech.tools)
-const uniqueTools = Array.from(new Set(allTools.map((tool) => tool.name)))
-  .map((name) => allTools.find((tool) => tool.name === name))
-  .filter((tool): tool is { name: string; icon: string } => Boolean(tool))
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const tech = TECHNOLOGIES[slug]
@@ -457,6 +472,12 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   const { slug } = await params
   const tech = TECHNOLOGIES[slug]
   if (!tech) notFound()
+
+  const techTools = Array.from(new Set(tech.tools.map((tool) => tool.icon)))
+    .map((icon) => tech.tools.find((tool) => tool.icon === icon))
+    .filter((tool): tool is { name: string; icon: string } => Boolean(tool))
+
+  const subServices = getTechnologySubServices(slug)
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -509,22 +530,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      {/* Brands Marquee */}
-      <div className={cn('w-full', 'bg-[#F3F3F3]', 'py-[32px]', 'md:py-[48px]')}>
-        <div className={cn('relative', 'overflow-hidden', 'w-full', 'max-w-[1440px]', 'mx-auto')}>
-          <div className={cn('flex', 'w-max', 'animate-marquee', 'gap-[32px]')}>
-            {[...uniqueTools, ...uniqueTools].map((tool, index) => (
-              <div
-                key={`${tool.name}-${index}`}
-                className={cn('flex', 'shrink-0', 'items-center', 'justify-center', 'w-[120px]', 'h-[60px]', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-[12px]', 'p-[12px]')}
-                aria-hidden={index >= uniqueTools.length}
-              >
-                <Image src={tool.icon} alt={tool.name} width={40} height={40} className="object-contain" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
 
 
 
@@ -543,6 +549,23 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       {/* Description */}
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[56px]', 'pb-[26px]', 'w-full', 'md:mt-5', 'mt-2', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
+      </div>
+
+      {/* Tools Marquee */}
+      <div className={cn('w-full', 'bg-[#F3F3F3]', 'py-[32px]', 'md:py-[48px]')}>
+        <div className={cn('relative', 'overflow-hidden', 'w-full', 'max-w-[1440px]', 'mx-auto')}>
+          <div className={cn('flex', 'w-max', 'animate-marquee', 'gap-[32px]')}>
+            {[...techTools, ...techTools].map((tool, index) => (
+              <div
+                key={`${tool.name}-${index}`}
+                className={cn('flex', 'shrink-0', 'items-center', 'justify-center', 'w-[120px]', 'h-[60px]', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-[12px]', 'p-[12px]')}
+                aria-hidden={index >= techTools.length}
+              >
+                <Image src={tool.icon} alt={tool.name} width={40} height={40} className="object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Capabilities */}
@@ -564,6 +587,36 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </div>
         </div>
       </div>
+
+      {/* Sub Categories */}
+      {subServices && (
+        <section className="bg-white py-16 md:py-24">
+          <div className="mx-auto px-4 w-full max-w-[1440px]">
+            <div className="mb-10">
+              <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
+                Sub Categories
+              </span>
+              <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
+                {subServices.heading}
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {subServices.items.map((item, index) => (
+                <Animate key={item} variant="fade-up" delay={index * 40}>
+                  <div className="flex items-start gap-3 rounded-[18px] border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-4">
+                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="font-inter text-[16px] leading-7 text-[#111212] md:text-[17px]">
+                      {item}
+                    </span>
+                  </div>
+                </Animate>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Tools & Stack */}
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>

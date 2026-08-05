@@ -190,7 +190,7 @@ export function ServiceClient({ slug }: { slug: string }) {
                 Sub Services
               </span>
               <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-                {toTitleCase(serviceSubServices.heading)}
+                {(serviceSubServices.heading)}
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">

@@ -13,6 +13,7 @@ import {
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
   Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
   Wrench, TrendingUp, Search, Zap, Map, DollarSign, Share2, FileText, BriefcaseBusiness,
+  ShieldCheck, BarChart3, Bug,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -88,6 +89,10 @@ const menus: MenuGroup[] = [
       { label: 'Mobile Development', href: '/technologies/mobile-development', icon: Smartphone, description: 'We create native and cross-platform mobile apps with Flutter and React Native, delivering smooth, fast, and visually stunning mobile experiences.' },
       { label: 'Databases', href: '/technologies/databases', icon: Database, description: 'We design and optimize data architectures using SQL and NoSQL databases like PostgreSQL, MongoDB, and Redis for reliability and performance.' },
       { label: 'AI Workflow Automation', href: '/technologies/ai-workflow-automation', icon: GitBranch, description: 'We build AI-powered automation pipelines using agents, LLMs, and intelligent orchestration to eliminate manual work and accelerate operations.' },
+      { label: 'Cloud & DevOps', href: '/technologies/cloud-devops', icon: Cloud, description: 'We architect cloud infrastructure on AWS, Azure, and GCP with CI/CD pipelines, container orchestration, and observability built in from day one.' },
+      { label: 'Data Engineering & Big Data', href: '/technologies/data-engineering-big-data', icon: BarChart3, description: 'Reliable pipelines, warehousing, and real-time streaming that turn raw data into fast, trustworthy decisions.' },
+      { label: 'Cybersecurity', href: '/technologies/cybersecurity', icon: ShieldCheck, description: 'Zero-trust security, IAM, and compliance-ready hardening that protects data and trust in enterprise and fintech environments.' },
+      { label: 'QA & Testing Automation', href: '/technologies/qa-testing-automation', icon: Bug, description: 'Automated UI, API, and performance testing that catches issues early and keeps every release reliable.' },
     ],
   },
   {

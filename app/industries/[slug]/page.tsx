@@ -107,7 +107,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
   education: {
     title: "Education",
     headline:
-      "EdTech platforms that drive real learning outcomes, not just engagement metrics.",
+      "Education platforms that drive real learning outcomes, not just engagement metrics.",
     description:
       "We build custom education technology including LMS platforms, adaptive learning tools, student information systems, and virtual classrooms that help institutions deliver better learning experiences at scale.",
     metaTitle:
