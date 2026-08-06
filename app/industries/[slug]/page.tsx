@@ -939,7 +939,7 @@ export default async function IndustryPage({
       </div>
 
       {industrySubServices && (
-        <section className="bg-white pt-16 md:pt-24">
+        <section className="bg-white py-16 md:py-24">
           <div className="max-w-360 mx-auto px-4">
             <div className="mb-10">
               <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
