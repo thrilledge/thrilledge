@@ -47,7 +47,7 @@ function ApplyForm() {
         <div className="flex justify-center items-center bg-[#111212] mx-auto rounded-full w-[64px] h-[64px]">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
         </div>
-        <h2 className="font-mont font-bold text-[#111212] text-[32px]">Application sent!</h2>
+        <h2 className="font-mont font-bold text-[#111212] text-[32px]">Application Sent!</h2>
         <p className="font-inter text-[#929296] text-[16px] leading-[1.65]">We&apos;ll review your application and get back to you within 5 business days.</p>
         <Link href="/careers" className="inline-flex justify-center items-center bg-black mx-auto px-[24px] py-[12px] rounded-full font-mont font-semibold text-[14px] text-white hover:scale-105 transition-all duration-300 capitalize">
           Back to Careers
@@ -59,7 +59,7 @@ function ApplyForm() {
   return (
     <>
       <div className="text-center">
-        <h1 className="mb-[12px] font-mont font-bold text-[#111212] text-[40px] md:text-[56px] leading-[1.1]">Apply now</h1>
+        <h1 className="mb-[12px] font-mont font-bold text-[#111212] text-[40px] md:text-[56px] leading-[1.1]">Apply Now</h1>
         <p className="mb-[48px] font-inter text-[#929296] text-[16px] leading-[1.65]">
           Fill out the form below and we&apos;ll get back to you within 5 business days.
         </p>

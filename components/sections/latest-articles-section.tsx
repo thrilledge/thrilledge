@@ -26,7 +26,7 @@ export async function LatestArticlesSection({ show = 3, categories }: LatestArti
         {/* Heading */}
         <Animate variant="slide-left" className="w-full">
           <h2 className="text-black font-mont lg:text-[64px] text-[32px] lg:font-bold font-semibold lg:leading-[64px] leading-[38px] text-start w-full">
-            Latest articles
+            Latest Articles
           </h2>
         </Animate>
 

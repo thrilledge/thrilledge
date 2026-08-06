@@ -39,7 +39,7 @@ export default function NotFound() {
                 Page not found
               </span>
               <h1 className="font-mont font-bold text-[36px] md:text-[64px] text-white leading-tight max-w-2xl">
-                This page doesn&apos;t exist.
+                This Page Doesn&apos;t Exist.
               </h1>
               <p className="font-inter text-[15px] md:text-[17px] text-white/50 max-w-md leading-7">
                 The URL may be mistyped, moved, or no longer available. Let&apos;s get you back on track.

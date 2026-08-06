@@ -14,10 +14,10 @@ const sections = [
   { id: "free-plan", title: "Free Plan" },
   { id: "unlimited-plan", title: "Unlimited Plan" },
   { id: "refund-eligibility", title: "Refund Eligibility" },
-  { id: "how-to-request", title: "How to Request a Refund" },
+  { id: "how-to-request", title: "How To Request A Refund" },
   { id: "processing-time", title: "Processing Time" },
   { id: "exceptions", title: "Exceptions" },
-  { id: "changes", title: "Changes to This Policy" },
+  { id: "changes", title: "Changes To This Policy" },
   { id: "contact", title: "Contact Us" },
 ];
 
@@ -121,7 +121,7 @@ export default function RefundPolicy() {
             </div>
           </PolicySection>
 
-          <PolicySection id="how-to-request" icon={<AlertCircle size={18} />} title="5. How to Request a Refund">
+          <PolicySection id="how-to-request" icon={<AlertCircle size={18} />} title="5. How To Request A Refund">
             <p className={cn('mb-4', 'font-inter', 'text-[#555]', 'text-[15px]', 'leading-[1.8]')}>
               To request a refund, please email us with your account details:
             </p>
@@ -160,7 +160,7 @@ export default function RefundPolicy() {
             </ul>
           </PolicySection>
 
-          <PolicySection id="changes" icon={<RefreshCw size={18} />} title="8. Changes to This Policy">
+          <PolicySection id="changes" icon={<RefreshCw size={18} />} title="8. Changes To This Policy">
             <p className={cn('font-inter', 'text-[#555]', 'text-[15px]', 'leading-[1.8]')}>
               We reserve the right to update this Refund Policy at any time. Changes will be posted on this page with an updated revision date. Continued use of our services after changes constitutes acceptance of the updated policy.
             </p>
@@ -168,7 +168,7 @@ export default function RefundPolicy() {
 
           <div id="contact" className={cn('bg-[#111212]', 'mt-12', 'p-8', 'md:p-10', 'rounded-2xl')}>
             <p className={cn('mb-3', 'font-inter', 'font-semibold', 'text-[11px]', 'text-white/40', 'uppercase', 'tracking-[0.2em]')}>9. Contact Us</p>
-            <h2 className={cn('mb-2', 'font-mont', 'font-bold', 'text-white', 'text-2xl')}>Have a question about refunds?</h2>
+            <h2 className={cn('mb-2', 'font-mont', 'font-bold', 'text-white', 'text-2xl')}>Have A Question About Refunds?</h2>
             <p className={cn('mb-8', 'font-inter', 'text-[14px]', 'text-white/50')}>We&apos;re here to help.</p>
             <div className={cn('gap-5', 'grid', 'sm:grid-cols-3')}>
               {[

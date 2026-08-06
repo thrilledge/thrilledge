@@ -70,7 +70,7 @@ export default async function WorkPage() {
                 'text-[42px]', 'leading-[1.04]', 'tracking-tight',
                 'md:text-[72px]', 'md:leading-[1.02]', 'max-w-3xl',
               )}>
-                We deliver.
+                We Deliver.
                 <br />
                 <span className="text-white/45">Period.</span>
               </h1>

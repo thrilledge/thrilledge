@@ -29,7 +29,7 @@ export default async function ServicesPage() {
             <div>
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Services</span>
               <h2 className={cn("text-[32px]", "lg:text-[56px]", "lg:leading-15", "leading-9", "font-mont", "font-semibold", "text-white", "max-w-2xl")}>
-                We deliver.<br />Period.
+                We Deliver.<br />Period.
               </h2>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">

@@ -77,7 +77,7 @@ export function ProcessSection() {
 
         <Animate variant="blur-in">
           <h2 className={cn('font-mont', 'font-semibold', 'md:font-bold', 'text-[32px]', 'text-black', 'md:text-[64px]', 'leading-[32px]', 'md:leading-[64px]')}>
-            Built with Strategy. Designed to Scale. Delivered with Precision.
+            Built With Strategy. Designed To Scale. Delivered With Precision.
           </h2>
         </Animate>
 

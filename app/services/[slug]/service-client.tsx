@@ -220,7 +220,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               <div className="flex lg:flex-row flex-col md:gap-16 gap-12 items-start">
                 <div className="lg:w-105 w-full shrink-0 lg:sticky lg:top-25">
                   <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
-                    How we work
+                    How We Work
                   </h2>
                   <p className="mt-5 font-inter text-[#929296] text-[16px] leading-6.5">
                     A clear, repeatable process that keeps projects on track and

@@ -50,7 +50,7 @@ export function IndustriesSection() {
         <div className="flex md:flex-row flex-col md:items-end justify-between gap-[16px]">
           <Animate variant="slide-left">
             <h2 className="text-black font-mont md:text-[56px] text-[32px] font-bold md:leading-[64px] leading-[36px] max-w-[600px]">
-              Industries we serve
+              Industries We Serve
             </h2>
           </Animate>
           <Animate variant="slide-right" delay={100}>

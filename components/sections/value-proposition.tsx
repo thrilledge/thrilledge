@@ -34,7 +34,7 @@ export default function ValuePropositionSection() {
           </Animate>
           <Animate variant="blur-in" delay={100}>
             <h2 className="max-w-225 font-mont font-bold text-[40px] text-white md:text-[64px] lg:text-[80px] leading-none">
-              What&apos;s the maximum value we can contribute?
+              What&apos;s The Maximum Value We Can Contribute?
             </h2>
           </Animate>
         </div>

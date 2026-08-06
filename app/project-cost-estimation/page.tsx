@@ -277,7 +277,7 @@ export default function ProjectCostEstimation() {
             <Check size={32} className="text-white" strokeWidth={2.5} />
           </div>
           <div className="flex flex-col gap-3">
-            <h2 className="font-mont font-bold text-[#111212] text-[40px] leading-tight">Estimate on its way</h2>
+            <h2 className="font-mont font-bold text-[#111212] text-[40px] leading-tight">Estimate On Its Way</h2>
             <p className="font-inter text-[#929296] text-[16px] leading-relaxed">
               We&apos;ll send a tailored estimate to{' '}
               <span className="font-semibold text-[#111212]">{form.email}</span>{' '}
@@ -348,7 +348,7 @@ export default function ProjectCostEstimation() {
                   <div className="flex flex-col gap-2">
                     <p className="font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.2em]">Step 1 of 3</p>
                     <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[40px] leading-tight">
-                      What are you building?
+                      What Are You Building?
                     </h2>
                     <p className="font-inter text-[#929296] text-[15px]">
                       Select all that apply, this is the primary cost driver.
@@ -482,7 +482,7 @@ export default function ProjectCostEstimation() {
                   <div className="flex flex-col gap-2">
                     <p className="font-inter font-semibold text-[#929296] text-[12px] uppercase tracking-[0.2em]">Step 3 of 3</p>
                     <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[40px] leading-tight">
-                      Almost there
+                      Almost There
                     </h2>
                     <p className="font-inter text-[#929296] text-[15px]">
                       Where should we send your free estimate?

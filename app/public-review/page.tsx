@@ -46,7 +46,7 @@ export default function PublicReviewPage() {
                 <div className="w-[64px] h-[64px] rounded-full bg-[#111212] flex items-center justify-center mx-auto">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                 </div>
-                <h1 className="text-[32px] font-mont font-bold text-[#111212]">Thank you!</h1>
+                <h1 className="text-[32px] font-mont font-bold text-[#111212]">Thank You!</h1>
                 <p className="text-[16px] font-inter text-[#929296] leading-[1.65]">Your review has been submitted and is pending approval. We appreciate your feedback.</p>
                 <Link href="/client-reviews" className="inline-flex items-center justify-center px-[24px] py-[12px] bg-black text-white font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 mx-auto capitalize">
                     Back to Reviews
@@ -65,7 +65,7 @@ export default function PublicReviewPage() {
                         {/* Progress */}
                         <div className="mb-8">
                             <div className="flex justify-between mb-2">
-                                <h2 className="text-lg font-semibold text-[#111212] font-mont">Step {step} of 2</h2>
+                                <h2 className="text-lg font-semibold text-[#111212] font-mont">Step {step} Of 2</h2>
                             </div>
                             <div className="h-2 w-full rounded-full bg-black/10">
                                 <div className="h-2 rounded-full bg-black transition-all duration-500" style={{ width: step === 1 ? '50%' : '100%' }} />
@@ -76,7 +76,7 @@ export default function PublicReviewPage() {
                             <div className="w-full flex flex-col gap-[32px]">
                                 <div className="flex flex-col gap-[16px]">
                                     <h1 className="text-black font-mont md:text-[64px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
-                                        A Public Review of Thrill Edge Technologies
+                                        A Public Review Of Thrill Edge Technologies
                                     </h1>
                                     <p className="text-[#111212] font-inter text-[16px] leading-[24px]">
                                         We&apos;d love to hear about your experience. Please fill out the review form below:
@@ -121,7 +121,7 @@ export default function PublicReviewPage() {
                                             </div>
                                         </div>
                                         <div className="w-full flex flex-col gap-[16px]">
-                                            <h2 className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">Write about your experience</h2>
+                                            <h2 className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">Write About Your Experience</h2>
                                             <p className="text-[#111212] font-inter text-[16px] leading-[24px]">Answer the 5 questions below:</p>
                                             <ol className="list-decimal list-inside flex flex-col gap-[8px] text-[#111212] font-inter text-[16px] leading-[24px]">
                                                 <li>Describe your company and your position there.</li>

@@ -561,7 +561,7 @@ export default function AboutPage() {
             max-w-[900px]
           "
               >
-                Frequently asked <br /> questions
+                Frequently Asked <br /> Questions
               </h2>
             </Animate>
 
@@ -605,7 +605,7 @@ export default function AboutPage() {
               text-white
             "
                 >
-                  Not sure which service fits?
+                  Not Sure Which Service Fits?
                 </h2>
 
                 <p

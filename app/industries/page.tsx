@@ -35,7 +35,7 @@ export default function IndustriesPage() {
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Domain expertise</span>
               <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
-                Industries<br />we serve.
+                Industries<br />We Serve.
               </h1>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">

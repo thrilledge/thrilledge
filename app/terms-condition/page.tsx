@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  { id: "acceptance", title: "Acceptance of Terms" },
+  { id: "acceptance", title: "Acceptance Of Terms" },
   { id: "services", title: "Services" },
   { id: "intellectual-property", title: "Intellectual Property" },
   { id: "client-responsibilities", title: "Client Responsibilities" },
   { id: "payment", title: "Payment Terms" },
   { id: "confidentiality", title: "Confidentiality" },
-  { id: "liability", title: "Limitation of Liability" },
+  { id: "liability", title: "Limitation Of Liability" },
   { id: "warranties", title: "Warranties Disclaimer" },
   { id: "termination", title: "Termination" },
   { id: "governing-law", title: "Governing Law" },
-  { id: "changes", title: "Changes to Terms" },
+  { id: "changes", title: "Changes To Terms" },
   { id: "contact", title: "Contact Us" },
 ];
 
@@ -63,7 +63,7 @@ export default function TermsConditions() {
         <Animate variant="fade-up" className="flex-1 min-w-0">
           <main className="flex-1 min-w-0">
 
-          <TermSection id="acceptance" icon={<CheckCircle2 size={18} />} title="1. Acceptance of Terms">
+          <TermSection id="acceptance" icon={<CheckCircle2 size={18} />} title="1. Acceptance Of Terms">
             <p className="font-inter text-[#555] text-[15px] leading-[1.8]">
               By using our website or services, you confirm that you are at least 18 years of age and have the legal capacity to enter
               into a binding agreement. If you are using our services on behalf of a company, you represent that you have authority to
@@ -133,7 +133,7 @@ export default function TermsConditions() {
             </p>
           </TermSection>
 
-          <TermSection id="liability" icon={<AlertTriangle size={18} />} title="7. Limitation of Liability">
+          <TermSection id="liability" icon={<AlertTriangle size={18} />} title="7. Limitation Of Liability">
             <div className="bg-[#f5f5f5] px-5 py-4 border-foreground border-l-4 rounded-xl">
               <p className="font-inter text-[#444] text-[14px] leading-[1.8]">
                 To the maximum extent permitted by law, Thrill Edge Technologies shall not be liable for any indirect, incidental,
@@ -166,7 +166,7 @@ export default function TermsConditions() {
             </div>
           </TermSection>
 
-          <TermSection id="changes" icon={<RefreshCw size={18} />} title="11. Changes to Terms">
+          <TermSection id="changes" icon={<RefreshCw size={18} />} title="11. Changes To Terms">
             <p className="font-inter text-[#555] text-[15px] leading-[1.8]">
               We reserve the right to update these Terms at any time. Continued use of our website or services after changes are
               posted constitutes acceptance of the revised Terms.
@@ -176,7 +176,7 @@ export default function TermsConditions() {
           {/* Contact */}
           <div id="contact" className="bg-[#111212] mt-12 p-8 md:p-10 rounded-2xl">
             <p className="mb-3 font-inter font-semibold text-[11px] text-white/40 uppercase tracking-[0.2em]">12. Contact Us</p>
-            <h2 className="mb-2 font-mont font-bold text-white text-2xl">Questions about these Terms?</h2>
+            <h2 className="mb-2 font-mont font-bold text-white text-2xl">Questions About These Terms?</h2>
             <p className="mb-8 font-inter text-[14px] text-white/50">Reach out and we&apos;ll get back to you within one business day.</p>
             <div className="gap-5 grid sm:grid-cols-3">
               {[

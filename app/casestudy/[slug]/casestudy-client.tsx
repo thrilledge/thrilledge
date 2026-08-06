@@ -387,7 +387,7 @@ export default function WorkPage({ params }: WorkPageProps) {
               <div className="grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 items-start">
                 <div className="lg:sticky lg:top-28">
                   <Eyebrow index="01">Overview</Eyebrow>
-                  <SectionTitle>About this project</SectionTitle>
+                  <SectionTitle>About This Project</SectionTitle>
                 </div>
                 <GlassCard>
                   <RichText html={overview} />
@@ -440,7 +440,7 @@ export default function WorkPage({ params }: WorkPageProps) {
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <Eyebrow index="04">Features</Eyebrow>
-                  <SectionTitle>Key capabilities</SectionTitle>
+                  <SectionTitle>Key Capabilities</SectionTitle>
                 </div>
                 <p className="font-inter text-[15px] text-zinc-400 max-w-sm leading-relaxed">
                   Everything we designed and shipped to make the product work beautifully.
@@ -492,7 +492,7 @@ export default function WorkPage({ params }: WorkPageProps) {
             <Animate variant="fade-up">
               <div>
                 <Eyebrow index="06">Hurdles</Eyebrow>
-                <SectionTitle>Challenges we overcame</SectionTitle>
+                <SectionTitle>Challenges We Overcame</SectionTitle>
               </div>
             </Animate>
             <div className="mt-10 flex flex-col gap-4">
@@ -522,7 +522,7 @@ export default function WorkPage({ params }: WorkPageProps) {
               <div className="grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 items-start">
                 <div className="lg:sticky lg:top-28">
                   <Eyebrow index="07">Outcome</Eyebrow>
-                  <SectionTitle>Results that matter</SectionTitle>
+                  <SectionTitle>Results That Matter</SectionTitle>
                 </div>
                 <GlassCard>
                   <RichText html={results} />
@@ -580,7 +580,7 @@ export default function WorkPage({ params }: WorkPageProps) {
             <Animate variant="fade-up">
               <div>
                 <Eyebrow index="09">Stack</Eyebrow>
-                <SectionTitle>Technology used</SectionTitle>
+                <SectionTitle>Technology Used</SectionTitle>
               </div>
             </Animate>
             <GlassCard className="mt-10">
@@ -614,7 +614,7 @@ export default function WorkPage({ params }: WorkPageProps) {
             <Animate variant="fade-up">
               <div>
                 <Eyebrow index="10">Gallery</Eyebrow>
-                <SectionTitle>In the product</SectionTitle>
+                <SectionTitle>In The Product</SectionTitle>
               </div>
             </Animate>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -642,7 +642,7 @@ export default function WorkPage({ params }: WorkPageProps) {
             <Animate variant="fade-up">
               <div>
                 <Eyebrow index="11">Testimonial</Eyebrow>
-                <SectionTitle>What the client says</SectionTitle>
+                <SectionTitle>What The Client Says</SectionTitle>
               </div>
             </Animate>
             <div className="mt-10">
@@ -657,7 +657,7 @@ export default function WorkPage({ params }: WorkPageProps) {
             <Animate variant="fade-up">
               <div>
                 <Eyebrow index="12">FAQs</Eyebrow>
-                <SectionTitle>Common questions</SectionTitle>
+                <SectionTitle>Common Questions</SectionTitle>
               </div>
             </Animate>
             <div className="mt-10 flex flex-col gap-4 max-w-3xl">

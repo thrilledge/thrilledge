@@ -48,7 +48,7 @@ export default function TechnologiesPage() {
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Our stack</span>
               <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
-                Built with the<br />best tools.
+                Built With The<br />Best Tools.
               </h1>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
@@ -100,7 +100,7 @@ export default function TechnologiesPage() {
           <div className="flex md:flex-row flex-col justify-between md:items-end gap-6 mb-14">
             <Animate variant="slide-left">
               <h2 className="max-w-125 font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-tight">
-                Tools we use every day
+                Tools We Use Every Day
               </h2>
             </Animate>
             <Animate variant="slide-right" delay={100}>

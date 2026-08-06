@@ -107,7 +107,7 @@ export default function CareersPage() {
                 "lg:leading-[60px]",
               )}
             >
-              Work on things that actually ship.
+              Work On Things That Actually Ship.
             </h1>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               Small teams. Senior engineers. Real ownership.

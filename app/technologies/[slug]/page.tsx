@@ -622,7 +622,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <div className={cn('bg-white', 'w-full')}>
         <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
           <h2 className={cn('mb-[64px]', 'max-w-[600px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-            What we build with {tech.title}
+            What We Build With {tech.title}
           </h2>
           <div className={cn('gap-[2px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'bg-[#e5e5e5]')}>
             {tech.capabilities.map((cap, i) => (
@@ -672,7 +672,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
         <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[48px]')}>
           <h2 className={cn('max-w-[500px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-            Our {tech.title} stack
+            Our {tech.title} Stack
           </h2>
           <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
             Tools and frameworks we use in production, chosen for reliability, performance, and developer experience.

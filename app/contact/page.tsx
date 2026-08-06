@@ -75,7 +75,7 @@ export default function Contact() {
                 "lg:leading-[60px]",
               )}
             >
-              How can we help you today?
+              How Can We Help You Today?
             </h1>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               We respond to every submission within one business day.
@@ -91,7 +91,7 @@ export default function Contact() {
           <Animate variant="slide-left" className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-4">
               <h2 className="font-mont font-semibold text-[36px] lg:text-[48px] text-[#111212] leading-[1.1]">
-                Tell us what you&apos;re building.
+                Tell Us What You&apos;re Building.
               </h2>
               <p className="font-inter font-semibold text-[16px] text-[#111212] leading-[1.6]">
                 We respond to every submission within one business day.

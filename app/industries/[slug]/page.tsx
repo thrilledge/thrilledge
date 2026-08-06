@@ -654,7 +654,7 @@ export default async function IndustryPage({
         <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:py-[96px]', 'py-[70px]', 'w-full', 'max-w-[1440px]')}>
           <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
             <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-              Challenges we solve in {industry.title}
+              Challenges We Solve In {industry.title}
             </h2>
             <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
               Deep domain expertise means we understand your problems before you
@@ -678,7 +678,7 @@ export default async function IndustryPage({
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
         <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[64px]')}>
           <h2 className={cn('max-w-[560px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-            What we build for {industry.title}
+            What We Build For {industry.title}
           </h2>
           <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
             Production-ready software tailored to the specific demands of your

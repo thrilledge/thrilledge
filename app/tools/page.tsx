@@ -16,7 +16,7 @@ export default function FreelancerToolsPage() {
           <div className="max-w-360 mx-auto absolute bottom-0 left-0 right-0 flex flex-col justify-end gap-2 lg:px-9 px-5 lg:py-8 py-6">
             <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Freelancer Toolkit</span>
             <h1 className="text-[28px] lg:text-[48px] lg:leading-14 leading-9 font-mont font-semibold text-white max-w-2xl">
-              AI-powered tools to win more clients
+              AI-Powered Tools To Win More Clients
             </h1>
             <p className="lg:text-[16px] text-[14px] font-inter text-white/60 max-w-xl leading-6">
               Write Upwork proposals that get replies, cold emails that get opens, and scripts that book calls.

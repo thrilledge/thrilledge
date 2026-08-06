@@ -42,7 +42,7 @@ export function CTASection() {
               text-white
             "
               >
-                Not sure which service fits?
+                Not Sure Which Service Fits?
               </h2>
 
               <p

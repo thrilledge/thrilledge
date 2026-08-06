@@ -412,7 +412,7 @@ export default function PostPage({ params }: PostPageProps) {
             <div className={cn('flex', 'flex-col', 'gap-[32px]')}>
               {headings.length > 0 && (
                 <section className={cn('h-[400px]', 'overflow-auto')}>
-                  <h2 className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'uppercase', 'tracking-widest', 'mb-[12px]')}>On this page</h2>
+                  <h2 className={cn('text-[11px]', 'font-inter', 'font-semibold', 'text-[#929296]', 'uppercase', 'tracking-widest', 'mb-[12px]')}>On This Page</h2>
                   <nav aria-label="Table of contents">
                     <ul className={cn('flex', 'flex-col', 'gap-[4px]')}>
                       {headings.map(h => (
