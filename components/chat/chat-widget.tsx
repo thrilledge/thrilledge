@@ -195,10 +195,13 @@ export function ChatWidget() {
     }
   }, [])
 
-  // Auto-open after 2 seconds on first mount
+  // Auto-open after 2 seconds on first mount — desktop only.
+  // On mobile this would hijack the screen and pop the on-screen keyboard.
   useEffect(() => {
-    const timer = setTimeout(() => setChatOpen(true), 2000)
-    return () => clearTimeout(timer)
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
+      const timer = setTimeout(() => setChatOpen(true), 2000)
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   useEffect(() => {
