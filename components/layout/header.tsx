@@ -40,6 +40,9 @@ import {
   Bitcoin,
   Landmark,
   Truck,
+  Scale,
+  ShoppingBag,
+  Home,
   GitBranch,
   TrendingUp,
   Search,
@@ -353,6 +356,27 @@ const mobileNav = [
         href: '/industries/logistics',
         desc: 'Supply chain & logistics systems',
         icon: Truck,
+      },
+
+      {
+        label: 'Legal Services',
+        href: '/industries/legal-services',
+        desc: 'Legal tech & case management',
+        icon: Scale,
+      },
+
+      {
+        label: 'eCommerce & Retail',
+        href: '/industries/ecommerce-retail',
+        desc: 'Commerce & retail platforms',
+        icon: ShoppingBag,
+      },
+
+      {
+        label: 'Home Services',
+        href: '/industries/home-services',
+        desc: 'Field service & booking systems',
+        icon: Home,
       },
     ],
   },

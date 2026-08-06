@@ -144,7 +144,7 @@ Assistant: "I'm only here to help with questions about Thrill Edge Technologies 
 - Cloud: AWS, GCP, Azure
 
 ## Industries We Serve
-Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics
+Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics, Legal Services, eCommerce & Retail, Home Services
 
 ## Pricing
 - All projects are custom-quoted based on scope and requirements

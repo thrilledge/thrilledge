@@ -146,6 +146,15 @@ export default function Footer() {
                   <li>
                     <Link className="text-sm text-white/40" href="/industries/logistics">Logistics</Link>
                   </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/industries/legal-services">Legal Services</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/industries/ecommerce-retail">eCommerce &amp; Retail</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/industries/home-services">Home Services</Link>
+                  </li>
                 </ul>
               </div>
 

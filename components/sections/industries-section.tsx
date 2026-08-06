@@ -39,6 +39,24 @@ const INDUSTRIES = [
     description: 'Efficient logistics solutions using AI and blockchain to optimize supply chain management and enhance delivery.',
     icon: "logistics.svg",
   },
+  {
+    slug: 'legal-services',
+    title: 'Legal Services',
+    description: 'Legal tech platforms that automate case management, document workflows, and client communication for law firms.',
+    icon: "legal-services.svg",
+  },
+  {
+    slug: 'ecommerce-retail',
+    title: 'eCommerce & Retail',
+    description: 'Commerce platforms that convert visitors into customers with fast storefronts, smart checkout, and scalable catalogs.',
+    icon: "ecommerce-retail.svg",
+  },
+  {
+    slug: 'home-services',
+    title: 'Home Services',
+    description: 'Booking and field service software that keeps contractors, cleaners, and service pros fully booked and organized.',
+    icon: "home-services.svg",
+  },
 ]
 
 export function IndustriesSection() {

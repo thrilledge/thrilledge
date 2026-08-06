@@ -20,6 +20,9 @@ const INDUSTRY_SLUGS = [
   'blockchain',
   'fintech',
   'logistics',
+  'legal-services',
+  'ecommerce-retail',
+  'home-services',
 ]
 
 const TECHNOLOGY_SLUGS = [

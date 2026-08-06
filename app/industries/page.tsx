@@ -9,7 +9,7 @@ import { CTASection } from '@/components/sections/cta-section'
 
 export const metadata: Metadata = {
   title: 'Industries | Thrill Edge Technologies',
-  description: 'Deep domain expertise across healthcare, fintech, , real estate, blockchain, and logistics.',
+  description: 'Deep domain expertise across healthcare, fintech, real estate, blockchain, logistics, legal services, eCommerce & retail, and home services.',
   alternates: { canonical: 'https://www.thrilledge.com/industries' },
 }
 
@@ -20,6 +20,9 @@ const INDUSTRIES = [
   { slug: 'blockchain', title: 'Blockchain', tagline: 'Production-ready blockchain apps built for trust and scale.', description: 'Smart contracts, DeFi platforms, NFT marketplaces, and enterprise blockchain applications on Ethereum, Solana, and Polygon.', stat: { number: '$500M+', label: 'Total value locked' }, icon: '/blockchain.svg', image: '/blockchain2.png' },
   { slug: 'fintech', title: 'Fintech', tagline: 'Secure, compliant financial software at scale.', description: 'Payment platforms, lending software, wealth management tools, and banking infrastructure meeting PCI-DSS and SOC 2 standards.', stat: { number: '$2B+', label: 'Transactions processed annually' }, icon: '/fintech.svg', image: '/fintech2.png' },
   { slug: 'logistics', title: 'Logistics', tagline: 'Supply chain software that cuts costs and delivers on time.', description: 'Fleet management, warehouse management, route optimization, and supply chain visibility platforms for 3PLs, carriers, and shippers.', stat: { number: '1M+', label: 'Shipments tracked daily' }, icon: '/logistics.svg', image: '/logistic.jpg' },
+  { slug: 'legal-services', title: 'Legal Services', tagline: 'Legal tech that automates casework and documents.', description: 'Case management platforms, document automation, client portals, and AI contract analysis for law firms and legal teams.', stat: { number: '60%', label: 'Less manual document handling' }, icon: '/legal-services.svg', image: '/legal-services.jpg' },
+  { slug: 'ecommerce-retail', title: 'eCommerce & Retail', tagline: 'Commerce software that converts and scales.', description: 'Headless storefronts, marketplaces, inventory and order management, and subscription billing for brands and retailers.', stat: { number: '$50M+', label: 'Client revenue generated' }, icon: '/ecommerce-retail.svg', image: '/ecommerce-retail.jpg' },
+  { slug: 'home-services', title: 'Home Services', tagline: 'Field service software that books and delivers.', description: 'Booking platforms, field service management, technician apps, and estimating tools for contractors and service pros.', stat: { number: '45%', label: 'More jobs completed' }, icon: '/home-services.svg', image: '/home-services.jpg' },
 ]
 
 export default function IndustriesPage() {

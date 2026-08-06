@@ -70,6 +70,39 @@ const INDUSTRY_SUB_SERVICES: Record<string, IndustrySubServiceData> = {
             'Warehouse Automation Solutions',
         ],
     },
+    'legal-services': {
+        heading: 'Legal Services',
+        items: [
+            'AI Contract Review & Clause Extraction',
+            'Legal Document Automation',
+            'Case Management System Development',
+            'Secure Client Portals',
+            'Legal CRM & Intake Automation',
+            'eDiscovery & Document Search Tools',
+        ],
+    },
+    'ecommerce-retail': {
+        heading: 'eCommerce & Retail',
+        items: [
+            'Headless eCommerce Development',
+            'Custom Marketplace Platforms',
+            'AI Product Recommendations',
+            'Inventory & Order Management Systems',
+            'Subscription & Recurring Billing',
+            'Retail Analytics Dashboards',
+        ],
+    },
+    'home-services': {
+        heading: 'Home Services',
+        items: [
+            'Online Booking & Scheduling Systems',
+            'Field Service Management Software',
+            'Technician Mobile Apps',
+            'Estimating & Digital Invoicing',
+            'Automated Customer Follow-Up',
+            'Review & Referral Automation',
+        ],
+    },
 }
 
 export function getIndustrySubServices(slug: string): IndustrySubServiceData | null {

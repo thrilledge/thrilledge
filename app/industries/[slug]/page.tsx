@@ -502,6 +502,246 @@ const INDUSTRIES: Record<string, IndustryData> = {
     image: "/logistic.jpg",
     workIndustry: "logistics",
   },
+  "legal-services": {
+    title: "Legal Services",
+    headline:
+      "Legal technology that automates casework, streamlines document workflows, and keeps law firms compliant.",
+    description:
+      "We build custom software for legal services including case management platforms, document automation tools, client portals, and AI-powered contract analysis that help law firms and legal departments save hours per case while maintaining the highest standards of confidentiality and compliance.",
+    metaTitle:
+      "Legal Software Development Company | Legal Tech Solutions | Thrill Edge Technologies",
+    metaDescription:
+      "Custom legal software development: case management platforms, document automation, client portals, and AI contract analysis. Built for law firms, in-house legal teams, and legal tech startups.",
+    keywords: [
+      "legal software development",
+      "legal tech company",
+      "case management software",
+      "legal document automation",
+      "law firm software",
+      "AI contract analysis",
+      "client portal for law firms",
+      "eDiscovery software development",
+    ],
+    stats: [
+      { number: "10+", label: "Legal tech products shipped" },
+      { number: "60%", label: "Average reduction in manual document handling" },
+      { number: "100%", label: "Confidentiality-first build standard" },
+    ],
+    challenges: [
+      {
+        title: "Document Management",
+        desc: "Law firms generate thousands of documents per matter. We build automated document generation, versioning, and secure storage systems that keep every file organized and searchable.",
+      },
+      {
+        title: "Case Management Complexity",
+        desc: "Matters involve deadlines, parties, filings, and endless tasks. We build case management platforms that centralize every workflow and keep critical dates front and center.",
+      },
+      {
+        title: "Confidentiality & Compliance",
+        desc: "Client-attorney privilege demands airtight security. Our platforms use encryption, granular access controls, and audit trails to keep sensitive data protected.",
+      },
+      {
+        title: "Client Communication",
+        desc: "Clients expect transparency. We build secure client portals that deliver status updates, document sharing, and messaging without breaking confidentiality.",
+      },
+      {
+        title: "Billing & Time Tracking",
+        desc: "Accurate billing is the lifeblood of a firm. We build integrated time tracking, expense capture, and invoicing systems that reduce revenue leakage.",
+      },
+      {
+        title: "AI & Document Review",
+        desc: "Contract review and eDiscovery are time-intensive. We integrate AI-powered tools that surface key clauses, risks, and relevant documents in seconds.",
+      },
+    ],
+    solutions: [
+      {
+        title: "Case Management Platforms",
+        desc: "End-to-end matter management with task tracking, deadline calendars, document organization, and role-based access.",
+      },
+      {
+        title: "Legal Document Automation",
+        desc: "Templates and workflows that generate contracts, briefs, and filings automatically from structured data.",
+      },
+      {
+        title: "Client Portals",
+        desc: "Secure, branded portals for document exchange, case status updates, e-signatures, and secure messaging.",
+      },
+      {
+        title: "AI Contract Analysis",
+        desc: "Machine learning tools that extract clauses, flag risks, and compare contracts against your playbook in minutes.",
+      },
+      {
+        title: "Legal CRM & Intake",
+        desc: "Lead capture, conflict checking, and client onboarding workflows that turn inquiries into retained matters faster.",
+      },
+      {
+        title: "eDiscovery & Review Tools",
+        desc: "Search, review, and production pipelines that make large document sets manageable and defensible.",
+      },
+    ],
+    image: "/legal-services.jpg",
+    workIndustry: "legal-services",
+  },
+  "ecommerce-retail": {
+    title: "eCommerce & Retail",
+    headline:
+      "eCommerce and retail software that converts visitors into customers and scales with your catalog.",
+    description:
+      "We build custom eCommerce and retail solutions including headless storefronts, marketplace platforms, inventory and order management systems, and personalization engines that help brands sell more, operate smarter, and scale without limits.",
+    metaTitle:
+      "eCommerce & Retail Software Development Company | Thrill Edge Technologies",
+    metaDescription:
+      "Custom eCommerce software development: headless storefronts, marketplaces, inventory and order management, subscription billing, and retail personalization. Built for brands and retailers that need to scale.",
+    keywords: [
+      "ecommerce software development",
+      "ecommerce website development",
+      "headless commerce development",
+      "marketplace platform development",
+      "inventory management software",
+      "order management system",
+      "retail software development",
+      "subscription billing platform",
+    ],
+    stats: [
+      { number: "35+", label: "eCommerce platforms shipped" },
+      { number: "$50M+", label: "Client revenue generated" },
+      { number: "3x", label: "Average conversion uplift after rebuild" },
+    ],
+    challenges: [
+      {
+        title: "Conversion Optimization",
+        desc: "Every click matters in eCommerce. We build fast, persuasive storefronts with streamlined checkout flows that turn traffic into revenue.",
+      },
+      {
+        title: "Catalog & Inventory Scalability",
+        desc: "Thousands of SKUs and real-time stock levels break fragile systems. We architect catalogs and inventory engines that scale with your growth.",
+      },
+      {
+        title: "Payment & Checkout Friction",
+        desc: "A single extra step kills sales. We integrate optimized payment gateways, saved payments, and one-page checkouts that reduce abandonment.",
+      },
+      {
+        title: "Multi-Channel Selling",
+        desc: "Selling across your store, marketplaces, and social requires sync. We build integrations that keep inventory, orders, and pricing consistent everywhere.",
+      },
+      {
+        title: "Customer Retention",
+        desc: "Acquisition costs keep rising. We build loyalty programs, subscriptions, and personalized recommendations that drive repeat purchases.",
+      },
+      {
+        title: "Fraud & Security",
+        desc: "Online retailers are prime fraud targets. Our platforms layer in fraud detection, PCI-DSS compliance, and account protection from day one.",
+      },
+    ],
+    solutions: [
+      {
+        title: "Custom eCommerce Platforms",
+        desc: "Fully branded storefronts with advanced search, merchandising, and high-converting checkout built to your exact requirements.",
+      },
+      {
+        title: "Headless Commerce",
+        desc: "API-first commerce architectures that deliver blazing-fast experiences across web, mobile, and emerging channels.",
+      },
+      {
+        title: "Marketplace Development",
+        desc: "Multi-vendor marketplaces with seller dashboards, commission engines, escrow payments, and review systems.",
+      },
+      {
+        title: "Subscription & Recurring Billing",
+        desc: "Subscription boxes, memberships, and recurring billing with flexible plans, dunning, and customer self-service.",
+      },
+      {
+        title: "Inventory & Order Management",
+        desc: "Real-time inventory tracking, multi-warehouse support, and automated order routing that keeps fulfillment accurate.",
+      },
+      {
+        title: "Retail Personalization",
+        desc: "AI-driven product recommendations, dynamic pricing, and behavior-based campaigns that lift average order value.",
+      },
+    ],
+    image: "/ecommerce-retail.jpg",
+    workIndustry: "ecommerce-retail",
+  },
+  "home-services": {
+    title: "Home Services",
+    headline:
+      "Software for home service businesses that automates scheduling, dispatching, and customer follow-up.",
+    description:
+      "We build custom software for home services including booking and scheduling platforms, field service management tools, technician apps, and customer engagement systems that help contractors, cleaners, plumbers, and HVAC companies book more jobs and run operations on autopilot.",
+    metaTitle:
+      "Home Services Software Development Company | Field Service Solutions | Thrill Edge Technologies",
+    metaDescription:
+      "Custom home services software development: booking platforms, field service management, technician apps, and customer engagement tools. Built for contractors, cleaners, plumbers, and HVAC companies.",
+    keywords: [
+      "home services software",
+      "field service management software",
+      "booking platform development",
+      "scheduling software for contractors",
+      "technician app development",
+      "home services app",
+      "job management software",
+      "estimating software development",
+    ],
+    stats: [
+      { number: "20+", label: "Home services platforms shipped" },
+      { number: "45%", label: "Average increase in jobs completed" },
+      { number: "0", label: "Double-booked appointments on our schedulers" },
+    ],
+    challenges: [
+      {
+        title: "Scheduling & Dispatching",
+        desc: "Double-bookings and idle technicians cost money. We build smart scheduling engines that assign the right technician to the right job at the right time.",
+      },
+      {
+        title: "Lead Management & Follow-up",
+        desc: "Home service leads decay fast. We build instant lead capture, automated follow-up, and quoting workflows that win jobs while they're hot.",
+      },
+      {
+        title: "On-Site Workforce Management",
+        desc: "Field teams need job details, customer history, and proof-of-work on the go. We build technician apps that work online and offline.",
+      },
+      {
+        title: "Estimates & Invoicing",
+        desc: "Paper estimates get lost. We build digital estimating, e-signature capture, and instant invoicing that accelerate payment.",
+      },
+      {
+        title: "Customer Communication",
+        desc: "Customers want to know when you're arriving. We build automated reminders, live technician tracking, and post-job follow-up that reduce no-shows.",
+      },
+      {
+        title: "Reviews & Repeat Business",
+        desc: "Reviews drive home service growth. We build review request automation and loyalty tools that turn one-time jobs into lifelong customers.",
+      },
+    ],
+    solutions: [
+      {
+        title: "Booking & Scheduling Platforms",
+        desc: "Online booking with real-time availability, automated reminders, and recurring appointment support.",
+      },
+      {
+        title: "Field Service Management",
+        desc: "Dispatch boards, technician assignment, route planning, and job tracking for teams of any size.",
+      },
+      {
+        title: "Technician Mobile Apps",
+        desc: "Native apps for crews to view jobs, capture photos, collect signatures, and process payments on-site.",
+      },
+      {
+        title: "Estimating & Invoicing",
+        desc: "Digital estimates, instant approval, and payment collection that compress your quote-to-cash cycle.",
+      },
+      {
+        title: "Home Services CRM",
+        desc: "Lead capture, follow-up automation, and customer history that turn more calls into booked jobs.",
+      },
+      {
+        title: "Review & Loyalty Tools",
+        desc: "Automated review requests, loyalty programs, and referral incentives that compound your customer base.",
+      },
+    ],
+    image: "/home-services.jpg",
+    workIndustry: "home-services",
+  },
 };
 
 export async function generateMetadata({
@@ -699,7 +939,7 @@ export default async function IndustryPage({
       </div>
 
       {industrySubServices && (
-        <section className="bg-white py-16 md:py-24">
+        <section className="bg-white pt-16 md:pt-24">
           <div className="max-w-360 mx-auto px-4">
             <div className="mb-10">
               <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">

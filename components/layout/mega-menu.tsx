@@ -13,7 +13,7 @@ import {
   Cpu, PanelsTopLeft, Server, Database, GitBranch,
   Heart, GraduationCap, Building2, Blocks, Landmark, Truck, ShoppingCart,
   Wrench, TrendingUp, Search, Zap, Map, DollarSign, Share2, FileText, BriefcaseBusiness,
-  ShieldCheck, BarChart3, Bug,
+  ShieldCheck, BarChart3, Bug, Scale, ShoppingBag, Home,
   type LucideIcon,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
@@ -103,6 +103,9 @@ const menus: MenuGroup[] = [
       { label: 'Blockchain', href: '/industries/blockchain', icon: Blocks, description: 'Secure applications to improve data management and enhance trust in services.' },
       { label: 'Fintech', href: '/industries/fintech', icon: Landmark, description: 'Secure and scalable financial ecosystems from digital banking to payment gateways.' },
       { label: 'Logistics', href: '/industries/logistics', icon: Truck, description: 'Efficient logistics solutions using AI and blockchain to optimize supply chain management.' },
+      { label: 'Legal Services', href: '/industries/legal-services', icon: Scale, description: 'Case management, document automation, and AI contract analysis for law firms and legal teams.' },
+      { label: 'eCommerce & Retail', href: '/industries/ecommerce-retail', icon: ShoppingBag, description: 'Headless storefronts, marketplaces, and commerce platforms that convert visitors into customers.' },
+      { label: 'Home Services', href: '/industries/home-services', icon: Home, description: 'Booking, scheduling, and field service platforms that keep home service businesses fully booked.' },
     ],
   },
   { label: 'Tools', href: '/tools' },
