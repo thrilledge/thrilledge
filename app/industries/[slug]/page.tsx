@@ -111,11 +111,11 @@ const INDUSTRIES: Record<string, IndustryData> = {
     description:
       "We build custom education technology including LMS platforms, adaptive learning tools, student information systems, and virtual classrooms that help institutions deliver better learning experiences at scale.",
     metaTitle:
-      "EdTech Software Development Company | LMS & E-Learning Solutions | Thrill Edge Technologies",
+      "Education Software Development Company | LMS & E-Learning Solutions | Thrill Edge Technologies",
     metaDescription:
       "Custom education software development: LMS platforms, adaptive learning tools, virtual classrooms, and student portals. Built for K-12, higher education, and corporate training.",
     keywords: [
-      "edtech software development",
+      "education software development",
       "LMS development company",
       "e-learning platform development",
       "custom learning management system",
@@ -124,7 +124,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
       "student portal development",
     ],
     stats: [
-      { number: "20+", label: "EdTech platforms delivered" },
+      { number: "20+", label: "Education platforms delivered" },
       { number: "500K+", label: "Students on our platforms" },
       { number: "40%", label: "Average improvement in completion rates" },
     ],
@@ -176,7 +176,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
         desc: "Onboarding and upskilling platforms for enterprise teams with completion tracking, compliance modules, and reporting.",
       },
       {
-        title: "EdTech Mobile Apps",
+        title: "Education Mobile Apps",
         desc: "Cross-platform mobile learning apps that work offline and sync progress when connectivity is restored.",
       },
     ],

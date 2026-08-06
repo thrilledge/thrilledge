@@ -323,7 +323,7 @@ const mobileNav = [
       {
         label: 'Education',
         href: '/industries/education',
-        desc: 'EdTech solutions',
+        desc: 'Education solutions',
         icon: GraduationCap,
       },
 

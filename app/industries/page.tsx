@@ -9,13 +9,13 @@ import { CTASection } from '@/components/sections/cta-section'
 
 export const metadata: Metadata = {
   title: 'Industries | Thrill Edge Technologies',
-  description: 'Deep domain expertise across healthcare, fintech, edtech, real estate, blockchain, and logistics.',
+  description: 'Deep domain expertise across healthcare, fintech, , real estate, blockchain, and logistics.',
   alternates: { canonical: 'https://www.thrilledge.com/industries' },
 }
 
 const INDUSTRIES = [
   { slug: 'healthcare', title: 'Healthcare', tagline: 'HIPAA-compliant software that improves patient outcomes.', description: 'EHR integrations, patient portals, telemedicine platforms, and clinical workflow tools built to the strictest compliance standards.', stat: { number: '30+', label: 'Healthcare products shipped' }, icon: '/healthcare.svg', image: '/healthcare.jfif' },
-  { slug: 'education', title: 'Education', tagline: 'EdTech platforms that drive real learning outcomes.', description: 'Custom LMS platforms, adaptive learning tools, virtual classrooms, and student portals for K-12, higher ed, and corporate training.', stat: { number: '500K+', label: 'Students on our platforms' }, icon: '/education.svg', image: '/education2.jpg' },
+  { slug: 'education', title: 'Education', tagline: 'Education platforms that drive real learning outcomes.', description: 'Custom LMS platforms, adaptive learning tools, virtual classrooms, and student portals for K-12, higher ed, and corporate training.', stat: { number: '500K+', label: 'Students on our platforms' }, icon: '/education.svg', image: '/education2.jpg' },
   { slug: 'real-estate', title: 'Real Estate', tagline: 'PropTech solutions that close deals faster.', description: 'Property listing platforms, CRM systems, virtual tour tools, and property management apps for agents, developers, and managers.', stat: { number: '2M+', label: 'Property listings managed' }, icon: '/real-estate.svg', image: '/Realstate.jpg' },
   { slug: 'blockchain', title: 'Blockchain', tagline: 'Production-ready blockchain apps built for trust and scale.', description: 'Smart contracts, DeFi platforms, NFT marketplaces, and enterprise blockchain applications on Ethereum, Solana, and Polygon.', stat: { number: '$500M+', label: 'Total value locked' }, icon: '/blockchain.svg', image: '/blockchain2.png' },
   { slug: 'fintech', title: 'Fintech', tagline: 'Secure, compliant financial software at scale.', description: 'Payment platforms, lending software, wealth management tools, and banking infrastructure meeting PCI-DSS and SOC 2 standards.', stat: { number: '$2B+', label: 'Transactions processed annually' }, icon: '/fintech.svg', image: '/fintech2.png' },
@@ -86,7 +86,7 @@ export default function IndustriesPage() {
       <TestimonialsSection show={12} />
 
       {/* CTA */}
-   <CTASection/>
+      <CTASection />
 
 
     </div>
