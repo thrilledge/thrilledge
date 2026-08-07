@@ -79,6 +79,13 @@ const mobileNav = [
       },
 
       {
+        label: 'Team',
+        href: '/team',
+        desc: 'Meet the people behind our work',
+        icon: Info,
+      },
+
+      {
         label: 'Reviews',
         href: '/client-reviews',
         desc: 'What clients say about us',

@@ -59,105 +59,105 @@ export default function PublicReviewPage() {
         <div className="relative bg-[#F3F3F3] pt-[64px]">
             <section className="max-w-[1440px] w-full mx-auto">
                 <Animate variant="fade-up">
-                <div className="w-full md:px-[36px] px-[16px] md:pb-[96px] pb-[64px]">
-                    <div className="w-full flex flex-col px-[28px] py-[64px] gap-[32px] bg-white rounded-[20px]">
+                    <div className="w-full md:px-[36px] px-[16px] md:pb-[96px] pb-[64px]">
+                        <div className="w-full flex flex-col px-[28px] py-[64px] gap-[32px] bg-white rounded-[20px]">
 
-                        {/* Progress */}
-                        <div className="mb-8">
-                            <div className="flex justify-between mb-2">
-                                <h2 className="text-lg font-semibold text-[#111212] font-mont">Step {step} Of 2</h2>
+                            {/* Progress */}
+                            <div className="mb-8">
+                                <div className="flex justify-between mb-2">
+                                    <h2 className="text-lg font-semibold text-[#111212] font-mont">Step {step} Of 2</h2>
+                                </div>
+                                <div className="h-2 w-full rounded-full bg-black/10">
+                                    <div className="h-2 rounded-full bg-black transition-all duration-500" style={{ width: step === 1 ? '50%' : '100%' }} />
+                                </div>
                             </div>
-                            <div className="h-2 w-full rounded-full bg-black/10">
-                                <div className="h-2 rounded-full bg-black transition-all duration-500" style={{ width: step === 1 ? '50%' : '100%' }} />
-                            </div>
-                        </div>
 
-                        <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-[48px] lg:gap-[64px]">
-                            <div className="w-full flex flex-col gap-[32px]">
-                                <div className="flex flex-col gap-[16px]">
-                                    <h1 className="text-black font-mont md:text-[52px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
-                                        A Public Review Of Thrill Edge Technologies
-                                    </h1>
-                                    <p className="text-[#111212] font-inter text-[16px] leading-[24px]">
-                                        We&apos;d love to hear about your experience. Please fill out the review form below:
-                                    </p>
+                            <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-[48px] lg:gap-[64px]">
+                                <div className="w-full flex flex-col gap-[32px]">
+                                    <div className="flex flex-col gap-[16px]">
+                                        <h1 className="text-black font-mont md:text-[42px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
+                                            A Public Review Of Thrill Edge Technologies
+                                        </h1>
+                                        <p className="text-[#111212] font-inter text-[16px] leading-[24px]">
+                                            We&apos;d love to hear about your experience. Please fill out the review form below:
+                                        </p>
+                                    </div>
+
+                                    {/* Step 1 */}
+                                    {step === 1 && (
+                                        <form className="w-full flex flex-col gap-[24px]" onSubmit={e => { e.preventDefault(); setStep(2) }}>
+                                            <Field2 label="First Name" id="first_name" value={s1.first_name} onChange={v => setS1(p => ({ ...p, first_name: v }))}
+                                                label2="Last Name" id2="last_name" value2={s1.last_name} onChange2={v => setS1(p => ({ ...p, last_name: v }))} />
+                                            <Field2 label="Your email address" id="email" type="email" value={s1.email} onChange={v => setS1(p => ({ ...p, email: v }))}
+                                                label2="Phone" id2="phone" type2="tel" placeholder2="Your phone number" value2={s1.phone} onChange2={v => setS1(p => ({ ...p, phone: v }))} />
+                                            <Field2 label="Company name" id="company_name" value={s1.company_name} onChange={v => setS1(p => ({ ...p, company_name: v }))}
+                                                label2="Website Address (URL)" id2="website" type2="url" placeholder2="https://example.com" value2={s1.website} onChange2={v => setS1(p => ({ ...p, website: v }))} />
+                                            <div className="w-full flex flex-col gap-[16px]">
+                                                <Checkbox id="schedule_followup" checked={s1.schedule_followup} onChange={v => setS1(p => ({ ...p, schedule_followup: v }))}
+                                                    label="I'd like to schedule a followup call about my review." />
+                                                <Checkbox id="agree_to_contact" checked={s1.agree_to_contact} onChange={v => setS1(p => ({ ...p, agree_to_contact: v }))}
+                                                    label={<>You agree to be contacted by Thrill Edge about their services. Your personal information will be processed in accordance with our <Link href="/privacy-policy" className="underline hover:text-[#5c5c5c]">Privacy Policy</Link>.</>} />
+                                            </div>
+                                            <button type="submit" className="w-fit flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
+                                                Get started
+                                            </button>
+                                        </form>
+                                    )}
+
+                                    {/* Step 2 */}
+                                    {step === 2 && (
+                                        <form className="w-full flex flex-col gap-[24px]" onSubmit={e => { e.preventDefault(); handleSubmit() }}>
+                                            <div className="w-full flex flex-col gap-[16px]">
+                                                <p className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">How would you rate your overall experience?</p>
+                                                <div className="flex flex-col gap-[12px]">
+                                                    {['Excellent', 'Good', 'Okay', 'Bad', 'Very Bad'].map(r => (
+                                                        <label key={r} className="flex items-center gap-[12px] cursor-pointer">
+                                                            <input type="radio" name="rating" value={r} checked={s2.rating === r}
+                                                                onChange={() => setS2(p => ({ ...p, rating: r }))}
+                                                                className="w-[14px] h-[14px] border border-[#111212] outline-0 cursor-pointer accent-black" />
+                                                            <span className="text-[#111212] font-inter text-[16px] leading-[24px]">{r}</span>
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="w-full flex flex-col gap-[16px]">
+                                                <h2 className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">Write About Your Experience</h2>
+                                                <p className="text-[#111212] font-inter text-[16px] leading-[24px]">Answer the 5 questions below:</p>
+                                                <ol className="list-decimal list-inside flex flex-col gap-[8px] text-[#111212] font-inter text-[16px] leading-[24px]">
+                                                    <li>Describe your company and your position there.</li>
+                                                    <li>What were your goals for this project?</li>
+                                                    <li>Can you share any information demonstrating the impact of partnering with us?</li>
+                                                    <li>How was project management arranged, and how effective was it?</li>
+                                                    <li>What did you find most impressive about Thrill Edge Technologies?</li>
+                                                </ol>
+                                                <textarea id="written_review" name="written_review" rows={6}
+                                                    value={s2.written_review} onChange={e => setS2(p => ({ ...p, written_review: e.target.value }))}
+                                                    className="w-full px-[16px] py-[16px] border border-[#CCC] rounded-[8px] outline-0 font-inter text-[16px] resize-none focus:border-[#111212] transition-colors" />
+                                            </div>
+                                            {error && <p className="text-red-500 font-inter text-[14px]">{error}</p>}
+                                            <div className="mt-4 flex justify-between items-center">
+                                                <button type="button" onClick={() => setStep(1)}
+                                                    className="flex items-center gap-[8px] text-sm font-medium text-black cursor-pointer font-inter">
+                                                    ← Back
+                                                </button>
+                                                <button type="submit" disabled={submitting}
+                                                    className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 disabled:opacity-50">
+                                                    {submitting ? 'Sending...' : 'Send'}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    )}
                                 </div>
 
-                                {/* Step 1 */}
-                                {step === 1 && (
-                                    <form className="w-full flex flex-col gap-[24px]" onSubmit={e => { e.preventDefault(); setStep(2) }}>
-                                        <Field2 label="First Name" id="first_name" value={s1.first_name} onChange={v => setS1(p => ({ ...p, first_name: v }))}
-                                            label2="Last Name" id2="last_name" value2={s1.last_name} onChange2={v => setS1(p => ({ ...p, last_name: v }))} />
-                                        <Field2 label="Your email address" id="email" type="email" value={s1.email} onChange={v => setS1(p => ({ ...p, email: v }))}
-                                            label2="Phone" id2="phone" type2="tel" placeholder2="Your phone number" value2={s1.phone} onChange2={v => setS1(p => ({ ...p, phone: v }))} />
-                                        <Field2 label="Company name" id="company_name" value={s1.company_name} onChange={v => setS1(p => ({ ...p, company_name: v }))}
-                                            label2="Website Address (URL)" id2="website" type2="url" placeholder2="https://example.com" value2={s1.website} onChange2={v => setS1(p => ({ ...p, website: v }))} />
-                                        <div className="w-full flex flex-col gap-[16px]">
-                                            <Checkbox id="schedule_followup" checked={s1.schedule_followup} onChange={v => setS1(p => ({ ...p, schedule_followup: v }))}
-                                                label="I'd like to schedule a followup call about my review." />
-                                            <Checkbox id="agree_to_contact" checked={s1.agree_to_contact} onChange={v => setS1(p => ({ ...p, agree_to_contact: v }))}
-                                                label={<>You agree to be contacted by Thrill Edge about their services. Your personal information will be processed in accordance with our <Link href="/privacy-policy" className="underline hover:text-[#5c5c5c]">Privacy Policy</Link>.</>} />
-                                        </div>
-                                        <button type="submit" className="w-fit flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300">
-                                            Get started
-                                        </button>
-                                    </form>
-                                )}
-
-                                {/* Step 2 */}
-                                {step === 2 && (
-                                    <form className="w-full flex flex-col gap-[24px]" onSubmit={e => { e.preventDefault(); handleSubmit() }}>
-                                        <div className="w-full flex flex-col gap-[16px]">
-                                            <p className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">How would you rate your overall experience?</p>
-                                            <div className="flex flex-col gap-[12px]">
-                                                {['Excellent', 'Good', 'Okay', 'Bad', 'Very Bad'].map(r => (
-                                                    <label key={r} className="flex items-center gap-[12px] cursor-pointer">
-                                                        <input type="radio" name="rating" value={r} checked={s2.rating === r}
-                                                            onChange={() => setS2(p => ({ ...p, rating: r }))}
-                                                            className="w-[14px] h-[14px] border border-[#111212] outline-0 cursor-pointer accent-black" />
-                                                        <span className="text-[#111212] font-inter text-[16px] leading-[24px]">{r}</span>
-                                                    </label>
-                                                ))}
-                                            </div>
-                                        </div>
-                                        <div className="w-full flex flex-col gap-[16px]">
-                                            <h2 className="text-[#111212] font-mont text-[16px] leading-[24px] font-semibold">Write About Your Experience</h2>
-                                            <p className="text-[#111212] font-inter text-[16px] leading-[24px]">Answer the 5 questions below:</p>
-                                            <ol className="list-decimal list-inside flex flex-col gap-[8px] text-[#111212] font-inter text-[16px] leading-[24px]">
-                                                <li>Describe your company and your position there.</li>
-                                                <li>What were your goals for this project?</li>
-                                                <li>Can you share any information demonstrating the impact of partnering with us?</li>
-                                                <li>How was project management arranged, and how effective was it?</li>
-                                                <li>What did you find most impressive about Thrill Edge Technologies?</li>
-                                            </ol>
-                                            <textarea id="written_review" name="written_review" rows={6}
-                                                value={s2.written_review} onChange={e => setS2(p => ({ ...p, written_review: e.target.value }))}
-                                                className="w-full px-[16px] py-[16px] border border-[#CCC] rounded-[8px] outline-0 font-inter text-[16px] resize-none focus:border-[#111212] transition-colors" />
-                                        </div>
-                                        {error && <p className="text-red-500 font-inter text-[14px]">{error}</p>}
-                                        <div className="mt-4 flex justify-between items-center">
-                                            <button type="button" onClick={() => setStep(1)}
-                                                className="flex items-center gap-[8px] text-sm font-medium text-black cursor-pointer font-inter">
-                                                ← Back
-                                            </button>
-                                            <button type="submit" disabled={submitting}
-                                                className="flex items-center justify-center px-[24px] pt-[14px] pb-[12px] border border-black text-black font-mont text-[14px] font-semibold rounded-full hover:scale-105 transition-all duration-300 disabled:opacity-50">
-                                                {submitting ? 'Sending...' : 'Send'}
-                                            </button>
-                                        </div>
-                                    </form>
-                                )}
-                            </div>
-
-                            {/* Right image */}
-                            <div className="w-full flex items-center justify-center lg:justify-end">
-                                <div className="w-full max-w-[600px] h-[600px] relative rounded-[16px] overflow-hidden bg-[#efeeec]">
-                                    <Image src="/publicreview.jpg" alt="Happy customer reviewing" fill sizes="600px" className="object-cover" />
+                                {/* Right image */}
+                                <div className="w-full flex items-center justify-center lg:justify-end">
+                                    <div className="w-full max-w-[600px] h-[600px] relative rounded-[16px] overflow-hidden bg-[#efeeec]">
+                                        <Image src="/publicreview.jpg" alt="Happy customer reviewing" fill sizes="600px" className="object-cover" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </Animate>
             </section>
         </div>

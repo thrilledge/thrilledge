@@ -474,6 +474,39 @@ export async function getService(slug: string): Promise<Service | null> {
 }
 
 /**
+ * Custom Post Types - Team Members
+ */
+export interface TeamMember {
+  id: number
+  title: { rendered: string }
+  slug: string
+  content: { rendered: string }
+  featured_media: number
+  acf?: {
+    role?: string
+    bio?: string
+  }
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      source_url: string
+      alt_text?: string
+    }>
+  }
+}
+
+export async function getTeamMembers(
+  per_page: number = 100
+): Promise<TeamMember[]> {
+  try {
+    return await fetchFromWordPress<TeamMember[]>(
+      `/wp/v2/team-member?per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=asc`
+    )
+  } catch {
+    return []
+  }
+}
+
+/**
  * Author
  */
 export interface Author {

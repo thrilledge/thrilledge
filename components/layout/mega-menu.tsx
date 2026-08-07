@@ -52,6 +52,7 @@ const menus: MenuGroup[] = [
     label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
     items: [
       { label: 'About', href: '/about', icon: Users, description: `Learn about our mission, team, and the innovative solutions driving businesses forward worldwide.` },
+      { label: 'Team', href: '/team', icon: Users, description: 'Meet the engineers, designers, and strategists behind Thrill Edge Technologies.' },
       { label: 'Case Studies', href: '/casestudy', icon: BriefcaseBusiness, description: 'Explore our successful projects and learn how we helped businesses achieve their goals.' },
       { label: 'Reviews', href: '/client-reviews', icon: Star, description: 'Read client reviews and testimonials about our software, web, and IT solutions.' },
       { label: 'FAQs', href: '/faqs', icon: HelpCircle, description: 'Explore answers to frequently asked questions about our software, AI solutions, and partnership processes.' },
