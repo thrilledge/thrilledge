@@ -24,9 +24,9 @@ export default function Footer() {
       >
         {/* GRID */}
         <Animate variant="fade-up">
-          <div className="w-full lg:grid grid-cols-[25%_75%] gap-8">
+          <div className="w-full lg:grid grid-cols-[25%_75%] gap-5">
             {/* LOGO + DESC */}
-            <div className="flex flex-col gap-4 text-white md:pr-20">
+            <div className="flex flex-col gap-4 text-white">
               <Image src="/thrill-edge-logo.png" width={180} height={60} alt="logo" />
               <p className=" leading-relaxed text-sm text-white/40">
                 Thrill Edge Technologies delivers innovative web, mobile, and AI
@@ -50,7 +50,7 @@ export default function Footer() {
 
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-10 lg:mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 lg:mt-0">
               {/* COMPANY */}
               <div className="flex flex-col gap-4 max-w-[190px]">
                 <p className="text-lg text-white font-semibold">Company</p>
