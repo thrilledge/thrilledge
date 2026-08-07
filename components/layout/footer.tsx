@@ -24,7 +24,7 @@ export default function Footer() {
       >
         {/* GRID */}
         <Animate variant="fade-up">
-          <div className="w-full lg:grid grid-cols-[33%_77%] gap-8">
+          <div className="w-full lg:grid grid-cols-[25%_75%] gap-8">
             {/* LOGO + DESC */}
             <div className="flex flex-col gap-4 text-white md:pr-20">
               <Image src="/thrill-edge-logo.png" width={180} height={60} alt="logo" />
@@ -52,7 +52,7 @@ export default function Footer() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-10 lg:mt-0">
               {/* COMPANY */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-[190px]">
                 <p className="text-lg text-white font-semibold">Company</p>
                 <ul className="flex flex-col gap-2 text-white">
                   <li>
@@ -87,7 +87,7 @@ export default function Footer() {
               </div>
 
               {/* SERVICES */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-[200px]">
                 <p className="text-lg font-semibold text-white">Services</p>
                 <ul className="flex flex-col gap-2 text-white">
                   <li>
@@ -125,7 +125,7 @@ export default function Footer() {
               </div>
 
               {/* INDUSTRIES */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-[190px]">
                 <p className="text-lg font-semibold text-white">Industries</p>
                 <ul className="flex flex-col gap-2 text-white">
                   <li>
@@ -157,7 +157,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 max-w-[300px]">
                 <p className="text-lg font-semibold text-white">Technologies</p>
                 <ul className="flex flex-col gap-2 text-white">
                   <li>
