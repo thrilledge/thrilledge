@@ -24,7 +24,7 @@ export default function Footer() {
       >
         {/* GRID */}
         <Animate variant="fade-up">
-          <div className="w-full lg:grid grid-cols-[40%_60%] gap-8">
+          <div className="w-full lg:grid grid-cols-[33%_77%] gap-8">
             {/* LOGO + DESC */}
             <div className="flex flex-col gap-4 text-white md:pr-20">
               <Image src="/thrill-edge-logo.png" width={180} height={60} alt="logo" />
@@ -157,7 +157,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-         <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <p className="text-lg font-semibold text-white">Technologies</p>
                 <ul className="flex flex-col gap-2 text-white">
                   <li>
@@ -191,10 +191,10 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        
-             
 
-          
+
+
+
         </Animate>
 
         {/* Divider */}
