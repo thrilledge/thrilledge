@@ -50,7 +50,7 @@ export default function Footer() {
 
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 lg:mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-10 lg:mt-0">
               {/* COMPANY */}
               <div className="flex flex-col gap-4">
                 <p className="text-lg text-white font-semibold">Company</p>
@@ -157,9 +157,44 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-
+         <div className="flex flex-col gap-4">
+                <p className="text-lg font-semibold text-white">Technologies</p>
+                <ul className="flex flex-col gap-2 text-white">
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/ai-machine-learning">AI & Machine Learning</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/frontend-development">Frontend Development</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/backend-development">Backend Development</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/mobile-development">Mobile Development</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/databases">Databases</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/cloud-devops">Cloud & DevOps</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/data-engineering-big-data">Data Engineering & Big Data</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/cybersecurity">Cybersecurity</Link>
+                  </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/technologies/qa-testing-automation">QA & Testing Automation</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+        
+             
+
+          
         </Animate>
 
         {/* Divider */}

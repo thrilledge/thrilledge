@@ -146,7 +146,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   cybersecurity: {
     title: 'Cybersecurity',
     headline: 'Security-first engineering that protects data, trust, and business continuity.',
-    description: 'We help organizations secure digital products with zero-trust patterns, threat modeling, IAM design, and production-grade security hardening for enterprise and fintech environments.',
+    description: 'We help businesses achieve measurable security improvements through proactive risk reduction, stronger access controls, and resilient infrastructure.',
     stats: [
       { number: '24/7', label: 'Threat monitoring and response coverage' },
       { number: '100%', label: 'Security-focused architecture reviews' },
@@ -342,7 +342,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Schema Design & Modeling', desc: 'Normalized relational schemas and document models designed for your query patterns, not just your data shape.' },
       { title: 'Performance Tuning', desc: 'Index optimization, query analysis, and caching strategies that eliminate slow queries before they hit production.' },
       { title: 'Database Migrations', desc: 'Zero-downtime migrations from legacy systems to modern databases with full data integrity validation.' },
-      { title: 'Replication & High Availability', desc: 'Read replicas, failover clusters, and multi-region setups that keep your data available even when things go wrong.' },
       { title: 'Search & Analytics', desc: 'Elasticsearch and vector database integrations for full-text search, semantic search, and real-time analytics.' },
       { title: 'Vector Databases & RAG', desc: 'Pinecone, Weaviate, and pgvector setups that power semantic search, embeddings, and retrieval-augmented generation for AI products.' },
       { title: 'Backup & Disaster Recovery', desc: 'Automated backup strategies, point-in-time recovery, and tested restore procedures for every production system.' },
