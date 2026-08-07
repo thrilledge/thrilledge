@@ -75,7 +75,7 @@ export default function PublicReviewPage() {
                             <div className="w-full grid lg:grid-cols-2 grid-cols-1 gap-[48px] lg:gap-[64px]">
                                 <div className="w-full flex flex-col gap-[32px]">
                                     <div className="flex flex-col gap-[16px]">
-                                        <h1 className="text-black font-mont md:text-[42px] text-[32px] md:font-bold font-semibold md:leading-[64px] leading-[32px]">
+                                        <h1 className="text-black font-mont md:text-[42px] text-[32px] md:font-bold font-semibold md:leading-[52px] leading-[32px]">
                                             A Public Review Of Thrill Edge Technologies
                                         </h1>
                                         <p className="text-[#111212] font-inter text-[16px] leading-[24px]">
