@@ -355,24 +355,39 @@ export default function WorkPage({ params }: WorkPageProps) {
           )}
 
           {/* Modern Bento Meta Grid */}
-          {(metaFields.length > 0 || project_status) && (
-            <Animate variant="fade-up" delay={340}>
-              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 bg-zinc-950 border border-white/15 p-4 rounded-[28px] backdrop-blur-2xl">
-                {metaFields.map(f => (
-                  <div key={f.label} className="px-5 py-5 bg-black rounded-2xl border border-white/10 hover:border-white/30 transition-all duration-300">
-                    <p className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">{f.label}</p>
-                    <p className="mt-2 font-mont font-bold text-[16px] text-white tracking-tight truncate">{f.value}</p>
-                  </div>
-                ))}
-                {project_status && (
-                  <div className="px-5 py-5 bg-black rounded-2xl border border-white/10 hover:border-white/30 transition-all duration-300 col-span-2 md:col-span-1">
-                    <p className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Current Status</p>
-                    <div className="mt-2"><StatusChip status={project_status} /></div>
-                  </div>
-                )}
-              </div>
-            </Animate>
-          )}
+        {(metaFields.length > 0 || project_status) && (
+  <Animate variant="fade-up" delay={340}>
+    <div className="mt-12 w-full grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 bg-zinc-950 border border-white/15 p-4 rounded-[28px] backdrop-blur-2xl">
+      
+      {metaFields.map((f) => (
+        <div
+          key={f.label}
+          className="w-full min-w-0 px-5 py-5 bg-black rounded-2xl border border-white/10 hover:border-white/30 transition-all duration-300"
+        >
+          <p className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+            {f.label}
+          </p>
+
+          <p className="mt-2 font-mont font-bold text-[16px] text-white truncate">
+            {f.value}
+          </p>
+        </div>
+      ))}
+
+      {project_status && (
+        <div className="w-full min-w-0 px-5 py-5 bg-black rounded-2xl border border-white/10 hover:border-white/30 transition-all duration-300">
+          <p className="font-inter text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">
+            Current Status
+          </p>
+
+          <div className="mt-2">
+            <StatusChip status={project_status} />
+          </div>
+        </div>
+      )}
+    </div>
+  </Animate>
+)}
 
         </div>
       </section>
