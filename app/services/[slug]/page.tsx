@@ -5,6 +5,7 @@ import { ServiceClient } from './service-client'
 import { CTASection } from '@/components/sections/cta-section'
 import { getService } from '@/lib/wordpress'
 import { SITE_URL } from '@/lib/site'
+import { decodeHtml } from '@/lib/utils'
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>
@@ -46,7 +47,7 @@ const SERVICE_FALLBACK: Record<string, { title: string; description: string }> =
 }
 
 function stripHtml(input: string): string {
-  return input.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+  return decodeHtml(input).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {

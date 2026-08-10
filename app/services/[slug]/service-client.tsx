@@ -9,7 +9,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ProcessSection } from "@/components/sections/process-section";
 import { ValueFeaturesSection } from "@/components/sections/value-features-section";
-import { cn } from "@/lib/utils";
+import { cn, decodeHtml } from "@/lib/utils";
 import { Animate } from "@/components/common/animate";
 import { getServiceSubServices } from "@/lib/service-sub-services";
 
@@ -63,7 +63,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           {heroImg ? (
             <Image
               src={heroImg}
-              alt={service.title.rendered}
+              alt={decodeHtml(service.title.rendered)}
               fill
               className="object-[center_35%] object-cover"
               sizes="100vw"
@@ -95,7 +95,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               </span>
               <h1
                 className="max-w-2xl font-mont font-semibold text-[36px] text-white lg:text-[60px] leading-none"
-                dangerouslySetInnerHTML={{ __html: service.title.rendered }}
+                dangerouslySetInnerHTML={{ __html: decodeHtml(service.title.rendered) }}
               />
             </div>
             {acf.service_solutions && (
@@ -166,7 +166,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           {acf.about_us && (
             <AboutTabs
               aboutUs={acf.about_us}
-              serviceTitle={service.title.rendered}
+              serviceTitle={decodeHtml(service.title.rendered)}
             />
           )}
         </div>

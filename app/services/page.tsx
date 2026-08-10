@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { getServices } from '@/lib/wordpress'
-import { cn } from "@/lib/utils"
+import { cn, decodeHtml } from "@/lib/utils"
 import { Animate } from '@/components/common/animate'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { CTASection } from '@/components/sections/cta-section'
@@ -58,11 +58,11 @@ export default async function ServicesPage() {
                       className="group flex flex-col bg-white border border-[#e5e5e5] hover:border-[#111212] rounded-[20px] overflow-hidden transition-all duration-300 hover:shadow-lg h-full">
                       <div className="relative bg-[#f3f3f3] w-full h-56 overflow-hidden">
                         {img ? (
-                          <Image src={img} alt={service.title.rendered} fill sizes="(max-width: 768px) 100vw, 33vw"
+                          <Image src={img} alt={decodeHtml(service.title.rendered)} fill sizes="(max-width: 768px) 100vw, 33vw"
                             priority={idx < 3} className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                         ) : (
                           <div className="absolute inset-0 flex justify-center items-center bg-[#111212]">
-                            <span className="font-mont font-bold text-white/10 text-[80px]">{service.title.rendered.charAt(0)}</span>
+                            <span className="font-mont font-bold text-white/10 text-[80px]">{decodeHtml(service.title.rendered).charAt(0)}</span>
                           </div>
                         )}
                         <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
@@ -70,7 +70,7 @@ export default async function ServicesPage() {
                       <div className="flex flex-col flex-1 gap-4 p-6">
                         <div className="flex justify-between items-start gap-3">
                           <h2 className="font-mont font-semibold text-[#111212] text-[20px] leading-tight"
-                            dangerouslySetInnerHTML={{ __html: service.title.rendered }} />
+                            dangerouslySetInnerHTML={{ __html: decodeHtml(service.title.rendered) }} />
                           <span className="flex justify-center items-center group-hover:bg-[#111212] mt-0.5 border border-[#e5e5e5] group-hover:border-[#111212] rounded-full w-8 h-8 transition-all duration-300 shrink-0">
                             <ArrowUpRight size={14} className="text-[#929296] group-hover:text-white transition-colors duration-300" />
                           </span>
@@ -98,9 +98,9 @@ export default async function ServicesPage() {
         </div>
       </div>
       {/* reviews */}
- <TestimonialsSection show={12} />
+      <TestimonialsSection show={12} />
       {/* CTA */}
-     <CTASection/>
+      <CTASection />
 
     </div>
   )
