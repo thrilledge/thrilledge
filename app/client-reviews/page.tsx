@@ -57,7 +57,7 @@ export default async function ClientReviewsPage() {
             {[
               { num: "4.9★", label: "Average Rating" },
               { num: "98%", label: "Satisfaction Rate" },
-              { num: `${testimonials?.length ?? 0}+`, label: "Happy Clients" },
+              { num: `150+`, label: "Happy Clients" },
               { num: "15+", label: "Years Experience" },
             ].map((s, i) => (
               <Animate key={s.label} variant="scale-in" delay={i * 80}>

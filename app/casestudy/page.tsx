@@ -140,7 +140,7 @@ export default async function WorkPage() {
               {[
                 { number: '4.9/5', label: 'Average Rating' },
                 { number: '98%', label: 'Satisfaction Rate' },
-                { number: `${testimonials.length}+`, label: 'Happy Clients' },
+                { number: `150+`, label: 'Happy Clients' },
                 { number: '2M+', label: 'Revenue Generated' },
               ].map(s => (
                 <div key={s.label} className="text-center">

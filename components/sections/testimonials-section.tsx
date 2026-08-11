@@ -24,9 +24,9 @@ export async function TestimonialsSection({ show = 20 }: { show?: number }) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t border-white/10">
           {[
             { number: '4.9/5', label: 'Average Rating' },
-            { number: '98%',   label: 'Satisfaction Rate' },
-            { number: `${testimonials.length}+`, label: 'Happy Clients' },
-            { number: '2M+',   label: 'Revenue Generated' },
+            { number: '98%', label: 'Satisfaction Rate' },
+            { number: `150+`, label: 'Happy Clients' },
+            { number: '2M+', label: 'Revenue Generated' },
           ].map((s, i) => (
             <Animate key={s.label} variant="fade-up" delay={i * 100 + 300}>
               <div className="text-center">
