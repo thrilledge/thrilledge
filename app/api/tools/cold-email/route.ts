@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
     const userPrompt = `Prospect Name: ${prospectName}\nCompany: ${prospectCompany}\nRole: ${prospectRole || 'Not specified'}\nYour Service: ${yourService}\nValue Proposition: ${valueProp || 'Not specified'}\nSocial Proof / Results: ${socialProof || 'Not specified'}\n\nWrite a cold email to this prospect.`
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-120b',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },

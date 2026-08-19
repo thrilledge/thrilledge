@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
     const userPrompt = `Job Title: ${jobTitle}\nJob Description: ${jobDescription}\n\nWrite a compelling Upwork proposal for this job.`
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: 'openai/gpt-oss-120b',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
