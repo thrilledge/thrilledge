@@ -11,6 +11,7 @@ const SERVICE_SLUGS = [
   'mvp-product-strategy',
   'saas-solutions',
   'shopify-plus-agency',
+  'sap-learning',
 ]
 
 const INDUSTRY_SLUGS = [

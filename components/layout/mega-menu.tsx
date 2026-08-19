@@ -79,6 +79,7 @@ const menus: MenuGroup[] = [
         description: 'We craft data-driven digital marketing strategies that grow your brand, drive qualified traffic, and convert visitors into loyal customers.',
       },
       { label: 'Shopify Plus Agency', href: '/services/shopify-plus-agency', icon: ShoppingCart, description: 'We build high-converting Shopify Plus stores optimized for performance, scalability, and revenue growth.' },
+      { label: 'SAP Learning', href: '/services/sap-learning', icon: BookOpen, description: 'Practical, structured and career-focused SAP learning designed for students, professionals and aspiring SAP consultants.' },
     ],
   },
   {

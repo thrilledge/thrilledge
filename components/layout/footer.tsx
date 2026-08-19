@@ -121,6 +121,11 @@ export default function Footer() {
                       Shopify Plus Agency
                     </Link>
                   </li>
+                  <li>
+                    <Link className="text-sm text-white/40" href="/services/sap-learning">
+                      SAP Learning
+                    </Link>
+                  </li>
                 </ul>
               </div>
 

@@ -58,6 +58,7 @@ import {
   ShieldCheck,
   BarChart3,
   Bug,
+  BookOpen,
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -244,6 +245,13 @@ const mobileNav = [
         href: '/services/shopify-plus-agency',
         desc: 'High converting Shopify stores',
         icon: ShoppingCart,
+      },
+
+      {
+        label: 'SAP Learning',
+        href: '/services/sap-learning',
+        desc: 'SAP training & consulting career paths',
+        icon: BookOpen,
       },
     ],
   },
