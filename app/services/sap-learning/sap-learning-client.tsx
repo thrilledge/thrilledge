@@ -31,46 +31,58 @@ const sapModules = [
   {
     code: 'SAP MM',
     title: 'Materials Management',
-    desc: 'Learn procurement, purchasing, inventory management, material master, MRP, invoice verification and MM integration.',
-    ideal: 'Procurement, supply chain professionals and aspiring SAP MM consultants.',
+    desc: 'Learn procurement, purchasing, inventory management, material master, MRP, invoice verification and integration with other SAP business processes.',
+    ideal: 'Procurement, supply chain professionals and aspiring SAP MM consultants.'
   },
   {
     code: 'SAP FI',
     title: 'Financial Accounting',
-    desc: 'Understand financial accounting processes including General Ledger, Accounts Payable, Accounts Receivable, Asset Accounting, Bank Accounting and integration with other SAP modules.',
-    ideal: 'Finance professionals and aspiring SAP FI consultants.',
+    desc: 'Understand financial accounting processes including General Ledger, Accounts Payable, Accounts Receivable, Asset Accounting, Bank Accounting and financial integration.',
+    ideal: 'Finance professionals and aspiring SAP FI consultants.'
   },
   {
     code: 'SAP SD',
     title: 'Sales & Distribution',
-    desc: 'Learn the complete Order-to-Cash process including sales orders, delivery, shipping, billing, pricing and integration with FI and MM.',
-    ideal: 'Sales professionals and aspiring SAP SD consultants.',
+    desc: 'Learn the complete Order-to-Cash process including sales orders, delivery, shipping, billing, pricing and integration with FI and MM processes.',
+    ideal: 'Sales professionals and aspiring SAP SD consultants.'
   },
   {
     code: 'SAP PP',
     title: 'Production Planning',
     desc: 'Understand production planning and execution, including MRP, BOMs, work centers, routings, production orders and manufacturing processes.',
-    ideal: 'Manufacturing professionals and aspiring SAP PP consultants.',
+    ideal: 'Manufacturing professionals and aspiring SAP PP consultants.'
   },
   {
     code: 'SAP HCM',
     title: 'Human Capital Management',
-    desc: 'Learn the fundamentals of SAP HCM, including Organizational Management, Personnel Administration, Time Management and Payroll concepts.',
-    ideal: 'HR professionals and aspiring SAP HCM consultants.',
+    desc: 'Learn the fundamentals of SAP HCM, including Organizational Management, Personnel Administration, Time Management, Payroll and core HR processes.',
+    ideal: 'HR professionals and aspiring SAP HCM consultants.'
   },
   {
-    code: 'SAP Success Factors',
-    title: 'Cloud Human Experience Management',
-    desc: "Build knowledge of SAP's cloud-based HXM solutions and understand how SuccessFactors supports modern HR processes and employee experiences.",
-    ideal: 'HR professionals and SAP HCM professionals looking to transition toward cloud-based HXM.',
+    code: 'SAP SuccessFactors',
+    title: 'Cloud Human Experience',
+    desc: 'Learn SAP SuccessFactors and understand modern HR, talent management and employee experience processes.',
+    ideal: 'HR professionals and SAP HCM professionals moving toward cloud-based HXM.'
   },
   {
     code: 'SAP Analytics Cloud',
     title: 'Analytics & Planning',
-    desc: 'Learn how to transform business data into meaningful insights through analytics, dashboards, reporting and planning.',
-    ideal: 'Business analysts, SAP professionals and aspiring analytics consultants.',
+    desc: 'Learn how to transform business data into meaningful insights through analytics, dashboards, reporting, visualization and integrated business planning.',
+    ideal: 'Business analysts, SAP professionals and aspiring analytics consultants.'
   },
-]
+  {
+    code: 'SAP ABAP',
+    title: 'Advanced Business Application',
+    desc: 'Learn SAP ABAP development including reports, data dictionary, internal tables, function modules, enhancements, forms and database programming.',
+    ideal: 'Aspiring SAP ABAP developers, programmers and technical SAP consultants.'
+  },
+  {
+    code: 'SAP Basis',
+    title: 'SAP System Administration',
+    desc: 'Understand SAP system administration, user management, system monitoring, transports, database management, security and SAP system architecture.',
+    ideal: 'IT professionals, system administrators and aspiring SAP Basis consultants.'
+  }
+];
 
 const careerPaths = [
   {
@@ -80,7 +92,7 @@ const careerPaths = [
   },
   {
     title: 'SAP FI Consultant Path',
-    description: 'Build deep expertise in financial accounting, General Ledger, sub-ledger management and period-end closings to handle end-to-end SAP FI consulting engagements.',
+    description: 'Build deep expertise in financial accounting, General Ledger and period-end closings to handle end-to-end SAP FI consulting engagements.',
     steps: ['SAP Fundamentals', 'FI Fundamentals', 'General Ledger', 'Accounts Payable & Receivable', 'Asset Accounting', 'Bank Accounting', 'Integration', 'Configuration', 'Implementation & Support'],
   },
   {
@@ -95,13 +107,13 @@ const careerPaths = [
   },
   {
     title: 'SAP HR + SuccessFactors Path',
-    description: 'Combine on-premise SAP HCM knowledge with cloud-based SuccessFactors expertise to lead HR transformation projects and modern employee experience initiatives.',
+    description: 'Combine on-premise SAP HCM knowledge with cloud-based SuccessFactors to lead HR transformation projects and modern employee experiences.',
     steps: ['HR Fundamentals', 'SAP HCM', 'Organizational Management', 'Personnel Administration', 'Time Management', 'HCM Processes', 'SuccessFactors', 'Cloud HXM', 'Implementation & Integration'],
   },
   {
     title: 'SAP Analytics Path',
     description: 'Transform raw business data into actionable insights through SAP Analytics Cloud dashboards, stories and planning models that drive smarter decision-making.',
-    steps: ['Data & Analytics Fundamentals', 'SAP Analytics Cloud', 'Data Visualization', 'Stories & Dashboards', 'Reporting', 'Planning', 'Business Scenarios', 'Analytics Projects'],
+    steps: ['Data & Analytics Fundamentals', 'SAP Analytics Cloud', 'Data Visualization', 'Stories & Dashboards', 'Reporting', 'Planning', 'Business Scenarios', 'Analytics Projects', 'Integration & Implementation'],
   },
 ]
 
@@ -114,12 +126,12 @@ const learningSteps = [
 ]
 
 const beyondTCodes = [
-  'Why is this process required?',
+  'Why is this business process required, and what purpose does it serve?',
   'What happens in SAP when a business transaction is performed?',
-  'Which master data is involved?',
+  'Which master data is involved in the process, and how does it affect the business transaction?',
   'How does one SAP module integrate with another?',
-  'What configuration controls the process?',
-  'What happens when something goes wrong?',
+  'What configuration controls the process, and how do these settings influence the system?',
+  'What happens when something goes wrong, and how can SAP professionals resolve the issue?',
 ]
 
 const practiceAreas = [
@@ -138,16 +150,16 @@ const trainingPrograms = [
   { title: 'SAP FI Consultant Program', tags: 'GL | AP | AR | Asset Accounting | Banking | Integration | Configuration | Projects' },
   { title: 'SAP SD Consultant Program', tags: 'Sales | Pricing | Delivery | Shipping | Billing | Order-to-Cash | Integration' },
   { title: 'SAP PP Consultant Program', tags: 'MRP | BOM | Work Centers | Routings | Production Orders | Manufacturing | Integration' },
-  { title: 'SAP HCM & SuccessFactors Program', tags: 'HR Processes | HCM | Organizational Management | Personnel Administration | SuccessFactors | Cloud HXM' },
+  { title: 'SAP HCM & Success Factors', tags: 'HR Processes | HCM | Organizational Management | Personnel Administration | SuccessFactors | Cloud HXM' },
   { title: 'SAP Analytics Cloud Program', tags: 'Analytics | Dashboards | Reporting | Visualization | Planning | Business Insights' },
 ]
 
 const audience = [
   { title: 'Students & Fresh Graduates', text: 'Build a foundation and understand how to start a career in SAP.' },
   { title: 'Working Professionals', text: 'Add SAP expertise to your existing business or technical experience.' },
-  { title: 'SAP End Users', text: 'Move beyond transactional knowledge and understand the functional processes behind your daily work.' },
+  { title: 'SAP End Users', text: 'Move beyond transactional knowledge & understand the process behind your daily work.' },
   { title: 'Aspiring SAP Consultants', text: 'Develop the business, functional and project knowledge required for consulting roles.' },
-  { title: 'Existing SAP Professionals', text: 'Strengthen your knowledge, explore new modules and prepare for your next career opportunity.' },
+  { title: 'Existing SAP Professionals', text: 'Strengthen your knowledge, explore new modules & prepare your next career opportunity.' },
 ]
 
 const whyThrillEdge = [
@@ -169,19 +181,20 @@ export function SAPLearningClient() {
       <section className="px-3 md:px-2.5 w-full">
         <div className="relative rounded-[20px] w-full h-120 overflow-hidden bg-[#111212]">
           <div
-            className="absolute inset-0 opacity-[0.04]"
+            className="absolute inset-0 opacity-[0.1]"
             style={{
               backgroundImage:
-                'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-              backgroundSize: '80px 80px',
+                'url(/sap.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
             }}
           />
-          <div
+          {/* <div
             className="absolute inset-0 rounded-[20px]"
             style={{
               background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5), rgba(0,0,0,0))',
             }}
-          />
+          /> */}
           <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-6 lg:py-10 max-w-360">
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[14px] text-white/60 uppercase tracking-[0.2em]">
@@ -191,7 +204,7 @@ export function SAPLearningClient() {
                 SAP Learning
               </h1>
               <p className="max-w-xl font-mont font-medium text-[20px] text-white/80 lg:text-[28px] leading-tight mt-2">
-                Learn SAP. Understand Business. Build Your Career.
+                Your Journey to SAP Expertise.
               </p>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
@@ -239,7 +252,7 @@ export function SAPLearningClient() {
                 Why Learn SAP
               </span>
               <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-                Why Learn SAP With Thrill Edge?
+               Why Is SAP in High Demand?
               </h2>
               <p className="mt-5 max-w-3xl font-inter text-[#555] text-[16px] leading-7">
                 SAP is more than transactions, configuration and technical terminology. To become a successful SAP professional, you need to understand the connection between business processes, SAP functionality, configuration and real-world project requirements.
@@ -400,7 +413,7 @@ export function SAPLearningClient() {
               </h2>
             </div>
             <p className="mt-3 max-w-2xl font-mont font-medium text-[#111212] text-[18px] md:text-[22px] leading-7 mb-14">
-              Learn &middot; Practice &middot; Apply &middot; Become Project-Ready
+             Build Skills & Gain Confidence - Advance Your Career
             </p>
           </Animate>
           <div className="flex lg:flex-row flex-col md:gap-16 gap-12 items-start">
@@ -486,14 +499,20 @@ export function SAPLearningClient() {
                   Hands-On SAP Learning
                 </h2>
                 <p className="mt-2 font-mont font-medium text-[#111212] text-[20px] md:text-[24px]">
-                  Don&apos;t Just Watch. Practice.
+                  Don&apos;t Just Watch - Practice.
                 </p>
                 <p className="mt-5 font-inter text-[#555] text-[16px] leading-7">
                   Understanding SAP requires practical experience. Where applicable, our programs combine learning with hands-on exercises, allowing you to apply concepts in an SAP environment.
                 </p>
-                <p className="mt-3 font-inter text-[#929296] text-[16px]">
-                  Practice areas may include:
-                </p>
+                  <div className="mt-8">
+                <Link
+                  href="#"
+                  className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
+                >
+                  Explore Practical Training
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
               </div>
             </Animate>
             <Animate variant="fade-up" delay={100}>
@@ -512,15 +531,7 @@ export function SAPLearningClient() {
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
-                <Link
-                  href="#"
-                  className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
-                >
-                  Explore Practical Training
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
+            
             </Animate>
           </div>
         </div>
@@ -577,7 +588,7 @@ export function SAPLearningClient() {
                 Who Is This For
               </span>
               <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-                Who Is This For?
+                Find Your Path in SAP
               </h2>
             </div>
           </Animate>
@@ -604,51 +615,67 @@ export function SAPLearningClient() {
       </section>
 
       {/* ─── Why Thrill Edge? (Dark Section) ─── */}
-      <section className="bg-[#111212] w-full">
-        <div className="px-4 py-16 md:py-24 w-full">
-          <div className="max-w-360 mx-auto">
-            <Animate variant="fade-up">
-              <div className="flex md:flex-row flex-col justify-between md:items-end gap-8 mb-16">
-                <div>
-                  <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-white/30">
-                    Why Thrill Edge
-                  </span>
-                  <h2 className="mt-4 max-w-140 font-mont font-bold text-white text-[32px] md:text-[48px] leading-[1.1]">
-                    Why Thrill Edge?
-                  </h2>
-                </div>
-                <div className="max-w-90">
-                  <p className="font-mont font-medium text-white/60 text-[18px] md:text-[20px] leading-7">
-                    Technology. Knowledge. Practical Experience.
-                  </p>
-                  <p className="mt-3 font-inter text-white/40 text-[15px] leading-6.5">
-                    At Thrill Edge Technology, we believe professional learning should connect knowledge with practical application. Our SAP learning initiative focuses on helping learners understand the relationship between business requirements, SAP processes and real-world implementation scenarios.
-                  </p>
-                </div>
-              </div>
-            </Animate>
-            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-              {whyThrillEdge.map((item, i) => (
-                <Animate key={i} variant="scale-in" delay={i * 70}>
-                  <div className="group flex flex-col justify-center gap-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-8 transition-all duration-300 md:h-60">
-                    <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div className="flex flex-col gap-2.5">
-                      <h3 className="font-mont font-semibold text-white text-[20px] leading-7">
-                        {item.title}
-                      </h3>
-                      <p className="font-inter text-white/50 text-[15px] leading-6.5">
-                        {item.text}
-                      </p>
-                    </div>
-                  </div>
-                </Animate>
-              ))}
-            </div>
+    <section className="bg-[#111212] w-full">
+  <div className="px-4 py-16 md:py-24 w-full">
+    <div className="max-w-360 mx-auto">
+
+      {/* Heading + Intro */}
+      <Animate variant="fade-up">
+        <div className="mb-16">
+          
+          <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-white/30">
+            Why Thrill Edge Technologies?
+          </span>
+
+          <h2 className="mt-4 font-mont font-bold text-white text-[32px] md:text-[48px] leading-[1.1]">
+           Why Start Your SAP Journey With Us?
+          </h2>
+
+          <div className="mt-6 max-w-3xl">
+            <p className="font-mont font-medium text-white/60 text-[18px] md:text-[20px] leading-7">
+              Technology & Knowledge - Practical Experience.
+            </p>
+
+            <p className="mt-3 font-inter text-white/40 text-[15px] leading-6.5">
+              At Thrill Edge Technologies, we believe professional learning
+              should connect knowledge with practical application. Our SAP
+              learning initiative focuses on helping learners understand the
+              relationship between business requirements, SAP processes and
+              real-world implementation scenarios.
+            </p>
           </div>
+
         </div>
-      </section>
+      </Animate>
+
+      {/* Cards */}
+      <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {whyThrillEdge.map((item, i) => (
+          <Animate key={i} variant="scale-in" delay={i * 70}>
+            <div className="group flex flex-col justify-center gap-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-8 transition-all duration-300 md:h-60">
+
+              <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <div className="flex flex-col gap-2.5">
+                <h3 className="font-mont font-semibold text-white text-[20px] leading-7">
+                  {item.title}
+                </h3>
+
+                <p className="font-inter text-white/50 text-[15px] leading-6.5">
+                  {item.text}
+                </p>
+              </div>
+
+            </div>
+          </Animate>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ─── Start Your SAP Journey (CTA) ─── */}
       <section className="py-16 md:py-24">
@@ -662,7 +689,7 @@ export function SAPLearningClient() {
                 Whether you are taking your first step into SAP or looking to advance your existing career, choose a learning path that matches your goals.
               </p>
               <p className="mt-4 max-w-xl mx-auto font-mont font-medium text-white/80 text-[18px] md:text-[22px]">
-                Learn SAP. Understand Business. Build Your Career.
+                Learn SAP - Understand Business - Build Your Career.
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-10">
                 <Link
@@ -692,7 +719,7 @@ export function SAPLearningClient() {
           <Animate variant="fade-up" delay={100}>
             <div className="mt-10 text-center">
               <p className="font-inter text-[#929296] text-[14px]">
-                Thrill Edge Technology — SAP Learning | Technology | Professional Development
+                Thrill Edge Technologies — SAP Learning | Technology | Professional Development
               </p>
               <p className="mt-1 font-inter text-[#929296] text-[14px]">
                 Helping professionals build practical technology and SAP skills for the future.
