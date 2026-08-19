@@ -1,10 +1,8 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, ChevronRight } from 'lucide-react'
 import { Animate } from '@/components/common/animate'
-import { cn } from '@/lib/utils'
 
 /* ──────────────────────────────────────────────────────────────
    DATA – every word taken verbatim from the DOCX
@@ -61,7 +59,7 @@ const sapModules = [
     ideal: 'HR professionals and aspiring SAP HCM consultants.',
   },
   {
-    code: 'SAP SuccessFactors',
+    code: 'SAP Success Factors',
     title: 'Cloud Human Experience Management',
     desc: "Build knowledge of SAP's cloud-based HXM solutions and understand how SuccessFactors supports modern HR processes and employee experiences.",
     ideal: 'HR professionals and SAP HCM professionals looking to transition toward cloud-based HXM.',
@@ -77,26 +75,32 @@ const sapModules = [
 const careerPaths = [
   {
     title: 'SAP MM Consultant Path',
+    description: 'Master procurement workflows, inventory control and material management processes to become a confident SAP MM consultant ready for real-world projects.',
     steps: ['SAP Fundamentals', 'MM Business Processes', 'Procurement', 'Inventory Management', 'MRP', 'Configuration', 'Integration', 'Implementation & Support', 'Interview Preparation'],
   },
   {
     title: 'SAP FI Consultant Path',
+    description: 'Build deep expertise in financial accounting, General Ledger, sub-ledger management and period-end closings to handle end-to-end SAP FI consulting engagements.',
     steps: ['SAP Fundamentals', 'FI Fundamentals', 'General Ledger', 'Accounts Payable & Receivable', 'Asset Accounting', 'Bank Accounting', 'Integration', 'Configuration', 'Implementation & Support'],
   },
   {
     title: 'SAP SD Consultant Path',
+    description: 'Learn the complete Order-to-Cash cycle from sales orders to billing and pricing, equipping you to manage SAP SD implementations across industries.',
     steps: ['SAP Fundamentals', 'Sales Processes', 'Pricing', 'Shipping & Delivery', 'Billing', 'Order-to-Cash', 'Integration', 'Configuration', 'Implementation & Support'],
   },
   {
     title: 'SAP PP Consultant Path',
+    description: 'Understand production planning, MRP runs, BOMs and manufacturing execution to confidently support SAP PP implementations in production-heavy environments.',
     steps: ['SAP Fundamentals', 'Production Planning', 'Demand Management', 'MRP', 'BOM & Work Centers', 'Routings', 'Production Orders', 'Production Execution', 'Integration & Implementation'],
   },
   {
     title: 'SAP HR + SuccessFactors Path',
+    description: 'Combine on-premise SAP HCM knowledge with cloud-based SuccessFactors expertise to lead HR transformation projects and modern employee experience initiatives.',
     steps: ['HR Fundamentals', 'SAP HCM', 'Organizational Management', 'Personnel Administration', 'Time Management', 'HCM Processes', 'SuccessFactors', 'Cloud HXM', 'Implementation & Integration'],
   },
   {
     title: 'SAP Analytics Path',
+    description: 'Transform raw business data into actionable insights through SAP Analytics Cloud dashboards, stories and planning models that drive smarter decision-making.',
     steps: ['Data & Analytics Fundamentals', 'SAP Analytics Cloud', 'Data Visualization', 'Stories & Dashboards', 'Reporting', 'Planning', 'Business Scenarios', 'Analytics Projects'],
   },
 ]
@@ -158,8 +162,6 @@ const whyThrillEdge = [
    ────────────────────────────────────────────────────────────── */
 
 export function SAPLearningClient() {
-  const [activePath, setActivePath] = useState(0)
-
   return (
     <div className="relative bg-[#F3F3F3]">
 
@@ -339,59 +341,49 @@ export function SAPLearningClient() {
             </div>
           </Animate>
 
-          {/* Path selector tabs */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          {/* Career path cards */}
+          <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {careerPaths.map((path, i) => (
-              <button
-                key={i}
-                onClick={() => setActivePath(i)}
-                className={cn(
-                  'font-mont font-semibold text-[13px] md:text-[14px] px-5 py-2.5 rounded-full transition-all duration-300',
-                  activePath === i
-                    ? 'bg-[#111212] text-white'
-                    : 'bg-[#F3F3F3] text-[#929296] hover:bg-[#E5E5E5] hover:text-[#111212]',
-                )}
-              >
-                {path.title.replace(' Path', '')}
-              </button>
+              <Animate key={i} variant="scale-in" delay={i * 70}>
+                <div className="group flex flex-col bg-[#F7F7F7] border border-[#E5E5E5] hover:border-[#111212] rounded-[20px] overflow-hidden transition-all duration-300 hover:shadow-lg h-full">
+                  <div className="bg-[#111212] px-6 py-5">
+                    <h3 className="font-mont font-semibold text-white text-[20px] md:text-[22px] leading-tight">
+                      {path.title}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col flex-1 gap-4 p-6">
+                    <p className="font-inter text-[#555] text-[15px] leading-7">
+                      {path.description}
+                    </p>
+                    <div className="mt-auto pt-4 border-t border-[#E5E5E5]">
+                      <div className="flex flex-col gap-0">
+                        {path.steps.map((step, j) => (
+                          <div
+                            key={j}
+                            className="flex items-center gap-3 py-2.5 border-t border-[#E5E5E5] first:border-t-0"
+                          >
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
+                              {String(j + 1).padStart(2, '0')}
+                            </span>
+                            <span className="font-inter text-[#111212] text-[14px]">
+                              {step}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <Link
+                      href="#"
+                      className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
+                    >
+                      Start {path.title.replace(' Path', '')}
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </Animate>
             ))}
           </div>
-
-          {/* Active path steps */}
-          <Animate variant="fade-up" key={activePath}>
-            <div className="bg-[#F7F7F7] border border-[#E5E5E5] rounded-[20px] p-8 md:p-10">
-              <h3 className="font-mont font-semibold text-[#111212] text-[24px] md:text-[28px] mb-8">
-                {careerPaths[activePath].title}
-              </h3>
-              <div className="flex flex-col gap-0">
-                {careerPaths[activePath].steps.map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-4 py-4 border-t border-[#E5E5E5] first:border-t-0"
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[12px] font-semibold text-white">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="font-inter text-[#111212] text-[16px] md:text-[17px]">
-                      {step}
-                    </span>
-                    {i < careerPaths[activePath].steps.length - 1 && (
-                      <ChevronRight size={14} className="text-[#CCCCCC] ml-auto" />
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8">
-                <Link
-                  href="#"
-                  className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
-                >
-                  Start {careerPaths[activePath].title.replace(' Path', '')}
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
-            </div>
-          </Animate>
         </div>
       </section>
 
