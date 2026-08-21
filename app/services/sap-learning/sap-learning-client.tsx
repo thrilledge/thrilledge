@@ -31,58 +31,69 @@ const sapModules = [
   {
     code: 'SAP MM',
     title: 'Materials Management',
+    slug: 'materials-management',
     desc: 'Learn procurement, purchasing, inventory management, material master, MRP, invoice verification and integration with other SAP business processes.',
     ideal: 'Procurement, supply chain professionals and aspiring SAP MM consultants.'
   },
+
   {
     code: 'SAP FI',
     title: 'Financial Accounting',
+    slug: 'financial-accounting',
     desc: 'Understand financial accounting processes including General Ledger, Accounts Payable, Accounts Receivable, Asset Accounting, Bank Accounting and financial integration.',
     ideal: 'Finance professionals and aspiring SAP FI consultants.'
   },
+
   {
     code: 'SAP SD',
     title: 'Sales & Distribution',
+    slug: 'sales-distribution',
     desc: 'Learn the complete Order-to-Cash process including sales orders, delivery, shipping, billing, pricing and integration with FI and MM processes.',
     ideal: 'Sales professionals and aspiring SAP SD consultants.'
   },
+
   {
     code: 'SAP PP',
     title: 'Production Planning',
+    slug: 'production-planning',
     desc: 'Understand production planning and execution, including MRP, BOMs, work centers, routings, production orders and manufacturing processes.',
     ideal: 'Manufacturing professionals and aspiring SAP PP consultants.'
   },
+
   {
     code: 'SAP HCM',
     title: 'Human Capital Management',
+    slug: 'human-capital-management',
     desc: 'Learn the fundamentals of SAP HCM, including Organizational Management, Personnel Administration, Time Management, Payroll and core HR processes.',
     ideal: 'HR professionals and aspiring SAP HCM consultants.'
   },
+
   {
     code: 'SAP SuccessFactors',
     title: 'Cloud Human Experience',
+    slug: 'cloud-human-experience',
     desc: 'Learn SAP SuccessFactors and understand modern HR, talent management and employee experience processes.',
     ideal: 'HR professionals and SAP HCM professionals moving toward cloud-based HXM.'
   },
-  {
-    code: 'SAP Analytics Cloud',
-    title: 'Analytics & Planning',
-    desc: 'Learn how to transform business data into meaningful insights through analytics, dashboards, reporting, visualization and integrated business planning.',
-    ideal: 'Business analysts, SAP professionals and aspiring analytics consultants.'
-  },
+
+ 
+
   {
     code: 'SAP ABAP',
     title: 'Advanced Business Application',
+    slug: 'abap',
     desc: 'Learn SAP ABAP development including reports, data dictionary, internal tables, function modules, enhancements, forms and database programming.',
     ideal: 'Aspiring SAP ABAP developers, programmers and technical SAP consultants.'
   },
+
   {
     code: 'SAP Basis',
     title: 'SAP System Administration',
+    slug: 'basis',
     desc: 'Understand SAP system administration, user management, system monitoring, transports, database management, security and SAP system architecture.',
     ideal: 'IT professionals, system administrators and aspiring SAP Basis consultants.'
-  }
-];
+  },
+]
 
 const careerPaths = [
   {
@@ -110,11 +121,7 @@ const careerPaths = [
     description: 'Combine on-premise SAP HCM knowledge with cloud-based SuccessFactors to lead HR transformation projects and modern employee experiences.',
     steps: ['HR Fundamentals', 'SAP HCM', 'Organizational Management', 'Personnel Administration', 'Time Management', 'HCM Processes', 'SuccessFactors', 'Cloud HXM', 'Implementation & Integration'],
   },
-  {
-    title: 'SAP Analytics Path',
-    description: 'Transform raw business data into actionable insights through SAP Analytics Cloud dashboards, stories and planning models that drive smarter decision-making.',
-    steps: ['Data & Analytics Fundamentals', 'SAP Analytics Cloud', 'Data Visualization', 'Stories & Dashboards', 'Reporting', 'Planning', 'Business Scenarios', 'Analytics Projects', 'Integration & Implementation'],
-  },
+
 ]
 
 const learningSteps = [
@@ -225,7 +232,7 @@ export function SAPLearningClient() {
           <Animate variant="fade-up" delay={100}>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
-                href="#explore-modules"
+                 href="/services/sap-learning/materials-management"
                 className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
               >
                 Explore SAP Modules
@@ -322,13 +329,13 @@ export function SAPLearningClient() {
                         {mod.ideal}
                       </p>
                     </div>
-                    <Link
-                      href="#"
-                      className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
-                    >
-                      Explore {mod.code.replace('SAP ', '')}
-                      <ChevronRight size={16} />
-                    </Link>
+                 <Link
+  href={`/services/sap-learning/${mod.slug}`}
+  className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
+>
+  Explore {mod.code.replace('SAP ', '')}
+  <ChevronRight size={16} />
+</Link>
                   </div>
                 </div>
               </Animate>
@@ -386,7 +393,7 @@ export function SAPLearningClient() {
                       </div>
                     </div>
                     <Link
-                      href="#"
+                      href="#sap-contact"
                       className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
                     >
                       Start {path.title.replace(' Path', '')}
@@ -506,10 +513,10 @@ export function SAPLearningClient() {
                 </p>
                   <div className="mt-8">
                 <Link
-                  href="#"
+                  href="/contact"
                   className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
                 >
-                  Explore Practical Training
+                  Book a Consultation
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -563,15 +570,7 @@ export function SAPLearningClient() {
                   <p className="mt-3 font-inter text-[#929296] text-[14px] leading-6">
                     {prog.tags}
                   </p>
-                  <div className="mt-auto pt-6">
-                    <Link
-                      href="#"
-                      className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
-                    >
-                      View Program
-                      <ChevronRight size={16} />
-                    </Link>
-                  </div>
+                 
                 </div>
               </Animate>
             ))}
@@ -707,6 +706,7 @@ export function SAPLearningClient() {
                   <ArrowRight size={16} />
                 </Link>
                 <Link
+                  id='sap-contact'
                   href="/contact"
                   className="inline-flex items-center gap-2 border border-white/20 text-white font-mont font-semibold text-[14px] px-8 py-3.5 rounded-full hover:bg-white hover:text-[#111212] transition-all duration-300"
                 >
