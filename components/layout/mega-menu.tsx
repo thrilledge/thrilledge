@@ -200,7 +200,23 @@ export function MegaMenu() {
         >
           <div className={cn('flex', 'flex-col', 'gap-6', 'bg-white', 'p-3', 'rounded-[20px]', 'w-full', 'max-w-360', 'mega-shadow', 'border border-[#f0f0f0]')}>
             <div className={cn('px-8', 'py-10', 'w-full')}>
-              <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
+              <div className="flex">
+                <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
+                {/* View all button */}
+                {activeMenu.ctaLabel && activeMenu.ctaHref && (
+                  <div className="mt-8 flex justify-center">
+                    <Link
+                      href={activeMenu.ctaHref}
+                      onClick={() => setActive(null)}
+                      className="mb-4 font-normal text-[#000]/[0.9] text-[16px] hover:text-accent transition-colors hover:underline hover:text-[#0000]/[0.9]/[1]"
+                    >
+                      {activeMenu.ctaLabel}
+                    </Link>
+                  </div>
+                )}
+
+
+              </div>
 
               <ul className={cn('gap-6', 'grid', 'grid-cols-3')}>
                 {(activeMenu.items ?? []).map((item) => (
@@ -250,20 +266,6 @@ export function MegaMenu() {
                   )
                 ))}
               </ul>
-
-              {/* View all button */}
-              {activeMenu.ctaLabel && activeMenu.ctaHref && (
-                <div className="mt-8 flex justify-center">
-                  <Link
-                    href={activeMenu.ctaHref}
-                    onClick={() => setActive(null)}
-                    className="inline-flex items-center justify-center rounded-full bg-[#111212] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-accent"
-                  >
-                    {activeMenu.ctaLabel}
-                  </Link>
-                </div>
-              )}
-
             </div>
 
             <div className="border-t border-[#ebebeb] py-4 pl-6">
