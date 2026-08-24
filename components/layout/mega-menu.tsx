@@ -49,7 +49,7 @@ interface MenuGroup {
 // ─── data ─────────────────────────────────────────────────────────────────────
 const menus: MenuGroup[] = [
   {
-    label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us', ctaLabel: 'About us', ctaHref: '/about',
+    label: 'Company', categoryLabel: 'Company', image: '/company-menu.avif', imageAlt: 'About us',
     items: [
       { label: 'About', href: '/about', icon: Users, description: `Learn about our mission, team, and the innovative solutions driving businesses forward worldwide.` },
       { label: 'Team', href: '/team', icon: Users, description: 'Meet the engineers, designers, and strategists behind Thrill Edge Technologies.' },
