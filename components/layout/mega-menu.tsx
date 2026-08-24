@@ -200,19 +200,17 @@ export function MegaMenu() {
         >
           <div className={cn('flex', 'flex-col', 'gap-6', 'bg-white', 'p-3', 'rounded-[20px]', 'w-full', 'max-w-360', 'mega-shadow', 'border border-[#f0f0f0]')}>
             <div className={cn('px-8', 'py-10', 'w-full')}>
-              <div className="flex">
+              <div className="flex w-full justify-between items-center">
                 <p className={cn('mb-4', 'font-normal', 'text-[#929296]', 'text-[16px]')}>{activeMenu.categoryLabel}</p>
                 {/* View all button */}
                 {activeMenu.ctaLabel && activeMenu.ctaHref && (
-                  <div className="mt-8 flex justify-center">
-                    <Link
-                      href={activeMenu.ctaHref}
-                      onClick={() => setActive(null)}
-                      className="mb-4 font-normal text-[#000]/[0.9] text-[16px] hover:text-accent transition-colors hover:underline hover:text-[#0000]/[0.9]/[1]"
-                    >
-                      {activeMenu.ctaLabel}
-                    </Link>
-                  </div>
+                  <Link
+                    href={activeMenu.ctaHref}
+                    onClick={() => setActive(null)}
+                    className="mb-4 font-normal text-[#000]/[0.9] text-[16px] hover:text-accent transition-colors hover:underline hover:text-[#0000]/[0.9]/[1]"
+                  >
+                    {activeMenu.ctaLabel}
+                  </Link>
                 )}
 
 
