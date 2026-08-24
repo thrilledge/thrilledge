@@ -115,13 +115,13 @@ export default function ProductionPlanningPage() {
 
       {/* Hero */}
       <section className="px-3 md:px-2.5 w-full">
-        <div className="relative w-full h-[520px] overflow-hidden rounded-[20px] bg-[#111212]">
+        <div className="relative w-full h-[620px] overflow-hidden rounded-[20px] bg-[#111212]">
 
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
               backgroundImage: 'url(/pp.jpg)',
-              // backgroundSize: 'cover',
+              backgroundSize: 'cover',
               // backgroundPosition: 'center',
             }}
           />

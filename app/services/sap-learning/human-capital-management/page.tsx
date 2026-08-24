@@ -223,7 +223,7 @@ export default function HumanCapitalManagementPage() {
             className="absolute inset-0 opacity-[0.12]"
             style={{
               backgroundImage: 'url(/hcm.jpg)',
-              // backgroundSize: 'cover',
+              backgroundSize: 'cover',
               // backgroundPosition: 'center',
             }}
           />
