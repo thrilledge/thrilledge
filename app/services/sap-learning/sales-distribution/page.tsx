@@ -221,11 +221,11 @@ export default function SalesDistributionPage() {
     <div className="relative bg-[#F3F3F3]">
       {/* Hero */}
       <section className="px-3 md:px-2.5 w-full">
-        <div className="relative w-full h-[520px] overflow-hidden rounded-[20px] bg-[#111212]">
+        <div className="relative w-full h-[620px] overflow-hidden rounded-[20px] bg-[#111212]">
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap-sd.jpg)',
+              backgroundImage: 'url(/sale.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
