@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 const INDUSTRIES = [
-  { slug: 'healthcare', title: 'Healthcare', tagline: 'HIPAA-compliant software that improves patient outcomes.', description: 'EHR integrations, patient portals, telemedicine platforms, and clinical workflow tools built to the strictest compliance standards.', stat: { number: '30+', label: 'Healthcare products shipped' }, icon: '/healthcare.svg', image: '/healthcare.jfif' },
+  { slug: 'healthcare', title: 'Healthcare', tagline: 'HIPAA-compliant software that improves patient outcomes.', description: 'EHR integrations, patient portals, telemedicine platforms, and clinical workflow tools built to the strictest compliance standards.', stat: { number: '30+', label: 'Healthcare products shipped' }, icon: '/healthcare.svg', image: '/healthcare.png' },
   { slug: 'education', title: 'Education', tagline: 'Education platforms that drive real learning outcomes.', description: 'Custom LMS platforms, adaptive learning tools, virtual classrooms, and student portals for K-12, higher ed, and corporate training.', stat: { number: '500K+', label: 'Students on our platforms' }, icon: '/education.svg', image: '/education2.jpg' },
   { slug: 'real-estate', title: 'Real Estate', tagline: 'PropTech solutions that close deals faster.', description: 'Property listing platforms, CRM systems, virtual tour tools, and property management apps for agents, developers, and managers.', stat: { number: '2M+', label: 'Property listings managed' }, icon: '/real-estate.svg', image: '/Realstate.jpg' },
   { slug: 'blockchain', title: 'Blockchain', tagline: 'Production-ready blockchain apps built for trust and scale.', description: 'Smart contracts, DeFi platforms, NFT marketplaces, and enterprise blockchain applications on Ethereum, Solana, and Polygon.', stat: { number: '$500M+', label: 'Total value locked' }, icon: '/blockchain.svg', image: '/blockchain2.png' },
@@ -61,7 +61,7 @@ export default function IndustriesPage() {
                   <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
                   <div className="bottom-4 left-4 absolute flex justify-center items-center bg-white/90 backdrop-blur-sm rounded-full w-9 h-9">
                     <div className="relative w-4 h-4">
-                      <Image src={ind.icon} alt="" fill sizes="16px" className="object-contain" />
+                      <Image src={ind.icon} alt="" fill sizes="16px" className="object-contain invert" />
                     </div>
                   </div>
                 </div>
