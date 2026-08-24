@@ -9,8 +9,21 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Animate } from '@/components/common/animate'
 
+const SAP_LEARNING_CARD = {
+  slug: 'sap-learning',
+  title: 'SAP Learning',
+  desc: 'Practical, structured and career-focused SAP learning designed for students, professionals and aspiring SAP consultants.',
+  image: '/sap.jpg',
+  stats: [
+    { number: '200+', label: 'SAP Concepts Covered' },
+    { number: '85%', label: 'Improved Usability' },
+    { number: '70%', label: 'Conversion Increase' },
+  ],
+}
+
 export async function ServicesSection({ show = 12 }: { show?: number }) {
   const services = await getServices(show).catch(() => [])
+  const sapInsertAt = 3
 
   return (
     <section id="services" className="md:py-20 py-16 px-4  lg:px-8 bg-[#F3F3F3]">
@@ -31,7 +44,7 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
         {services.length > 0 ? (
           <>
             <ShadowCardGrid columns={4} className="mb-12">
-              {services.map((service, idx) => {
+              {services.slice(0, sapInsertAt).map((service, idx) => {
                 const featuredImage =
                   service.acf?.image?.url ||
                   service._embedded?.['wp:featuredmedia']?.[0]?.source_url
@@ -42,6 +55,107 @@ export async function ServicesSection({ show = 12 }: { show?: number }) {
 
                 return (
                   <Animate key={service.id} variant="scale-in" delay={idx * 80}>
+                    <Link href={`/services/${service.slug}`}>
+                      <div className="h-full overflow-hidden p-0 bg-white rounded-lg">
+                        <div className="space-y-4">
+                          {featuredImage ? (
+                            <div className="relative w-full h-44 rounded-lg overflow-hidden">
+                              <Image
+                                src={featuredImage}
+                                alt={service.acf?.image?.alt || service.title.rendered}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center">
+                              <span className="text-accent font-bold text-lg">
+                                {service.title.rendered.charAt(0)}
+                              </span>
+                            </div>
+                          )}
+                          <div className="p-4">
+                            <h3 className="text-xl font-semibold text-foreground"
+                              dangerouslySetInnerHTML={{ __html: service.title.rendered }}
+                            />
+                            {service.acf?.service_solutions && (
+                              <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                                {service.acf.service_solutions}
+                              </p>
+                            )}
+                            {countItems.length > 0 && (
+                              <div className="flex gap-4 mt-4 pt-4">
+                                {countItems.map((count, i) => (
+                                  <div key={i} className="text-center border-l px-3 border-border-[#eee] first:border-l-0">
+                                    <p className="text-lg font-bold text-accent">{count!.number}</p>
+                                    <p className="text-xs text-muted-foreground">{count!.label}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            <div className="pt-2 flex items-center gap-2 text-accent mt-4">
+                              <span className="text-sm font-semibold">Learn More</span>
+                              <ArrowRight size={16} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Animate>
+                )
+              })}
+
+              {/* SAP Learning static card */}
+              <Animate key="sap-learning" variant="scale-in" delay={sapInsertAt * 80}>
+                <Link href={`/services/${SAP_LEARNING_CARD.slug}`}>
+                  <div className="h-full overflow-hidden p-0 bg-white rounded-lg">
+                    <div className="space-y-4">
+                      <div className="relative w-full h-44 rounded-lg overflow-hidden">
+                        <Image
+                          src={SAP_LEARNING_CARD.image}
+                          alt={SAP_LEARNING_CARD.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-xl font-semibold text-foreground">
+                          {SAP_LEARNING_CARD.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                          {SAP_LEARNING_CARD.desc}
+                        </p>
+                        <div className="flex gap-4 mt-4 pt-4">
+                          {SAP_LEARNING_CARD.stats.map((stat, i) => (
+                            <div key={i} className="text-center border-l px-3 border-border-[#eee] first:border-l-0">
+                              <p className="text-lg font-bold text-accent">{stat.number}</p>
+                              <p className="text-xs text-muted-foreground">{stat.label}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="pt-2 flex items-center gap-2 text-accent mt-4">
+                          <span className="text-sm font-semibold">Learn More</span>
+                          <ArrowRight size={16} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </Animate>
+
+              {services.slice(sapInsertAt).map((service, idx) => {
+                const featuredImage =
+                  service.acf?.image?.url ||
+                  service._embedded?.['wp:featuredmedia']?.[0]?.source_url
+                const counts = service.acf?.service_count
+                const countItems = counts
+                  ? [counts.count_1, counts.count_2, counts.count_3].filter(Boolean)
+                  : []
+
+                return (
+                  <Animate key={service.id} variant="scale-in" delay={(sapInsertAt + idx + 1) * 80}>
                     <Link href={`/services/${service.slug}`}>
                       <div className="h-full overflow-hidden p-0 bg-white rounded-lg">
                         <div className="space-y-4">
