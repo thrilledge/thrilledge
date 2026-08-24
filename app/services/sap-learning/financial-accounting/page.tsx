@@ -226,9 +226,9 @@ export default function FinancialAccountingPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap-fa.jpg)',
+              backgroundImage: 'url(/fi.jpg)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              // backgroundPosition: 'center',
             }}
           />
 

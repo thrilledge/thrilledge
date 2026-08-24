@@ -221,9 +221,9 @@ export default function MaterialsManagementPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap-mm.jpg)',
+              backgroundImage: 'url(/material.png)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              // backgroundPosition: 'center',
             }}
           />
 

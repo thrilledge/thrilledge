@@ -223,7 +223,7 @@ export default function BasisPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/adap.jpg)',
+              backgroundImage: 'url(/sapadap.jpg)',
               // backgroundSize: 'cover',
               // backgroundPosition: 'center',
             }}

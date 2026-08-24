@@ -225,7 +225,7 @@ export default function SalesDistributionPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap-sd.jpg)',
+              backgroundImage: 'url(/sale.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
