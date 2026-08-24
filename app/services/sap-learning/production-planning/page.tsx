@@ -351,43 +351,7 @@ export default function ProductionPlanningPage() {
 
           </div>
 
-          <Animate variant="fade-up" delay={300}>
-            <div className="mt-8 bg-white border border-[#E5E5E5] rounded-[20px] p-6 md:p-8">
-
-              <div className="flex flex-wrap items-center justify-center gap-3 text-center">
-
-                {[
-                  'Demand',
-                  'MRP',
-                  'Materials',
-                  'BOM',
-                  'Work Centers',
-                  'Production Order',
-                  'Production',
-                ].map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3"
-                  >
-
-                    <span className="rounded-full bg-[#111212] px-4 py-2 font-inter text-white text-[13px]">
-                      {step}
-                    </span>
-
-                    {i < 6 && (
-                      <ArrowRight
-                        size={15}
-                        className="text-[#929296]"
-                      />
-                    )}
-
-                  </div>
-                ))}
-
-              </div>
-
-            </div>
-          </Animate>
+       
 
         </div>
       </section>

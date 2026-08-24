@@ -588,42 +588,7 @@ export default function HumanCapitalManagementPage() {
 
           </div>
 
-          <Animate variant="fade-up" delay={300}>
-            <div className="mt-8 rounded-[20px] border border-[#E5E5E5] bg-white p-6 md:p-8">
-
-              <div className="flex flex-wrap items-center justify-center gap-3 text-center">
-
-                {[
-                  'Organization',
-                  'Employee',
-                  'Personnel',
-                  'Time',
-                  'Payroll',
-                  'HR Reporting',
-                ].map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3"
-                  >
-
-                    <span className="rounded-full bg-[#F3F3F3] px-4 py-2 font-inter text-[#555] text-[13px]">
-                      {step}
-                    </span>
-
-                    {i < 5 && (
-                      <ArrowRight
-                        size={15}
-                        className="text-[#BDBDBD]"
-                      />
-                    )}
-
-                  </div>
-                ))}
-
-              </div>
-
-            </div>
-          </Animate>
+         
 
         </div>
       </section>
