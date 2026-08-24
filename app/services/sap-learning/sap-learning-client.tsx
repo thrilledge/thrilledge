@@ -69,14 +69,14 @@ const sapModules = [
   },
 
   {
-    code: 'SAP SuccessFactors',
+    code: 'SAP Success Factors',
     title: 'Cloud Human Experience',
     slug: 'cloud-human-experience',
-    desc: 'Learn SAP SuccessFactors and understand modern HR, talent management and employee experience processes.',
+    desc: 'Learn SAP Success Factors and understand modern HR, talent management and employee experience processes.',
     ideal: 'HR professionals and SAP HCM professionals moving toward cloud-based HXM.'
   },
 
- 
+
 
   {
     code: 'SAP ABAP',
@@ -117,9 +117,9 @@ const careerPaths = [
     steps: ['SAP Fundamentals', 'Production Planning', 'Demand Management', 'MRP', 'BOM & Work Centers', 'Routings', 'Production Orders', 'Production Execution', 'Integration & Implementation'],
   },
   {
-    title: 'SAP HR + SuccessFactors Path',
-    description: 'Combine on-premise SAP HCM knowledge with cloud-based SuccessFactors to lead HR transformation projects and modern employee experiences.',
-    steps: ['HR Fundamentals', 'SAP HCM', 'Organizational Management', 'Personnel Administration', 'Time Management', 'HCM Processes', 'SuccessFactors', 'Cloud HXM', 'Implementation & Integration'],
+    title: 'SAP HR + Success Factors Path',
+    description: 'Combine on-premise SAP HCM knowledge with cloud-based Success Factors to lead HR transformation projects and modern employee experiences.',
+    steps: ['HR Fundamentals', 'SAP HCM', 'Organizational Management', 'Personnel Administration', 'Time Management', 'HCM Processes', 'Success Factors', 'Cloud HXM', 'Implementation & Integration'],
   },
 
 ]
@@ -157,7 +157,7 @@ const trainingPrograms = [
   { title: 'SAP FI Consultant Program', tags: 'GL | AP | AR | Asset Accounting | Banking | Integration | Configuration | Projects' },
   { title: 'SAP SD Consultant Program', tags: 'Sales | Pricing | Delivery | Shipping | Billing | Order-to-Cash | Integration' },
   { title: 'SAP PP Consultant Program', tags: 'MRP | BOM | Work Centers | Routings | Production Orders | Manufacturing | Integration' },
-  { title: 'SAP HCM & Success Factors', tags: 'HR Processes | HCM | Organizational Management | Personnel Administration | SuccessFactors | Cloud HXM' },
+  { title: 'SAP HCM & Success Factors', tags: 'HR Processes | HCM | Organizational Management | Personnel Administration | Success Factors | Cloud HXM' },
   { title: 'SAP Analytics Cloud Program', tags: 'Analytics | Dashboards | Reporting | Visualization | Planning | Business Insights' },
 ]
 
@@ -232,7 +232,7 @@ export function SAPLearningClient() {
           <Animate variant="fade-up" delay={100}>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
-                 href="/services/sap-learning/materials-management"
+                href="/services/sap-learning/materials-management"
                 className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
               >
                 Explore SAP Modules
@@ -259,7 +259,7 @@ export function SAPLearningClient() {
                 Why Learn SAP
               </span>
               <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-               Why Is SAP in High Demand?
+                Why Is SAP in High Demand?
               </h2>
               <p className="mt-5 max-w-3xl font-inter text-[#555] text-[16px] leading-7">
                 SAP is more than transactions, configuration and technical terminology. To become a successful SAP professional, you need to understand the connection between business processes, SAP functionality, configuration and real-world project requirements.
@@ -329,13 +329,13 @@ export function SAPLearningClient() {
                         {mod.ideal}
                       </p>
                     </div>
-                 <Link
-  href={`/services/sap-learning/${mod.slug}`}
-  className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
->
-  Explore {mod.code.replace('SAP ', '')}
-  <ChevronRight size={16} />
-</Link>
+                    <Link
+                      href={`/services/sap-learning/${mod.slug}`}
+                      className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
+                    >
+                      Explore {mod.code.replace('SAP ', '')}
+                      <ChevronRight size={16} />
+                    </Link>
                   </div>
                 </div>
               </Animate>
@@ -420,7 +420,7 @@ export function SAPLearningClient() {
               </h2>
             </div>
             <p className="mt-3 max-w-2xl font-mont font-medium text-[#111212] text-[18px] md:text-[22px] leading-7 mb-14">
-             Build Skills & Gain Confidence - Advance Your Career
+              Build Skills & Gain Confidence - Advance Your Career
             </p>
           </Animate>
           <div className="flex lg:flex-row flex-col md:gap-16 gap-12 items-start">
@@ -511,15 +511,15 @@ export function SAPLearningClient() {
                 <p className="mt-5 font-inter text-[#555] text-[16px] leading-7">
                   Understanding SAP requires practical experience. Where applicable, our programs combine learning with hands-on exercises, allowing you to apply concepts in an SAP environment.
                 </p>
-                  <div className="mt-8">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
-                >
-                  Book a Consultation
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
+                <div className="mt-8">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
+                  >
+                    Book a Consultation
+                    <ArrowRight size={16} />
+                  </Link>
+                </div>
               </div>
             </Animate>
             <Animate variant="fade-up" delay={100}>
@@ -538,7 +538,7 @@ export function SAPLearningClient() {
                   </div>
                 ))}
               </div>
-            
+
             </Animate>
           </div>
         </div>
@@ -570,7 +570,7 @@ export function SAPLearningClient() {
                   <p className="mt-3 font-inter text-[#929296] text-[14px] leading-6">
                     {prog.tags}
                   </p>
-                 
+
                 </div>
               </Animate>
             ))}
@@ -614,67 +614,67 @@ export function SAPLearningClient() {
       </section>
 
       {/* ─── Why Thrill Edge? (Dark Section) ─── */}
-    <section className="bg-[#111212] w-full">
-  <div className="px-4 py-16 md:py-24 w-full">
-    <div className="max-w-360 mx-auto">
+      <section className="bg-[#111212] w-full">
+        <div className="px-4 py-16 md:py-24 w-full">
+          <div className="max-w-360 mx-auto">
 
-      {/* Heading + Intro */}
-      <Animate variant="fade-up">
-        <div className="mb-16">
-          
-          <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-white/30">
-            Why Thrill Edge Technologies?
-          </span>
+            {/* Heading + Intro */}
+            <Animate variant="fade-up">
+              <div className="mb-16">
 
-          <h2 className="mt-4 font-mont font-bold text-white text-[32px] md:text-[48px] leading-[1.1]">
-           Why Start Your SAP Journey With Us?
-          </h2>
+                <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-white/30">
+                  Why Thrill Edge Technologies?
+                </span>
 
-          <div className="mt-6 max-w-3xl">
-            <p className="font-mont font-medium text-white/60 text-[18px] md:text-[20px] leading-7">
-              Technology & Knowledge - Practical Experience.
-            </p>
+                <h2 className="mt-4 font-mont font-bold text-white text-[32px] md:text-[48px] leading-[1.1]">
+                  Why Start Your SAP Journey With Us?
+                </h2>
 
-            <p className="mt-3 font-inter text-white/40 text-[15px] leading-6.5">
-              At Thrill Edge Technologies, we believe professional learning
-              should connect knowledge with practical application. Our SAP
-              learning initiative focuses on helping learners understand the
-              relationship between business requirements, SAP processes and
-              real-world implementation scenarios.
-            </p>
-          </div>
+                <div className="mt-6 max-w-3xl">
+                  <p className="font-mont font-medium text-white/60 text-[18px] md:text-[20px] leading-7">
+                    Technology & Knowledge - Practical Experience.
+                  </p>
 
-        </div>
-      </Animate>
+                  <p className="mt-3 font-inter text-white/40 text-[15px] leading-6.5">
+                    At Thrill Edge Technologies, we believe professional learning
+                    should connect knowledge with practical application. Our SAP
+                    learning initiative focuses on helping learners understand the
+                    relationship between business requirements, SAP processes and
+                    real-world implementation scenarios.
+                  </p>
+                </div>
 
-      {/* Cards */}
-      <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {whyThrillEdge.map((item, i) => (
-          <Animate key={i} variant="scale-in" delay={i * 70}>
-            <div className="group flex flex-col justify-center gap-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-8 transition-all duration-300 md:h-60">
-
-              <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-
-              <div className="flex flex-col gap-2.5">
-                <h3 className="font-mont font-semibold text-white text-[20px] leading-7">
-                  {item.title}
-                </h3>
-
-                <p className="font-inter text-white/50 text-[15px] leading-6.5">
-                  {item.text}
-                </p>
               </div>
+            </Animate>
 
+            {/* Cards */}
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+              {whyThrillEdge.map((item, i) => (
+                <Animate key={i} variant="scale-in" delay={i * 70}>
+                  <div className="group flex flex-col justify-center gap-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-[20px] p-8 transition-all duration-300 md:h-60">
+
+                    <span className="font-mont font-bold text-white/15 text-[56px] leading-none tabular-nums select-none">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+
+                    <div className="flex flex-col gap-2.5">
+                      <h3 className="font-mont font-semibold text-white text-[20px] leading-7">
+                        {item.title}
+                      </h3>
+
+                      <p className="font-inter text-white/50 text-[15px] leading-6.5">
+                        {item.text}
+                      </p>
+                    </div>
+
+                  </div>
+                </Animate>
+              ))}
             </div>
-          </Animate>
-        ))}
-      </div>
 
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
 
       {/* ─── Start Your SAP Journey (CTA) ─── */}
       <section className="py-16 md:py-24">

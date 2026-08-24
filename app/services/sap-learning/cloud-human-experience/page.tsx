@@ -16,16 +16,16 @@ import {
 import { Animate } from '@/components/common/animate'
 
 export const metadata: Metadata = {
-  title: 'SAP SuccessFactors | Cloud Human Experience | Thrill Edge Technologies',
+  title: 'SAP Success Factors | Cloud Human Experience | Thrill Edge Technologies',
   description:
-    'Learn SAP SuccessFactors and understand modern HR, talent management and employee experience processes through practical, structured SAP learning.',
+    'Learn SAP Success Factors and understand modern HR, talent management and employee experience processes through practical, structured SAP learning.',
   alternates: {
     canonical: '/services/sap-learning/cloud-human-experience',
   },
   openGraph: {
-    title: 'SAP SuccessFactors | Cloud Human Experience | Thrill Edge Technologies',
+    title: 'SAP Success Factors | Cloud Human Experience | Thrill Edge Technologies',
     description:
-      'Build practical knowledge of SAP SuccessFactors, modern HR, talent management and employee experience processes.',
+      'Build practical knowledge of SAP Success Factors, modern HR, talent management and employee experience processes.',
     type: 'website',
     url: '/services/sap-learning/cloud-human-experience',
   },
@@ -66,7 +66,7 @@ const learningAreas = [
 
 const learningPath = [
   'SAP & Cloud HR Fundamentals',
-  'SAP SuccessFactors Overview',
+  'SAP Success Factors Overview',
   'Employee Central',
   'Core HR Processes',
   'Organizational Management',
@@ -98,11 +98,11 @@ const practicalSkills = [
 
 const careerOutcomes = [
   'Understand modern cloud-based HR processes',
-  'Build foundational SAP SuccessFactors knowledge',
+  'Build foundational SAP Success Factors knowledge',
   'Understand Employee Central and core HR processes',
   'Explore talent management and employee experience',
   'Understand HR technology transformation',
-  'Prepare for SAP SuccessFactors consulting opportunities',
+  'Prepare for SAP Success Factors consulting opportunities',
 ]
 
 const journey = [
@@ -114,7 +114,7 @@ const journey = [
   {
     number: '02',
     title: 'Employee Central',
-    text: 'Learn how SuccessFactors manages core employee and organizational information.',
+    text: 'Learn how Success Factors manages core employee and organizational information.',
   },
   {
     number: '03',
@@ -166,7 +166,7 @@ export default function CloudHumanExperiencePage() {
                 </div>
 
                 <p className="max-w-xl font-inter text-white/65 text-[15px] md:text-[17px] leading-7">
-                  Learn SAP SuccessFactors and understand how modern cloud
+                  Learn SAP Success Factors and understand how modern cloud
                   HR solutions support employee experience, talent management,
                   workforce processes and HR transformation.
                 </p>
@@ -186,7 +186,7 @@ export default function CloudHumanExperiencePage() {
             <Animate variant="fade-up">
               <div>
                 <span className="font-inter font-semibold text-[11px] text-[#929296] uppercase tracking-[0.22em]">
-                  SAP SuccessFactors
+                  SAP Success Factors
                 </span>
 
                 <h2 className="mt-4 font-mont font-semibold text-[#111212] text-[34px] md:text-[48px] leading-[1.05]">
@@ -199,7 +199,7 @@ export default function CloudHumanExperiencePage() {
               <div className="space-y-5">
 
                 <p className="font-inter text-[#555] text-[16px] leading-7">
-                  SAP SuccessFactors provides cloud-based solutions that help
+                  SAP Success Factors provides cloud-based solutions that help
                   organizations manage people, talent and employee experiences.
                   It brings modern HR processes together in a connected digital
                   environment.
@@ -209,14 +209,14 @@ export default function CloudHumanExperiencePage() {
                   Our learning path helps you understand the relationship
                   between traditional HR processes, cloud technology and modern
                   employee experiences. You will explore how organizations use
-                  SuccessFactors to support their workforce and HR strategy.
+                  Success Factors to support their workforce and HR strategy.
                 </p>
 
                 <Link
                   href="#learning-areas"
                   className="inline-flex items-center gap-2 mt-3 bg-[#111212] text-white px-7 py-3.5 rounded-full font-mont font-semibold text-[14px] hover:scale-[1.02] transition-all"
                 >
-                  Explore SuccessFactors
+                  Explore Success Factors
                   <ArrowRight size={16} />
                 </Link>
 
@@ -246,7 +246,7 @@ export default function CloudHumanExperiencePage() {
               </h2>
 
               <p className="mt-5 max-w-3xl font-inter text-[#555] text-[16px] leading-7">
-                Build knowledge across the core areas of SAP SuccessFactors
+                Build knowledge across the core areas of SAP Success Factors
                 and modern human experience management.
               </p>
 
@@ -304,12 +304,12 @@ export default function CloudHumanExperiencePage() {
                 </span>
 
                 <h2 className="mt-4 font-mont font-semibold text-[#111212] text-[34px] md:text-[48px] leading-[1.05]">
-                  Your SuccessFactors Learning Path
+                  Your Success Factors Learning Path
                 </h2>
 
                 <p className="mt-5 font-inter text-[#555] text-[16px] leading-7">
                   Follow a structured journey from cloud HR fundamentals to
-                  SuccessFactors modules, integration and implementation.
+                  Success Factors modules, integration and implementation.
                 </p>
 
               </div>
@@ -455,7 +455,7 @@ export default function CloudHumanExperiencePage() {
                   Modern HR requires an understanding of both business
                   processes and technology. Our approach focuses on realistic
                   cloud HR scenarios so learners can understand how
-                  SuccessFactors supports organizations.
+                  Success Factors supports organizations.
                 </p>
 
                 <div className="mt-8 p-7 rounded-[20px] bg-[#111212]">
@@ -470,7 +470,7 @@ export default function CloudHumanExperiencePage() {
                   </h3>
 
                   <p className="mt-3 font-inter text-white/50 text-[14px] leading-6">
-                    Understand how SuccessFactors supports organizations
+                    Understand how Success Factors supports organizations
                     through modern cloud HR processes and employee
                     experiences.
                   </p>
@@ -535,7 +535,7 @@ export default function CloudHumanExperiencePage() {
 
               <p className="mt-5 max-w-3xl font-inter text-[#555] text-[16px] leading-7">
                 Develop a practical foundation for working with modern HR
-                technology and SAP SuccessFactors.
+                technology and SAP Success Factors.
               </p>
 
             </div>
@@ -621,7 +621,7 @@ export default function CloudHumanExperiencePage() {
         </div>
       </section>
 
-      {/* Why SuccessFactors */}
+      {/* Why Success Factors */}
       <section className="py-16 md:py-24 bg-[#111212]">
         <div className="max-w-360 mx-auto px-4">
 
@@ -638,7 +638,7 @@ export default function CloudHumanExperiencePage() {
 
               <p className="mt-5 max-w-3xl font-inter text-white/50 text-[16px] leading-7">
                 Develop a practical foundation for working with modern HR
-                technology and SAP SuccessFactors.
+                technology and SAP Success Factors.
               </p>
 
             </div>
@@ -724,7 +724,7 @@ export default function CloudHumanExperiencePage() {
                 />
 
                 <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.22em]">
-                  SAP SuccessFactors
+                  SAP Success Factors
                 </span>
 
                 <h2 className="mt-5 font-mont font-bold text-white text-[34px] md:text-[52px] leading-[1.05]">
@@ -732,7 +732,7 @@ export default function CloudHumanExperiencePage() {
                 </h2>
 
                 <p className="mt-5 max-w-2xl mx-auto font-inter text-white/55 text-[16px] md:text-[18px] leading-7">
-                  Learn how SAP SuccessFactors connects HR processes, talent
+                  Learn how SAP Success Factors connects HR processes, talent
                   management and employee experience in a modern cloud
                   environment.
                 </p>
