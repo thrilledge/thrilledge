@@ -31,22 +31,45 @@ export default function IndustriesPage() {
 
       {/* Hero */}
       <section className="mx-auto p-2 w-full">
-        <div className="relative bg-[#111212] rounded-[20px] w-full h-120 overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-360">
-            <div className="flex flex-col gap-3">
-              <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Domain expertise</span>
-              <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
-                Industries<br />We Serve.
-              </h1>
-            </div>
-            <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
-              Deep domain knowledge across the sectors that matter most.
-            </p>
-          </div>
-        </div>
-      </section>
+  <div
+    className="relative bg-[#111212] rounded-[20px] w-full h-120 overflow-hidden  bg-no-repeat bg-cover"
+    style={{
+      backgroundImage: "url('/industries.jpg')",
+    }}
+  >
+    {/* Dark image overlay */}
+    <div className="absolute inset-0 bg-black/50" />
+
+    {/* Grid */}
+    <div
+      className="absolute inset-0 opacity-[0.04]"
+      style={{
+        backgroundImage:
+          'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
+        backgroundSize: '80px 80px',
+      }}
+    />
+
+    {/* Content */}
+    <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-360">
+      <div className="flex flex-col gap-3">
+        <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">
+          Domain expertise
+        </span>
+
+        <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
+          Industries
+          <br />
+          We Serve.
+        </h1>
+      </div>
+
+      <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
+        Deep domain knowledge across the sectors that matter most.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* Industries grid */}
       <div className="mx-auto px-4 md:px-9 py-20 max-w-360">
