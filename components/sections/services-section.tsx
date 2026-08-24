@@ -15,7 +15,7 @@ const SAP_LEARNING_CARD = {
   desc: 'Practical, structured and career-focused SAP learning designed for students, professionals and aspiring SAP consultants.',
   image: '/sap.jpg',
   stats: [
-    { number: '200+', label: 'SAP Concepts Covered' },
+    { number: '200+', label: 'Concepts Covered' },
     { number: '85%', label: 'Improved Usability' },
     { number: '70%', label: 'Conversion Increase' },
   ],

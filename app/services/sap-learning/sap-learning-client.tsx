@@ -232,7 +232,7 @@ export function SAPLearningClient() {
           <Animate variant="fade-up" delay={100}>
             <div className="flex flex-wrap gap-4 mt-8">
               <Link
-                href="/services/sap-learning/materials-management"
+                href="#explore-modules"
                 className="inline-flex items-center gap-2 bg-[#111212] text-white font-mont font-semibold text-[14px] px-7 py-3.5 rounded-full hover:scale-[1.02] transition-all duration-300"
               >
                 Explore SAP Modules

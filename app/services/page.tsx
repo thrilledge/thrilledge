@@ -14,7 +14,7 @@ const SAP_LEARNING_CARD = {
   desc: 'Practical, structured and career-focused SAP learning designed for students, professionals and aspiring SAP consultants.',
   image: '/sap.jpg',
   stats: [
-    { number: '200+', label: 'SAP Concepts Covered' },
+    { number: '200+', label: 'Concepts Covered' },
     { number: '85%', label: 'Improved Usability' },
     { number: '70%', label: 'Conversion Increase' },
   ],
@@ -33,16 +33,16 @@ export default async function ServicesPage() {
   return (
     <div className="bg-[#F3F3F3] min-h-screen">
       {/* Hero */}
-      <section className="px-3 md:px-2.5 w-full">
-        <div className="relative rounded-[20px] w-full h-120 overflow-hidden">
-          <Image src="/services.png" alt="Our Work" fill className={cn('object-center', 'object-cover')} sizes="100vw" priority />
-          <div className={cn("absolute", "inset-0", "rounded-[20px]")} style={{ background: "linear-gradient(to top, rgba(0,0,0), rgba(0,0,0,0.6), rgba(0,0,0,0))" }} />
-          <div className={cn("max-w-360", "mx-auto", "absolute", "bottom-0", "left-0", "right-0", "flex", "lg:flex-row", "flex-col", "justify-between", "lg:items-end", "gap-4", "lg:px-9", "px-5", "lg:py-8", "py-6")}>
-            <div>
+      <section className="mx-auto p-2 w-full">
+        <div className="relative bg-[#111212] rounded-[20px] w-full h-120 overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+          <div className="right-0 bottom-0 left-0 absolute flex lg:flex-row flex-col justify-between lg:items-end gap-4 mx-auto px-5 lg:px-9 py-8 lg:py-10 max-w-360">
+            <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Services</span>
-              <h2 className={cn("text-[32px]", "lg:text-[56px]", "lg:leading-15", "leading-9", "font-mont", "font-semibold", "text-white", "max-w-2xl")}>
+              <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
                 We Deliver.<br />Period.
-              </h2>
+              </h1>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               From idea to production we cover every layer of the stack.
