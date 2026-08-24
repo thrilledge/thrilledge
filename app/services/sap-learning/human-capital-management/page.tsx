@@ -222,9 +222,9 @@ export default function HumanCapitalManagementPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundImage: 'url(/hcm.jpg)',
+              // backgroundSize: 'cover',
+              // backgroundPosition: 'center',
             }}
           />
 

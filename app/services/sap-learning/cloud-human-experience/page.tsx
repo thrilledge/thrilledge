@@ -139,9 +139,9 @@ export default function CloudHumanExperiencePage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/sap.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundImage: 'url(/che.jpg)',
+              // backgroundSize: 'cover',
+              // backgroundPosition: 'center',
             }}
           />
 
