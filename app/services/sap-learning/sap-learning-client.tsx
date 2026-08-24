@@ -393,7 +393,7 @@ export function SAPLearningClient() {
                       </div>
                     </div>
                     <Link
-                      href="#sap-contact"
+                      href="/contact"
                       className="inline-flex items-center gap-2 font-mont font-semibold text-[14px] text-[#111212] hover:gap-3 transition-all duration-300"
                     >
                       Start {path.title.replace(' Path', '')}
