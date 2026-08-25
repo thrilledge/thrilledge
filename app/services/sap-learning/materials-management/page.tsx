@@ -242,7 +242,7 @@ export default function MaterialsManagementPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Master Procurement. Manage Materials. Build SAP Expertise.
+                  Master Procurement - Manage Materials - Build SAP Expertise.
                 </p>
               </div>
 
@@ -620,7 +620,7 @@ export default function MaterialsManagementPage() {
               </span>
 
               <h2 className="mt-4 max-w-4xl font-mont font-bold text-white text-[34px] md:text-[48px] leading-[1.05]">
-                Learn the Process. Understand the System. Build Your Career.
+                Learn the Process. Understand the System & Build Your Career.
               </h2>
             </div>
           </Animate>
@@ -752,7 +752,7 @@ export default function MaterialsManagementPage() {
                 </p>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[19px] md:text-[22px]">
-                  Learn SAP MM. Understand Business. Build Your Career.
+                  Learn SAP MM - Understand Business - Build Your Career.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-10">

@@ -245,7 +245,7 @@ export default function BasisPage() {
                   </h1>
 
                   <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                    Manage Systems. Secure Environments. Build SAP Expertise.
+                    Manage Systems - Secure Environments - Build SAP Expertise.
                   </p>
                 </div>
 
@@ -671,7 +671,7 @@ export default function BasisPage() {
               </span>
 
               <h2 className="mt-4 max-w-4xl font-mont font-bold text-white text-[34px] md:text-[48px] leading-[1.05]">
-                Understand the System. Build Technical Skills. Prepare for Your Career.
+                Understand the System, Build Technical Skills & Prepare for Your Career.
               </h2>
 
             </div>
@@ -822,7 +822,7 @@ export default function BasisPage() {
                 </p>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[19px] md:text-[22px]">
-                  Learn SAP Basis. Understand Systems. Build Your Career.
+                  Learn SAP Basis - Understand Systems - Build Your Career.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-10">
