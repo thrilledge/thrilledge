@@ -248,7 +248,7 @@ export default function FinancialAccountingPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Understand Finance. Master SAP FI. Build Your Career.
+                  Understand Finance - Master SAP FI - Build Your Career.
                 </p>
               </div>
 
@@ -705,7 +705,7 @@ export default function FinancialAccountingPage() {
               </span>
 
               <h2 className="mt-4 max-w-4xl font-mont font-bold text-white text-[34px] md:text-[48px] leading-[1.05]">
-                Understand Finance. Learn SAP. Build Your Career.
+                Understand Finance - Learn SAP - Build Your Career.
               </h2>
 
             </div>
@@ -870,7 +870,7 @@ export default function FinancialAccountingPage() {
                 </p>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[19px] md:text-[22px]">
-                  Learn SAP FI. Understand Finance. Build Your Career.
+                  Learn SAP FI - Understand Finance - Build Your Career.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-10">

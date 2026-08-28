@@ -245,7 +245,7 @@ export default function SalesDistributionPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Master Sales. Manage Customers. Build SAP Expertise.
+                  Master Sales - Manage Customers - Build SAP Expertise.
                 </p>
               </div>
 
@@ -609,7 +609,7 @@ export default function SalesDistributionPage() {
               </span>
 
               <h2 className="mt-4 max-w-4xl font-mont font-bold text-white text-[34px] md:text-[48px] leading-[1.05]">
-                Learn the Process. Understand the System. Build Your Career.
+                Learn the Process, Understand the System & Build Your Career.
               </h2>
             </div>
           </Animate>
@@ -735,7 +735,7 @@ export default function SalesDistributionPage() {
                 </p>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[19px] md:text-[22px]">
-                  Learn SAP SD. Understand Business. Build Your Career.
+                  Learn SAP SD - Understand Business - Build Your Career.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-10">

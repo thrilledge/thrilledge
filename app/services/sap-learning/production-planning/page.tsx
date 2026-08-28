@@ -550,7 +550,7 @@ export default function ProductionPlanningPage() {
               </span>
 
               <h2 className="mt-4 max-w-4xl font-mont font-bold text-white text-[34px] md:text-[48px] leading-[1.05]">
-                Learn the Process. Understand Manufacturing. Build Your Career.
+                Learn the Process, Understand Manufacturing & Build Your Career.
               </h2>
 
             </div>
@@ -643,7 +643,7 @@ export default function ProductionPlanningPage() {
                 </p>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[19px] md:text-[22px]">
-                  Learn SAP PP. Understand Manufacturing. Build Your Career.
+                  Learn SAP PP - Understand Manufacturing - Build Your Career.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4 mt-10">

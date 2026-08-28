@@ -161,7 +161,7 @@ export default function CloudHumanExperiencePage() {
                   </h1>
 
                   <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                    Transform HR. Connect People. Build Better Experiences.
+                    Transform HR - Connect People - Build Better Experiences.
                   </p>
                 </div>
 
