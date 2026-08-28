@@ -120,9 +120,9 @@ export default function ProductionPlanningPage() {
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'url(/pp.jpg)',
+              backgroundImage: 'url(/sappp.jpg)',
               backgroundSize: 'cover',
-              // backgroundPosition: 'center',
+              backgroundPosition: 'center',
             }}
           />
 
@@ -649,12 +649,12 @@ export default function ProductionPlanningPage() {
                 <div className="flex flex-wrap justify-center gap-4 mt-10">
 
                   <Link
-                    href="#learning-journey"
-                    className="inline-flex items-center gap-2 bg-white text-[#111212] px-8 py-3.5 rounded-full font-mont font-semibold text-[14px] hover:scale-[1.02] transition-all"
-                  >
-                    Explore Learning Path
-                    <ChevronRight size={16} />
-                  </Link>
+                  href="/project-cost-estimation"
+                           className="inline-flex items-center gap-2 bg-white text-[#111212] px-8 py-3.5 rounded-full font-mont font-semibold text-[14px] hover:scale-[1.02] transition-all"
+
+                >
+                  Get Project Estimate
+                </Link>
 
                   <Link
                     href="/contact"
