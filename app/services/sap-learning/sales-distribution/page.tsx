@@ -245,7 +245,7 @@ export default function SalesDistributionPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Master Sales - Manage Customers - Build SAP Expertise.
+                  Master Sales & Manage Customers 
                 </p>
               </div>
 

@@ -242,7 +242,7 @@ export default function MaterialsManagementPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Master Procurement - Manage Materials - Build SAP Expertise.
+                  Master Procurement - Manage Materials
                 </p>
               </div>
 
