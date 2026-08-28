@@ -394,42 +394,7 @@ export default function CloudHumanExperiencePage() {
 
           </div>
 
-          <Animate variant="fade-up" delay={300}>
-            <div className="mt-8 rounded-[20px] border border-white/10 bg-white/5 p-6 md:p-8">
-
-              <div className="flex flex-wrap items-center justify-center gap-3">
-
-                {[
-                  'Core HR',
-                  'Employee Central',
-                  'Talent',
-                  'Learning',
-                  'Performance',
-                  'Employee Experience',
-                ].map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3"
-                  >
-
-                    <span className="rounded-full bg-white/10 px-4 py-2 font-inter text-white/70 text-[13px]">
-                      {step}
-                    </span>
-
-                    {i < 5 && (
-                      <ArrowRight
-                        size={15}
-                        className="text-white/20"
-                      />
-                    )}
-
-                  </div>
-                ))}
-
-              </div>
-
-            </div>
-          </Animate>
+         
 
         </div>
       </section>
