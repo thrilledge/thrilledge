@@ -245,7 +245,7 @@ export default function BasisPage() {
                   </h1>
 
                   <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                    Manage Systems - Secure Environments - Build SAP Expertise.
+                    Manage Systems & Secure Your Environment
                   </p>
                 </div>
 

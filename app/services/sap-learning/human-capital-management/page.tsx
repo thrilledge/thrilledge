@@ -245,7 +245,7 @@ export default function HumanCapitalManagementPage() {
                 </h1>
 
                 <p className="mt-5 font-mont font-medium text-white/80 text-[20px] md:text-[28px]">
-                  Manage People - Understand Processes - Build HR Expertise.
+                  Manage People & Understand Processes
                 </p>
 
               </div>

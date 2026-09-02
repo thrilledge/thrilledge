@@ -228,7 +228,7 @@ export default function FinancialAccountingPage() {
             style={{
               backgroundImage: 'url(/sapfi.jpg)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              // backgroundPosition: 'center',
             }}
           />
 
