@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import { auth } from '@clerk/nextjs/server'
-import { checkUsage, incrementUsage } from '@/lib/usage'
+import { checkRateLimit } from '@/lib/rate-limit'
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -69,20 +68,15 @@ Does Tuesday or Thursday work better for a quick chat?`
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const rateLimit = await checkRateLimit(req, 'cold-call')
+    if (!rateLimit.success) {
+      return NextResponse.json({ error: 'Rate limit reached. Please try again later.' }, { status: 429 })
     }
 
     const { prospectRole, prospectIndustry, yourOffer, commonObjections } = await req.json()
 
     if (!yourOffer) {
       return NextResponse.json({ error: 'Your offer/service is required' }, { status: 400 })
-    }
-
-    const { allowed, plan } = await checkUsage(userId, 'cold-call')
-    if (!allowed) {
-      return NextResponse.json({ error: 'Monthly limit reached', plan }, { status: 402 })
     }
 
     const userPrompt = `Prospect Role: ${prospectRole || 'Not specified'}\nIndustry: ${prospectIndustry || 'Not specified'}\nYour Offer: ${yourOffer}\nCommon Objections: ${commonObjections || 'Not specified'}\n\nWrite a cold calling script for reaching out to this prospect.`
@@ -99,9 +93,7 @@ export async function POST(req: NextRequest) {
 
     const script = completion.choices[0]?.message?.content?.trim() || ''
 
-    await incrementUsage(userId, 'cold-call')
-
-    return NextResponse.json({ script, plan })
+    return NextResponse.json({ script })
   } catch (err) {
     console.error('[Cold Call API] Error:', err)
     return NextResponse.json({ error: 'Failed to generate script' }, { status: 500 })

@@ -5,15 +5,15 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
 })
 
-const HISTORY_TTL = 60 * 60 * 24 * 365 // 1 year
+const HISTORY_TTL = 60 * 60 * 24 * 30 // 30 days
 
-function historyKey(clerkUserId: string) {
-  return `tool-history:${clerkUserId}`
+function historyKey(identifier: string) {
+  return `tool-history:${identifier}`
 }
 
 export interface ToolGenerationInput {
   tool_type: 'proposal' | 'cold-email' | 'cold-call'
-  clerk_user_id: string
+  ip_key: string
   user_email?: string
   input_data: Record<string, string>
   output_data: string
@@ -30,7 +30,7 @@ export interface ToolGenerationRecord {
 
 export async function saveToolGeneration(data: ToolGenerationInput): Promise<boolean> {
   try {
-    const key = historyKey(data.clerk_user_id)
+    const key = historyKey(data.ip_key)
     const record: ToolGenerationRecord = {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       tool_type: data.tool_type,
@@ -52,9 +52,9 @@ export async function saveToolGeneration(data: ToolGenerationInput): Promise<boo
   }
 }
 
-export async function getToolHistory(clerkUserId: string, limit = 50): Promise<ToolGenerationRecord[]> {
+export async function getToolHistory(ipKey: string, limit = 50): Promise<ToolGenerationRecord[]> {
   try {
-    const key = historyKey(clerkUserId)
+    const key = historyKey(ipKey)
     const existing = await redis.get<ToolGenerationRecord[]>(key)
     if (!Array.isArray(existing)) return []
     return existing.slice(0, limit)

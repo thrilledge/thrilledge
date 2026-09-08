@@ -3,7 +3,6 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
 import { SITE_URL } from '@/lib/site'
 import './globals.css'
 import { Providers } from '@/components/providers'
@@ -87,16 +86,14 @@ export default function RootLayout({
         <meta charSet="utf-8" />
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ''}>
-          <Providers>
-            <div style={{ overflowX: 'clip' }}>
-              <Header />
-              {children}
-              <Footer />
-            </div>
-            <ChatWidget />
-          </Providers>
-        </ClerkProvider>
+        <Providers>
+          <div style={{ overflowX: 'clip' }}>
+            <Header />
+            {children}
+            <Footer />
+          </div>
+          <ChatWidget />
+        </Providers>
         <Analytics />
         <SpeedInsights />
         {GA_ID && (
