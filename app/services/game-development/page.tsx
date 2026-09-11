@@ -17,6 +17,8 @@ import {
   TrendingUp,
   Code2,
   Rocket,
+  Users,
+  MonitorSmartphone
 } from 'lucide-react'
 
 import { Animate } from '@/components/common/animate'
@@ -45,55 +47,66 @@ export const metadata: Metadata = {
 }
 
 const services = [
+
   {
     icon: Gamepad2,
-    title: '2D Game Development',
-    text: 'Create engaging 2D games with polished gameplay, responsive controls, immersive visuals and smooth performance across supported platforms.',
+    title: "2D Game Development",
+    text: "Create engaging 2D games with polished gameplay, responsive controls, immersive visuals and smooth performance across supported platforms.",
   },
   {
     icon: Box,
-    title: '3D Game Development',
-    text: 'Build immersive 3D gaming experiences with detailed environments, characters, animations, physics and interactive gameplay systems.',
+    title: "3D Game Development",
+    text: "Build immersive 3D gaming experiences with detailed environments, characters, animations, physics and interactive gameplay systems.",
   },
   {
     icon: Smartphone,
-    title: 'Mobile Game Development',
-    text: 'Develop mobile games for iOS and Android with responsive gameplay, optimized performance and platform-ready experiences.',
+    title: "Mobile Game Development",
+    text: "Develop mobile games for iOS and Android with responsive gameplay, optimized performance and platform-ready experiences.",
   },
   {
     icon: Code2,
-    title: 'Unity Game Development',
-    text: 'Build scalable games and interactive experiences using Unity with gameplay systems, physics, animations, integrations and platform deployment.',
+    title: "Unity Game Development",
+    text: "Build scalable games and interactive experiences using Unity with gameplay systems, physics, animations, integrations and platform deployment.",
   },
   {
     icon: Palette,
-    title: 'Game UI/UX Design',
-    text: 'Design intuitive game interfaces, menus, HUDs, onboarding flows and player experiences that make gameplay easy and enjoyable.',
+    title: "Game UI/UX Design",
+    text: "Design intuitive game interfaces, menus, HUDs, onboarding flows and player experiences that make gameplay easy and enjoyable.",
   },
   {
     icon: Layers,
-    title: 'Character & Asset Development',
-    text: 'Create game-ready characters, environments, props, visual assets and other elements needed to bring your game world to life.',
+    title: "Character & Asset Development",
+    text: "Create game-ready characters, environments, props, visual assets and other elements needed to bring your game world to life.",
   },
   {
     icon: Coins,
-    title: 'Monetization & In-App Purchases',
-    text: 'Implement monetization strategies including in-app purchases, rewarded experiences and other revenue-focused game features.',
+    title: "Monetization & In-App Purchases",
+    text: "Implement monetization strategies including in-app purchases, rewarded experiences and other revenue-focused game features.",
   },
   {
     icon: Bug,
-    title: 'Game Testing & QA',
-    text: 'Test gameplay, controls, performance, compatibility and user experience to identify bugs and improve overall game quality.',
+    title: "Game Testing & QA",
+    text: "Test gameplay, controls, performance, compatibility and user experience to identify bugs and improve overall game quality.",
   },
   {
     icon: Wrench,
-    title: 'Game Maintenance & Updates',
-    text: 'Keep your game stable and competitive with bug fixes, feature updates, performance improvements and ongoing technical support.',
+    title: "Game Maintenance & Updates",
+    text: "Keep your game stable and competitive with bug fixes, feature updates, performance improvements and ongoing technical support.",
   },
   {
     icon: TrendingUp,
-    title: 'ASO — App Store Optimization',
-    text: 'Improve game visibility on app stores through optimized metadata, descriptions, keywords, visuals and store positioning.',
+    title: "ASO — App Store Optimization",
+    text: "Improve game visibility on app stores through optimized metadata, descriptions, keywords, visuals and store positioning.",
+  },
+  {
+    icon: Users,
+    title: "Multiplayer Game Development",
+    text: "Create engaging multiplayer experiences with real-time gameplay features, player interactions, matchmaking systems and connected game environments.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "Game Porting & Cross-Platform Development",
+    text: "Adapt and optimize existing games for different platforms and devices while maintaining consistent gameplay, controls and overall player experience.",
   },
 ]
 
