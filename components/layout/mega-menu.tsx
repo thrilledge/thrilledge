@@ -461,9 +461,10 @@ export function MegaMenu() {
             )}
           >
             <div className={cn('px-8', 'py-10', 'w-full')}>
-              <p
+              
+              <div className="flex items-center justify-between mb-6">
+                <p
                 className={cn(
-                  'mb-4',
                   'font-normal',
                   'text-[#929296]',
                   'text-[16px]'
@@ -471,6 +472,19 @@ export function MegaMenu() {
               >
                 {activeMenu.categoryLabel}
               </p>
+                {/* View all button */}
+              {activeMenu.ctaLabel && activeMenu.ctaHref && (
+                <div className="flex justify-center">
+                  <Link
+                    href={activeMenu.ctaHref}
+                    onClick={() => setActive(null)}
+                    className="inline-flex items-center justify-center rounded-full text-[#111212] text-sm font-semibold underline transition-all duration-200"
+                  >
+                    {activeMenu.ctaLabel}
+                  </Link>
+                </div>
+              )}
+              </div>
 
               <ul className={cn('gap-6', 'grid', 'grid-cols-3')}>
                 {(activeMenu.items ?? []).map((item) => (
@@ -635,18 +649,7 @@ export function MegaMenu() {
                 ))}
               </ul>
 
-              {/* View all button */}
-              {activeMenu.ctaLabel && activeMenu.ctaHref && (
-                <div className="mt-8 flex justify-center">
-                  <Link
-                    href={activeMenu.ctaHref}
-                    onClick={() => setActive(null)}
-                    className="inline-flex items-center justify-center rounded-full bg-[#111212] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-accent"
-                  >
-                    {activeMenu.ctaLabel}
-                  </Link>
-                </div>
-              )}
+              
             </div>
 
             <div className="border-t border-[#ebebeb] py-4 pl-6">
