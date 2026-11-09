@@ -3,7 +3,10 @@
  * Handles all communication with WordPress REST API and ACF fields
  */
 
-const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
+const WORDPRESS_URL =
+  process.env.WORDPRESS_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_WORDPRESS_URL ||
+  'https://admin.thrilledge.com'
 const API_URL = `${WORDPRESS_URL}/wp-json`
 
 interface RequestOptions extends RequestInit {
