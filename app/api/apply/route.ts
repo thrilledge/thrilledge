@@ -25,7 +25,7 @@ async function uploadToWordPress(
   filename: string,
   mimeType: string
 ): Promise<string> {
-  const WP_URL  = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
+  const WP_URL = process.env.WORDPRESS_INTERNAL_URL || process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
   const WP_USER = process.env.WP_MEDIA_USER || process.env.WP_API_USER
   const WP_PASS = process.env.WP_MEDIA_APP_PASSWORD || process.env.WP_API_PASSWORD
 
