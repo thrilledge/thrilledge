@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { first_name, last_name, email, phone, company_name, website, rating, written_review } = body
 
-    const WP_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
+    const WP_URL = process.env.WORDPRESS_INTERNAL_URL || process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
     const WP_USER = process.env.WP_API_USER
     const WP_PASS = process.env.WP_API_PASSWORD
 
