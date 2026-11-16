@@ -3,9 +3,10 @@ import type { Metadata } from 'next'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ServiceClient } from './service-client'
 import { CTASection } from '@/components/sections/cta-section'
-import { getService } from '@/lib/wordpress'
+import { getService, findServiceOrThrow } from '@/lib/wordpress'
 import { SITE_URL } from '@/lib/site'
 import { decodeHtml } from '@/lib/utils'
+import { notFound } from 'next/navigation'
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>
@@ -83,6 +84,17 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
 export default async function ServicePage({ params }: ServicePageProps) {
   const { slug } = await params
+
+  /**
+   * Validate on the server. Previously this page rendered a 200 shell for any
+   * slug and only called `notFound()` inside the client component, so
+   * /services/<anything> was a soft 404 that Google kept crawling.
+   *
+   * Slugs present in SERVICE_FALLBACK stay valid even when WordPress has no
+   * matching `service` entry.
+   */
+  const service = await findServiceOrThrow(slug)
+  if (!service && !SERVICE_FALLBACK[slug]) notFound()
 
   return (
     <>

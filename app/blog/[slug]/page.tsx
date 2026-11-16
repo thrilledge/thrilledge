@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { getPost, getAllPostSlugs } from '@/lib/wordpress'
+import { SITE_URL } from '@/lib/site'
 import PostClient from './post-client'
 
 interface Props {
@@ -23,12 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Thrill Edge Technologies`,
     description,
-    alternates: { canonical: `https://www.thrilledge.com/blog/${slug}` },
+    alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `https://www.thrilledge.com/blog/${slug}`,
+      url: `${SITE_URL}/blog/${slug}`,
       publishedTime: post.date,
       ...(image && { images: [{ url: image, width: 1200, height: 630, alt: title }] }),
     },
@@ -45,6 +47,9 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = await getPost(slug)
 
+  // Real 404 for unknown slugs (previously the 200 shell deferred this to the client).
+  if (!post) notFound()
+
   const articleSchema = post
     ? {
         '@context': 'https://schema.org',
@@ -57,9 +62,9 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
           '@type': 'Organization',
           name: 'Thrill Edge Technologies',
-          logo: { '@type': 'ImageObject', url: 'https://www.thrilledge.com/logo.svg' },
+          logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.svg` },
         },
-        url: `https://www.thrilledge.com/blog/${slug}`,
+        url: `${SITE_URL}/blog/${slug}`,
         ...(post._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
           image: post._embedded['wp:featuredmedia'][0].source_url,
         }),

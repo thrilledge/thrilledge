@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { getWorkItem, getAllWorkSlugs } from '@/lib/wordpress'
+import { SITE_URL } from '@/lib/site'
 import WorkClient from './casestudy-client'
 
 interface Props {
@@ -23,12 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | Work, Thrill Edge Technologies`,
     description,
-    alternates: { canonical: `https://www.thrilledge.com/casestudy/${slug}` },
+    alternates: { canonical: `${SITE_URL}/casestudy/${slug}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `https://www.thrilledge.com/casestudy/${slug}`,
+      url: `${SITE_URL}/casestudy/${slug}`,
       ...(image && { images: [{ url: image, width: 1200, height: 630, alt: title }] }),
     },
     twitter: {
@@ -44,28 +46,28 @@ export default async function WorkPage({ params }: Props) {
   const { slug } = await params
   const work = await getWorkItem(slug)
 
-  const casestudySchema = work
-    ? {
-      '@context': 'https://schema.org',
-      '@type': 'CreativeWork',
-      name: work.title.rendered.replace(/<[^>]*>/g, ''),
-      description: work.acf?.long_title ?? '',
-      url: `https://www.thrilledge.com/casestudy/${slug}`,
-      creator: { '@type': 'Organization', name: 'Thrill Edge Technologies' },
-      ...(work._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
-        image: work._embedded['wp:featuredmedia'][0].source_url,
-      }),
-    }
-    : null
+  // Real 404 for unknown slugs (previously the 200 shell deferred this to the client).
+  if (!work) notFound()
+
+  const casestudySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: work.title.rendered.replace(/<[^>]*>/g, ''),
+    description: work.acf?.long_title ?? '',
+    url: `${SITE_URL}/casestudy/${slug}`,
+    creator: { '@type': 'Organization', name: 'Thrill Edge Technologies' },
+    ...(work._embedded?.['wp:featuredmedia']?.[0]?.source_url && {
+      image: work._embedded['wp:featuredmedia'][0].source_url,
+    }),
+  }
 
   return (
     <>
-      {casestudySchema && (
-        < script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify(casestudySchema) }} / >
-      )
-        }
-          < WorkClient params={params} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(casestudySchema) }}
+      />
+      <WorkClient params={params} />
     </>
   )
 }

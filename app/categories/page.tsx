@@ -1,25 +1,25 @@
 /**
  * Categories Listing Page
- * Displays all blog categories
+ * Displays all blog categories.
+ *
+ * Server component: categories are known at build time, so the page ships real
+ * HTML instead of a loading spinner (client-only rendering gave Google an empty
+ * shell for a URL that is in the sitemap).
  */
 
-'use client'
-
-import { Header } from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
-import { useCategories } from '@/hooks/use-posts'
+import { getCategories } from '@/lib/wordpress'
 import { ShadowCard } from '@/components/common/shadow-card'
-import { ArrowRight, Loader } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { decodeHtml } from '@/lib/utils'
 
-export default function CategoriesPage() {
-  const { data: categories, isLoading, error } = useCategories()
+export const revalidate = 300
+
+export default async function CategoriesPage() {
+  const categories = await getCategories()
 
   return (
     <main className="bg-background min-h-screen text-foreground">
-      <Header />
-      
       {/* Hero */}
       <section className="px-4 sm:px-6 lg:px-8 pt-40 pb-16">
         <div className="space-y-6 mx-auto max-w-4xl text-center">
@@ -35,23 +35,7 @@ export default function CategoriesPage() {
       {/* Categories Grid */}
       <section className="px-4 sm:px-6 lg:px-8 py-16">
         <div className="mx-auto max-w-6xl">
-          {/* Loading State */}
-          {isLoading && (
-            <div className="flex justify-center items-center py-20">
-              <Loader size={32} className="text-accent animate-spin" />
-            </div>
-          )}
-
-          {/* Error State */}
-          {error && (
-            <div className="bg-destructive/10 p-6 border border-destructive/20 rounded-lg text-center">
-              <p className="mb-2 font-semibold text-destructive">Failed to load categories</p>
-              <p className="text-muted-foreground text-sm">{error.message}</p>
-            </div>
-          )}
-
-          {/* Categories Grid */}
-          {!isLoading && categories && categories.length > 0 ? (
+          {categories.length > 0 ? (
             <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {categories.map((category) => (
                 <Link
@@ -97,16 +81,12 @@ export default function CategoriesPage() {
               ))}
             </div>
           ) : (
-            !isLoading && (
-              <div className="py-20 text-muted-foreground text-center">
-                <p>No categories available.</p>
-              </div>
-            )
+            <div className="py-20 text-muted-foreground text-center">
+              <p>No categories available.</p>
+            </div>
           )}
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }
