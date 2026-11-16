@@ -16,6 +16,17 @@ interface RequestOptions extends RequestInit {
 const TIMEOUT_MS = 20000   // 20s per attempt
 const MAX_RETRIES = 3      // 3 attempts total
 
+/**
+ * How long a WordPress response is cached on the server (ISR).
+ *
+ * IMPORTANT: do not use `cache: 'no-store'` here. Routes with
+ * `generateStaticParams()` (blog posts, jobs, case studies) are rendered as
+ * static/ISR pages; a no-store fetch forces them to be dynamic and makes the
+ * page throw at request time (HTTP 500). A revalidating fetch keeps ISR
+ * working and lets /api/revalidate purge pages on demand.
+ */
+const WP_REVALIDATE_SECONDS = Number(process.env.WP_REVALIDATE_SECONDS || 300)
+
 /** Sleep helper for backoff */
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -25,6 +36,8 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
  */
 async function wpFetch(url: string, options: RequestOptions = {}): Promise<Response> {
   let lastError: unknown
+  const isServer = typeof window === 'undefined'
+  const { cache, ...rest } = options
 
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const controller = new AbortController()
@@ -32,10 +45,14 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
 
     try {
       const response = await fetch(url, {
-        ...options,
+        ...rest,
         signal: controller.signal,
-        headers: { 'Content-Type': 'application/json', ...options.headers },
-        cache: options.cache || 'no-store',
+        headers: { 'Content-Type': 'application/json', ...rest.headers },
+        ...(isServer
+          ? { next: { revalidate: WP_REVALIDATE_SECONDS } }
+          : cache
+            ? { cache }
+            : {}),
       })
       clearTimeout(timer)
 
@@ -151,6 +168,8 @@ export interface WorkItem {
   title: { rendered: string }
   content: { rendered: string }
   slug: string
+  date?: string
+  modified?: string
   featured_media: number
   acf?: {
     year?: string
@@ -373,6 +392,18 @@ export async function getCategory(slug: string): Promise<Category | null> {
   }
 }
 
+/**
+ * Like `getCategory`, but re-throws backend failures instead of reporting
+ * every category as missing during a WordPress outage (404 = Google drops the
+ * URL, 500 = Google retries).
+ */
+export async function findCategoryOrThrow(slug: string): Promise<Category | null> {
+  const categories = await fetchFromWordPress<Category[]>(
+    `/wp/v2/categories?slug=${slug}`
+  )
+  return categories.length > 0 ? categories[0] : null
+}
+
 export async function getPostsByCategory(
   categoryId: number,
   page: number = 1,
@@ -474,6 +505,18 @@ export async function getService(slug: string): Promise<Service | null> {
   } catch {
     return null
   }
+}
+
+/**
+ * Like `getService`, but only converts "no match" into `null`.
+ * Network/5xx failures are re-thrown so the route returns 500 instead of 404
+ * during a WordPress outage.
+ */
+export async function findServiceOrThrow(slug: string): Promise<Service | null> {
+  const items = await fetchFromWordPress<Service[]>(
+    `/wp/v2/service?slug=${slug}&_embed&acf_format=standard`
+  )
+  return items.length > 0 ? items[0] : null
 }
 
 /**
@@ -597,6 +640,41 @@ export async function searchContent(
 /**
  * Sitemap data - Get all posts and pages for sitemap
  */
+export interface SitemapEntry {
+  slug: string
+  /** ISO date from WordPress; undefined when WP does not expose one. */
+  modified?: string
+}
+
+/**
+ * Posts with real `modified` timestamps for the sitemap.
+ *
+ * Google ignores (and can learn to distrust) `lastModified` values that change
+ * on every deploy, so the sitemap must use the real content modification date
+ * instead of `new Date()`.
+ */
+export async function getAllPostsForSitemap(): Promise<SitemapEntry[]> {
+  try {
+    const allPosts: Post[] = []
+    let page = 1
+    let totalPages = 1
+
+    do {
+      const { data, totalPages: tp } = await fetchPagedFromWordPress<Post[]>(
+        `/wp/v2/posts?page=${page}&per_page=100&orderby=modified&order=desc`
+      )
+      totalPages = tp
+      allPosts.push(...data)
+      page++
+    } while (page <= totalPages)
+
+    return allPosts.map(post => ({ slug: post.slug, modified: post.modified }))
+  } catch (error) {
+    console.error('[Sitemap] Error fetching posts:', error)
+    return []
+  }
+}
+
 export async function getAllPostSlugs(): Promise<string[]> {
   try {
     const allPosts: Post[] = []
@@ -644,6 +722,28 @@ export async function getAllWorkSlugs(): Promise<string[]> {
     } while (page <= totalPages)
 
     return allItems.map(item => item.slug)
+  } catch {
+    return []
+  }
+}
+
+/** Work items (case studies) with real modification timestamps for the sitemap. */
+export async function getAllWorkForSitemap(): Promise<SitemapEntry[]> {
+  try {
+    const allItems: WorkItem[] = []
+    let page = 1
+    let totalPages = 1
+
+    do {
+      const { data, totalPages: tp } = await fetchPagedFromWordPress<WorkItem[]>(
+        `/wp/v2/work?page=${page}&per_page=100&orderby=modified&order=desc`
+      )
+      totalPages = tp
+      allItems.push(...data)
+      page++
+    } while (page <= totalPages)
+
+    return allItems.map(item => ({ slug: item.slug, modified: item.modified }))
   } catch {
     return []
   }

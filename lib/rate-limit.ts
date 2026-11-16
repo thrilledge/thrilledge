@@ -58,7 +58,9 @@ export function getClientIp(req: NextRequest): string {
   if (realIp) return realIp
   const vercel = req.headers.get('x-vercel-forwarded-for')
   if (vercel) return vercel
-  return req.ip || 'unknown'
+  // `req.ip` was removed from NextRequest in Next 15; the headers above are the
+  // supported way to read the client address behind a proxy.
+  return 'unknown'
 }
 
 export async function checkRateLimit(

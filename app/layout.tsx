@@ -15,6 +15,12 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
+  /**
+   * Base for every relative URL in metadata (canonicals, OG/Twitter images,
+   * alternates). Without it Next falls back to localhost/undefined and pages
+   * can end up self-canonicalising to the wrong host.
+   */
+  metadataBase: new URL(SITE_URL),
   title: 'Thrill Edge Technologies | Innovation Redefined',
   description: 'Cutting-edge technology solutions for modern enterprises. Experience innovation with Thrill Edge Technologies.',
   applicationName: 'Thrill Edge Technologies',
