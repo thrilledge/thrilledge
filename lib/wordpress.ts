@@ -3,18 +3,53 @@
  * Handles all communication with WordPress REST API and ACF fields
  */
 
-const WORDPRESS_URL =
-  process.env.WORDPRESS_INTERNAL_URL ||
-  process.env.NEXT_PUBLIC_WORDPRESS_URL ||
-  'https://admin.thrilledge.com'
+/**
+ * Are we running inside `next build`?
+ *
+ * The build runs in an isolated container that usually cannot reach the same
+ * private network as the running app. Coolify's `WORDPRESS_INTERNAL_URL`
+ * (e.g. `https://172.22.0.1:18443`) is only routable from the runtime
+ * container, so hitting it during the build just burns ~60s per page until
+ * Next.js kills the export with "took more than 60 seconds".
+ */
+const IS_BUILD =
+  process.env.NEXT_PHASE === 'phase-production-build' ||
+  process.env.npm_lifecycle_event === 'build'
+
+const PUBLIC_WORDPRESS_URL =
+  process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
+
+/**
+ * WordPress base URL.
+ *
+ * At build time we deliberately ignore `WORDPRESS_INTERNAL_URL` and use the
+ * public host instead. At runtime the internal host is preferred (faster, no
+ * round trip through the public proxy).
+ */
+const WORDPRESS_URL = IS_BUILD
+  ? PUBLIC_WORDPRESS_URL
+  : process.env.WORDPRESS_INTERNAL_URL || PUBLIC_WORDPRESS_URL
 const API_URL = `${WORDPRESS_URL}/wp-json`
 
 interface RequestOptions extends RequestInit {
   cache?: RequestCache
 }
 
-const TIMEOUT_MS = 20000   // 20s per attempt
-const MAX_RETRIES = 3      // 3 attempts total
+const TIMEOUT_MS = IS_BUILD ? 10000 : 20000 // 10s per attempt during build
+const MAX_RETRIES = IS_BUILD ? 1 : 3        // build fails fast, runtime retries
+
+/**
+ * Build-time circuit breaker.
+ *
+ * If WordPress is unreachable from the build container, the first connection
+ * failure flips this flag and every later request fails instantly instead of
+ * waiting out its own timeout. Without it, ~70 static pages each wait ~10s and
+ * the build blows through Next.js' 60s per-page export budget.
+ *
+ * Only active during `next build`: at runtime a transient outage must still be
+ * retried on the next request.
+ */
+let buildWordPressUnreachable = false
 
 /**
  * How long a WordPress response is cached on the server (ISR).
@@ -38,6 +73,11 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
   let lastError: unknown
   const isServer = typeof window === 'undefined'
   const { cache, ...rest } = options
+
+  // Fail instantly once we know WordPress is unreachable from the build.
+  if (IS_BUILD && buildWordPressUnreachable) {
+    throw new Error('WordPress API unreachable during build (circuit breaker open)')
+  }
 
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const controller = new AbortController()
@@ -73,6 +113,19 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
 
       const isAbort = error instanceof Error && error.name === 'AbortError'
       const isClientError = error instanceof Error && /^4\d\d:/.test(error.message)
+
+      // A network-level failure (DNS, connect timeout, abort) means the host is
+      // unreachable, not that this particular endpoint is broken. During a
+      // build, stop trying entirely so the remaining pages render fallbacks
+      // instead of each waiting out a fresh timeout.
+      const isNetworkError = !(error instanceof Error && /^\d{3}:/.test(error.message))
+      if (IS_BUILD && isNetworkError && !buildWordPressUnreachable) {
+        buildWordPressUnreachable = true
+        console.warn(
+          `[WordPress API] ${WORDPRESS_URL} is unreachable during build; ` +
+            'skipping remaining WordPress requests and rendering fallbacks.'
+        )
+      }
 
       // Don't retry client errors or if it's the last attempt
       if (isClientError || attempt === MAX_RETRIES - 1) break
