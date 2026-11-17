@@ -40,6 +40,16 @@ const TECHNOLOGY_SLUGS = [
 ]
 
 /**
+ * Refresh the sitemap hourly at runtime.
+ *
+ * The sitemap is normally generated at build time. If WordPress happens to be
+ * unreachable from the build container, the build still succeeds but with only
+ * the static routes; this revalidate makes the sitemap heal itself on the next
+ * request after deploy instead of staying degraded until the next deploy.
+ */
+export const revalidate = 3600
+
+/**
  * `lastModified` is intentionally omitted for pages whose real modification
  * date is unknown. Emitting `new Date()` for every URL on every build tells
  * Google the whole site changed, which makes the value useless and can cause
