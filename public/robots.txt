@@ -21,6 +21,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://www.thrilledge.com/sitemap.xml
-
-# LLM/AI documentation
-# LLMs.txt: https://www.thrilledge.com/llms.txt

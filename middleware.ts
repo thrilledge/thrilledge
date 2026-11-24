@@ -1,7 +1,9 @@
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
 
-export function middleware(req: NextRequest) {
+const isProtectedRoute = createRouteMatcher(['/tools(.*)'])
+
+export default clerkMiddleware(async (auth, req) => {
   // WordPress short links (/?p=6526) used to render the home page with a 200.
   // Strip the parameter with a 301 so Google does not index the query variant.
   // This must live here: next.config redirects keep unmatched query strings,
@@ -12,8 +14,10 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url, 301)
   }
 
-  return NextResponse.next()
-}
+  if (isProtectedRoute(req)) {
+    await auth.protect()
+  }
+})
 
 export const config = {
   matcher: [

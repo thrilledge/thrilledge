@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import { checkRateLimit } from '@/lib/rate-limit'
+import { auth } from '@clerk/nextjs/server'
+import { checkUsage, incrementUsage } from '@/lib/usage'
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -69,9 +70,9 @@ Format: Return ONLY the proposal text, no explanations, no prefixes.`
 
 export async function POST(req: NextRequest) {
   try {
-    const rateLimit = await checkRateLimit(req, 'proposal')
-    if (!rateLimit.success) {
-      return NextResponse.json({ error: 'Rate limit reached. Please try again later.' }, { status: 429 })
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { jobTitle, jobDescription } = await req.json()
@@ -80,10 +81,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Job title and description are required' }, { status: 400 })
     }
 
+    const { allowed, plan } = await checkUsage(userId, 'proposal')
+    if (!allowed) {
+      return NextResponse.json({ error: 'Monthly limit reached', plan }, { status: 402 })
+    }
+
     const userPrompt = `Job Title: ${jobTitle}\nJob Description: ${jobDescription}\n\nWrite a compelling Upwork proposal for this job.`
 
     const completion = await groq.chat.completions.create({
-      model: 'openai/gpt-oss-120b',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
@@ -94,7 +100,9 @@ export async function POST(req: NextRequest) {
 
     const proposal = completion.choices[0]?.message?.content?.trim() || ''
 
-    return NextResponse.json({ proposal })
+    await incrementUsage(userId, 'proposal')
+
+    return NextResponse.json({ proposal, plan })
   } catch (err) {
     console.error('[Proposal API] Error:', err)
     return NextResponse.json({ error: 'Failed to generate proposal' }, { status: 500 })

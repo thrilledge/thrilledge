@@ -1,17 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { cn } from "../../lib/utils";
 import MeetingBooker from "../../components/sections/meeting-booker";
 import { Animate } from "@/components/common/animate";
 import { CTASection } from "@/components/sections/cta-section";
-
-export const metadata: Metadata = {
-  title: "Contact Us | Thrill Edge Technologies",
-  description:
-    "Tell us what you're building. Get a response within one business day from our senior team — email, WhatsApp, or book a meeting.",
-  alternates: { canonical: "https://www.thrilledge.com/contact" },
-};
 
 export default function Contact() {
   return (
@@ -75,7 +67,7 @@ export default function Contact() {
                 "lg:leading-[60px]",
               )}
             >
-              How Can We Help You Today?
+              How can we help you today?
             </h1>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
               We respond to every submission within one business day.
@@ -91,7 +83,7 @@ export default function Contact() {
           <Animate variant="slide-left" className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-4">
               <h2 className="font-mont font-semibold text-[36px] lg:text-[48px] text-[#111212] leading-[1.1]">
-                Tell Us What You&apos;re Building.
+                Tell us what you&apos;re building.
               </h2>
               <p className="font-inter font-semibold text-[16px] text-[#111212] leading-[1.6]">
                 We respond to every submission within one business day.
@@ -128,7 +120,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="tel:+447853746775"
+                  href="tel:+447576532096"
                   className="flex items-center gap-3 group w-fit"
                 >
                   <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#111212] shrink-0">
@@ -147,7 +139,7 @@ export default function Contact() {
                   </span>
 
                   <span className="font-inter font-semibold text-[15px] text-[#111212] group-hover:opacity-70 transition-opacity">
-                    +44 7853 746775
+                    +44 7576 532096
                   </span>
                 </a>
               </div>
@@ -184,7 +176,7 @@ export default function Contact() {
                   Prefer messaging?
                 </span>
                 <a
-                  href="https://wa.me/447853746775"
+                  href="https://wa.me/447576532096"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 font-inter font-semibold text-[13px] text-[#111212] hover:opacity-70 transition-opacity"

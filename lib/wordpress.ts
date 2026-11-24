@@ -3,62 +3,23 @@
  * Handles all communication with WordPress REST API and ACF fields
  */
 
-/**
- * Are we running inside `next build`?
- *
- * The build runs in an isolated container that usually cannot reach the same
- * private network as the running app. Coolify's `WORDPRESS_INTERNAL_URL`
- * (e.g. `https://172.22.0.1:18443`) is only routable from the runtime
- * container, so hitting it during the build just burns ~60s per page until
- * Next.js kills the export with "took more than 60 seconds".
- */
-const IS_BUILD =
-  process.env.NEXT_PHASE === 'phase-production-build' ||
-  process.env.npm_lifecycle_event === 'build'
-
-const PUBLIC_WORDPRESS_URL =
-  process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
-
-/**
- * WordPress base URL.
- *
- * At build time we deliberately ignore `WORDPRESS_INTERNAL_URL` and use the
- * public host instead. At runtime the internal host is preferred (faster, no
- * round trip through the public proxy).
- */
-const WORDPRESS_URL = IS_BUILD
-  ? PUBLIC_WORDPRESS_URL
-  : process.env.WORDPRESS_INTERNAL_URL || PUBLIC_WORDPRESS_URL
+const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://admin.thrilledge.com'
 const API_URL = `${WORDPRESS_URL}/wp-json`
 
 interface RequestOptions extends RequestInit {
   cache?: RequestCache
 }
 
-const TIMEOUT_MS = IS_BUILD ? 10000 : 20000 // 10s per attempt during build
-const MAX_RETRIES = IS_BUILD ? 1 : 3        // build fails fast, runtime retries
-
-/**
- * Build-time circuit breaker.
- *
- * If WordPress is unreachable from the build container, the first connection
- * failure flips this flag and every later request fails instantly instead of
- * waiting out its own timeout. Without it, ~70 static pages each wait ~10s and
- * the build blows through Next.js' 60s per-page export budget.
- *
- * Only active during `next build`: at runtime a transient outage must still be
- * retried on the next request.
- */
-let buildWordPressUnreachable = false
+const TIMEOUT_MS = 20000   // 20s per attempt
+const MAX_RETRIES = 3      // 3 attempts total
 
 /**
  * How long a WordPress response is cached on the server (ISR).
- *
  * IMPORTANT: do not use `cache: 'no-store'` here. Routes with
- * `generateStaticParams()` (blog posts, jobs, case studies) are rendered as
- * static/ISR pages; a no-store fetch forces them to be dynamic and makes the
- * page throw at request time (HTTP 500). A revalidating fetch keeps ISR
- * working and lets /api/revalidate purge pages on demand.
+ * `generateStaticParams()` (blog posts, jobs, case studies) are rendered
+ * as static/ISR pages; a no-store fetch forces them to be dynamic and
+ * makes the page throw at request time (HTTP 500). A revalidating fetch
+ * keeps ISR working and lets /api/revalidate purge pages on demand.
  */
 const WP_REVALIDATE_SECONDS = Number(process.env.WP_REVALIDATE_SECONDS || 300)
 
@@ -73,11 +34,6 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
   let lastError: unknown
   const isServer = typeof window === 'undefined'
   const { cache, ...rest } = options
-
-  // Fail instantly once we know WordPress is unreachable from the build.
-  if (IS_BUILD && buildWordPressUnreachable) {
-    throw new Error('WordPress API unreachable during build (circuit breaker open)')
-  }
 
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const controller = new AbortController()
@@ -113,19 +69,6 @@ async function wpFetch(url: string, options: RequestOptions = {}): Promise<Respo
 
       const isAbort = error instanceof Error && error.name === 'AbortError'
       const isClientError = error instanceof Error && /^4\d\d:/.test(error.message)
-
-      // A network-level failure (DNS, connect timeout, abort) means the host is
-      // unreachable, not that this particular endpoint is broken. During a
-      // build, stop trying entirely so the remaining pages render fallbacks
-      // instead of each waiting out a fresh timeout.
-      const isNetworkError = !(error instanceof Error && /^\d{3}:/.test(error.message))
-      if (IS_BUILD && isNetworkError && !buildWordPressUnreachable) {
-        buildWordPressUnreachable = true
-        console.warn(
-          `[WordPress API] ${WORDPRESS_URL} is unreachable during build; ` +
-            'skipping remaining WordPress requests and rendering fallbacks.'
-        )
-      }
 
       // Don't retry client errors or if it's the last attempt
       if (isClientError || attempt === MAX_RETRIES - 1) break
@@ -228,28 +171,13 @@ export interface WorkItem {
     year?: string
     services?: string
     industry?: string
-    review?: number | number[] | string
+    review?: number | number[]
     long_title?: string
-    client?: string
-    role?: string
-    project_duration?: string
-    project_status?: string
-    project_url?: string
-    github_url?: string
-    overview?: string
-    problem?: string
-    solution?: string
-    features?: string | Array<{ title?: string; description?: string }>
-    technical_highlights?: string | Array<{ title?: string; description?: string }>
-    challenges?: string | Array<{ title?: string; description?: string }>
-    results?: string
-    tech_stack?: string | Array<{ name?: string; icon?: string }>
-    project_metrics?: string | Array<{ value?: string; label?: string }>
-    gallery?: any
-    faqs?: string | Array<{ question?: string; answer?: string }>
-    related_projects?: string | number[]
-    seo_meta_title?: string
-    seo_meta_description?: string
+    challenge?: string
+    approach?: WorkAcfSectionWithImage
+    design_process?: WorkAcfSectionWithImage
+    development?: string
+    launch?: WorkAcfSectionWithImage
   }
   _embedded?: {
     'wp:featuredmedia'?: Array<{
@@ -445,18 +373,6 @@ export async function getCategory(slug: string): Promise<Category | null> {
   }
 }
 
-/**
- * Like `getCategory`, but re-throws backend failures instead of reporting
- * every category as missing during a WordPress outage (404 = Google drops the
- * URL, 500 = Google retries).
- */
-export async function findCategoryOrThrow(slug: string): Promise<Category | null> {
-  const categories = await fetchFromWordPress<Category[]>(
-    `/wp/v2/categories?slug=${slug}`
-  )
-  return categories.length > 0 ? categories[0] : null
-}
-
 export async function getPostsByCategory(
   categoryId: number,
   page: number = 1,
@@ -562,8 +478,8 @@ export async function getService(slug: string): Promise<Service | null> {
 
 /**
  * Like `getService`, but only converts "no match" into `null`.
- * Network/5xx failures are re-thrown so the route returns 500 instead of 404
- * during a WordPress outage.
+ * Network/5xx failures are re-thrown so the route returns 500 (Google retries)
+ * instead of 404 (Google drops the URL) during a WordPress outage.
  */
 export async function findServiceOrThrow(slug: string): Promise<Service | null> {
   const items = await fetchFromWordPress<Service[]>(
@@ -573,36 +489,14 @@ export async function findServiceOrThrow(slug: string): Promise<Service | null> 
 }
 
 /**
- * Custom Post Types - Team Members
+ * Like `getCategory`, but re-throws backend failures instead of reporting
+ * every category as missing during an outage.
  */
-export interface TeamMember {
-  id: number
-  title: { rendered: string }
-  slug: string
-  content: { rendered: string }
-  featured_media: number
-  acf?: {
-    role?: string
-    bio?: string
-  }
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{
-      source_url: string
-      alt_text?: string
-    }>
-  }
-}
-
-export async function getTeamMembers(
-  per_page: number = 100
-): Promise<TeamMember[]> {
-  try {
-    return await fetchFromWordPress<TeamMember[]>(
-      `/wp/v2/team-member?per_page=${per_page}&_embed&acf_format=standard&orderby=date&order=asc`
-    )
-  } catch {
-    return []
-  }
+export async function findCategoryOrThrow(slug: string): Promise<Category | null> {
+  const categories = await fetchFromWordPress<Category[]>(
+    `/wp/v2/categories?slug=${slug}`
+  )
+  return categories.length > 0 ? categories[0] : null
 }
 
 /**
@@ -693,6 +587,28 @@ export async function searchContent(
 /**
  * Sitemap data - Get all posts and pages for sitemap
  */
+export async function getAllPostSlugs(): Promise<string[]> {
+  try {
+    const allPosts: Post[] = []
+    let page = 1
+    let totalPages = 1
+
+    do {
+      const { data, totalPages: tp } = await fetchPagedFromWordPress<Post[]>(
+        `/wp/v2/posts?page=${page}&per_page=100&orderby=date&order=desc`
+      )
+      totalPages = tp
+      allPosts.push(...data)
+      page++
+    } while (page <= totalPages)
+
+    return allPosts.map(post => post.slug)
+  } catch (error) {
+    console.error('[Sitemap] Error fetching post slugs:', error)
+    return []
+  }
+}
+
 export interface SitemapEntry {
   slug: string
   /** ISO date from WordPress; undefined when WP does not expose one. */
@@ -702,9 +618,9 @@ export interface SitemapEntry {
 /**
  * Posts with real `modified` timestamps for the sitemap.
  *
- * Google ignores (and can learn to distrust) `lastModified` values that change
- * on every deploy, so the sitemap must use the real content modification date
- * instead of `new Date()`.
+ * Google ignores/penalises `lastModified` values that change on every deploy,
+ * so the sitemap must use the real content modification date instead of
+ * `new Date()`.
  */
 export async function getAllPostsForSitemap(): Promise<SitemapEntry[]> {
   try {
@@ -724,28 +640,6 @@ export async function getAllPostsForSitemap(): Promise<SitemapEntry[]> {
     return allPosts.map(post => ({ slug: post.slug, modified: post.modified }))
   } catch (error) {
     console.error('[Sitemap] Error fetching posts:', error)
-    return []
-  }
-}
-
-export async function getAllPostSlugs(): Promise<string[]> {
-  try {
-    const allPosts: Post[] = []
-    let page = 1
-    let totalPages = 1
-
-    do {
-      const { data, totalPages: tp } = await fetchPagedFromWordPress<Post[]>(
-        `/wp/v2/posts?page=${page}&per_page=100&orderby=date&order=desc`
-      )
-      totalPages = tp
-      allPosts.push(...data)
-      page++
-    } while (page <= totalPages)
-
-    return allPosts.map(post => post.slug)
-  } catch (error) {
-    console.error('[Sitemap] Error fetching post slugs:', error)
     return []
   }
 }

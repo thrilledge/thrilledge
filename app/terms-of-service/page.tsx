@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  { id: "agreement", title: "Agreement To Terms" },
+  { id: "agreement", title: "Agreement to Terms" },
   { id: "eligibility", title: "Eligibility" },
   { id: "account", title: "Account Registration" },
   { id: "acceptable-use", title: "Acceptable Use" },
   { id: "availability", title: "Service Availability" },
-  { id: "fees", title: "Fees And Billing" },
+  { id: "fees", title: "Fees and Billing" },
   { id: "user-content", title: "User Content" },
   { id: "privacy", title: "Privacy" },
   { id: "indemnification", title: "Indemnification" },
-  { id: "disclaimer", title: "Disclaimer Of Warranties" },
-  { id: "liability", title: "Limitation Of Liability" },
+  { id: "disclaimer", title: "Disclaimer of Warranties" },
+  { id: "liability", title: "Limitation of Liability" },
   { id: "governing-law", title: "Governing Law" },
   { id: "modifications", title: "Modifications" },
   { id: "contact", title: "Contact" },
@@ -65,7 +65,7 @@ export default function TermsOfService() {
         <Animate variant="fade-up" className="flex-1 min-w-0">
           <main className="flex-1 min-w-0">
 
-          <TosSection id="agreement" icon={<CheckCircle2 size={18} />} title="1. Agreement To Terms">
+          <TosSection id="agreement" icon={<CheckCircle2 size={18} />} title="1. Agreement to Terms">
             <p className="font-inter text-[#555] text-[15px] leading-[1.8]">
               By accessing or using any Thrill Edge Technologies product or platform, you agree to these Terms of Service.
               If you do not agree, you must discontinue use immediately.
@@ -117,7 +117,7 @@ export default function TermsOfService() {
             </p>
           </TosSection>
 
-          <TosSection id="fees" icon={<CreditCard size={18} />} title="6. Fees And Billing">
+          <TosSection id="fees" icon={<CreditCard size={18} />} title="6. Fees and Billing">
             <div className="bg-[#f5f5f5] px-5 py-4 border-foreground border-l-4 rounded-xl">
               <p className="font-inter text-[#444] text-[14px] leading-[1.8]">
                 If you subscribe to any paid service, you agree to pay all applicable fees as described at the time of purchase.
@@ -152,7 +152,7 @@ export default function TermsOfService() {
             </p>
           </TosSection>
 
-          <TosSection id="disclaimer" icon={<XCircle size={18} />} title="10. Disclaimer Of Warranties">
+          <TosSection id="disclaimer" icon={<XCircle size={18} />} title="10. Disclaimer of Warranties">
             <div className="bg-[#fafafa] p-5 border border-border rounded-xl">
               <p className="font-inter text-[#666] text-[13px] leading-[1.7]">
                 Our services are provided &quot;as is&quot; and &quot;as available&quot; without any warranties, express or implied,
@@ -161,7 +161,7 @@ export default function TermsOfService() {
             </div>
           </TosSection>
 
-          <TosSection id="liability" icon={<AlertIcon size={18} />} title="11. Limitation Of Liability">
+          <TosSection id="liability" icon={<AlertIcon size={18} />} title="11. Limitation of Liability">
             <div className="bg-[#f5f5f5] px-5 py-4 border-foreground border-l-4 rounded-xl">
               <p className="font-inter text-[#444] text-[14px] leading-[1.8]">
                 In no event shall Thrill Edge Technologies be liable for any indirect, incidental, punitive, or consequential damages
@@ -188,7 +188,7 @@ export default function TermsOfService() {
           {/* Contact */}
           <div id="contact" className="bg-[#111212] mt-12 p-8 md:p-10 rounded-2xl">
             <p className="mb-3 font-inter font-semibold text-[11px] text-white/40 uppercase tracking-[0.2em]">14. Contact</p>
-            <h2 className="mb-2 font-mont font-bold text-white text-2xl">Questions About Our Terms Of Service?</h2>
+            <h2 className="mb-2 font-mont font-bold text-white text-2xl">Questions about our Terms of Service?</h2>
             <p className="mb-8 font-inter text-[14px] text-white/50">Get in touch and we&apos;ll respond within one business day.</p>
             <div className="gap-5 grid sm:grid-cols-3">
               {[

@@ -19,7 +19,3 @@ GIT-WORKFLOW.md
 **/*.backup.tsx
 **/*.backup.ts
 main.py
-.vercel
-
-# clerk configuration (can include secrets)
-/.clerk/

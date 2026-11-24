@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { auth } from '@clerk/nextjs/server'
 import { saveToolGeneration, getToolHistory } from '@/lib/wp-tool-history'
-import { getClientIp } from '@/lib/rate-limit'
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = getClientIp(req)
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
     const { tool_type, input_data, output_data } = await req.json()
 
@@ -13,7 +16,7 @@ export async function POST(req: NextRequest) {
     }
 
     const success = await saveToolGeneration({
-      ip_key: ip,
+      clerk_user_id: userId,
       tool_type,
       input_data,
       output_data,
@@ -32,12 +35,15 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const ip = getClientIp(req)
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get('limit') || '50', 10)
 
-    const history = await getToolHistory(ip, limit)
+    const history = await getToolHistory(userId, limit)
 
     return NextResponse.json({ history })
   } catch (err) {

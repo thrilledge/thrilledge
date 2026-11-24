@@ -5,11 +5,11 @@
  * Kept as a client component because posts are paginated client-side.
  * Existence validation happens in the server `page.tsx`, so unknown
  * categories return a real 404 instead of a 200 soft-404.
- *
- * Header/Footer come from the root layout — do not render them again here.
  */
 
 import { useState } from 'react'
+import { Header } from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import { BlogCard } from '@/components/common/blog-card'
 import { useCategories, usePostsByCategory } from '@/hooks/use-posts'
 import { ArrowLeft, Loader } from 'lucide-react'
@@ -30,6 +30,8 @@ export function CategoryClient({ slug }: CategoryClientProps) {
 
   return (
     <main className="bg-background min-h-screen text-foreground">
+      <Header />
+
       {/* Back Button */}
       <section className="px-4 pt-32 pb-8">
         <div className="mx-auto max-w-6xl">
@@ -119,6 +121,8 @@ export function CategoryClient({ slug }: CategoryClientProps) {
           )}
         </div>
       </section>
+
+      <Footer />
     </main>
   )
 }

@@ -10,7 +10,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { findCategoryOrThrow } from '@/lib/wordpress'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL } from '@/lib/seo'
 import { CategoryClient } from './category-client'
 
 interface CategoryPageProps {

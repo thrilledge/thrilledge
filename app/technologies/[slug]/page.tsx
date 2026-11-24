@@ -1,70 +1,25 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
+import { WorkSection } from '@/components/sections/work-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import { ValueFeaturesSection } from '@/components/sections/value-features-section'
 import { IndustriesSection } from '@/components/sections/industries-section'
 import ValuePropositionSection from '@/components/sections/value-proposition'
+import { PageHero } from '@/components/common/page-hero'
 import { cn } from '@/lib/utils'
 import { Animate } from '@/components/common/animate'
 import { CTASection } from '@/components/sections/cta-section'
-import { getTechnologySubServices } from '@/lib/technology-sub-services'
-import {
-  AppWindow,
-  BarChart3,
-  BrainCircuit,
-  BrainCog,
-  Bug,
-  CircleCheck,
-  CircleDot,
-  CloudCog,
-  Cloudy,
-  Coffee,
-  DatabaseZap,
-  FileSearch,
-  Flame,
-  FlaskConical,
-  Gauge,
-  GitGraph,
-  KeyRound,
-  Languages,
-  Layers2,
-  Layers3,
-  Leaf,
-  Lock,
-  LockKeyhole,
-  Network,
-  Orbit,
-  Radar,
-  ScanEye,
-  Send,
-  ShieldAlert,
-  ShieldCheck,
-  Snowflake,
-  Sparkles,
-  TreePine,
-  Warehouse,
-  Waypoints,
-  Workflow,
-  Zap,
-  type LucideIcon,
-} from 'lucide-react'
-
-
-interface TechTool {
-  name: string
-  icon?: string
-  lucide?: LucideIcon
-}
 
 interface TechData {
   title: string
   headline: string
   description: string
   stats: { number: string; label: string }[]
-  tools: TechTool[]
+  tools: { name: string; icon: string }[]
   capabilities: { title: string; desc: string }[]
   image: string
   workIndustry?: string
@@ -85,129 +40,25 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'TensorFlow', icon: '/tensorflow.svg' },
       { name: 'PyTorch', icon: '/pytorch.svg' },
       { name: 'OpenAI', icon: '/openai.svg' },
-      { name: 'Claude', lucide: Sparkles },
-      { name: 'Gemini', lucide: Orbit },
       { name: 'LangChain', icon: '/langchain.svg' },
-      { name: 'LangGraph', lucide: GitGraph },
       { name: 'Hugging Face', icon: '/huggingface.svg' },
-      { name: 'OpenCV', lucide: ScanEye },
-      { name: 'spaCy', lucide: Languages },
       { name: 'AWS SageMaker', icon: '/aws.svg' },
       { name: 'Scikit-learn', icon: '/scikitlearn.svg' },
       { name: 'n8n', icon: '/n8n.svg' },
       { name: 'Docker', icon: '/docker.svg' },
+      { name: 'Node.js', icon: '/nodejs.svg' },
+      { name: 'PostgreSQL', icon: '/postgresql.svg' },
     ],
     capabilities: [
-      { title: 'LLM & Generative AI', desc: 'We design AI products powered by GPT, Claude, Gemini, and custom tuning workflows for chat, search, summarization, and enterprise copilots.' },
       { title: 'Custom Model Training', desc: 'We train and fine-tune models on your proprietary data for domain-specific accuracy that off-the-shelf APIs cannot match.' },
-      { title: 'Agentic AI & Automation', desc: 'We build agent workflows with LangChain and LangGraph that reason over tasks, tools, and context to automate operations with supervision and guardrails.' },
-      { title: 'Computer Vision (OpenCV)', desc: 'Image recognition, object detection, OCR, and video analytics systems built on OpenCV and deep learning pipelines.' },
-      { title: 'NLP & Text Processing', desc: 'Sentiment analysis, entity extraction, document classification, and language understanding with spaCy and transformer models.' },
-      { title: 'RAG & Knowledge Bases', desc: 'Retrieval-augmented generation systems that ground AI responses in your own documents and data sources.' },
+      { title: 'LLM Integration', desc: 'We integrate large language models into your products, chatbots, document processing, semantic search, and more.' },
+      { title: 'Computer Vision', desc: 'Image classification, object detection, and visual inspection systems built for real-world production environments.' },
       { title: 'Predictive Analytics', desc: 'Forecasting models that help you anticipate demand, detect anomalies, and make data-driven decisions at scale.' },
       { title: 'MLOps & Deployment', desc: 'End-to-end ML pipelines with monitoring, retraining, and CI/CD so your models stay accurate over time.' },
+      { title: 'RAG & Knowledge Bases', desc: 'Retrieval-augmented generation systems that ground AI responses in your own documents and data sources.' },
     ],
     image: '/ai.png',
     workIndustry: 'ai',
-  },
-  'data-engineering-big-data': {
-    title: 'Data Engineering & Big Data',
-    headline: 'Reliable pipelines and warehouse systems that make data usable, scalable, and trustworthy.',
-    description: 'We build end-to-end data infrastructure for ingestion, processing, warehousing, and analytics so your teams can make real-time decisions without bottlenecks.',
-    stats: [
-      { number: '100TB+', label: 'Data processed across client pipelines' },
-      { number: '99.9%', label: 'Pipeline uptime across warehouse jobs' },
-      { number: '5x', label: 'Faster reporting and query delivery' },
-    ],
-    tools: [
-      { name: 'Airflow', lucide: Waypoints },
-      { name: 'dbt', lucide: Layers2 },
-      { name: 'Kafka', lucide: Network },
-      { name: 'Spark', lucide: Flame },
-      { name: 'BigQuery', lucide: DatabaseZap },
-      { name: 'Snowflake', lucide: Snowflake },
-      { name: 'PostgreSQL', icon: '/postgresql.svg' },
-      { name: 'Redis', icon: '/redis.svg' },
-      { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
-      { name: 'Python', icon: '/python.svg' },
-      { name: 'Warehouse', lucide: Warehouse },
-      { name: 'BI Tools', lucide: BarChart3 },
-    ],
-    capabilities: [
-      { title: 'Data Pipeline Design', desc: 'Event-driven ingestion and transformation pipelines that consolidate data from apps, CRMs, ERPs, and third-party systems.' },
-      { title: 'Warehouse & Lakehouse Architecture', desc: 'Modern data storage patterns for reporting, analytics, and machine learning workloads with query performance in mind.' },
-      { title: 'Real-time Data Streaming', desc: 'Event-driven connectors and stream processing for low-latency analytics and operational decision support.' },
-      { title: 'ETL / ELT Automation', desc: 'Reliable transformation workflows that reduce manual work and keep reporting trustworthy across the business.' },
-      { title: 'Analytics Enablement', desc: 'We structure datasets and metrics layers so BI teams and product teams can move faster with fewer reporting issues.' },
-      { title: 'AI Data Readiness', desc: 'We prepare structured and semi-structured data for model training, forecasting, and intelligent automation systems.' },
-    ],
-    image: '/database.png',
-  },
-  cybersecurity: {
-    title: 'Cybersecurity',
-    headline: 'Security-first engineering that protects data, trust, and business continuity.',
-    description: 'We help businesses achieve measurable security improvements through proactive risk reduction, stronger access controls, and resilient infrastructure.',
-    stats: [
-      { number: '24/7', label: 'Threat monitoring and response coverage' },
-      { number: '100%', label: 'Security-focused architecture reviews' },
-      { number: 'SOC 2', label: 'Alignment for enterprise clients' },
-    ],
-    tools: [
-      { name: 'Zero Trust', lucide: ShieldCheck },
-      { name: 'OWASP', lucide: ShieldAlert },
-      { name: 'IAM', lucide: KeyRound },
-      { name: 'SIEM', lucide: Radar },
-      { name: 'WAF', lucide: Lock },
-      { name: 'Encryption', lucide: LockKeyhole },
-      { name: 'Pen Testing', lucide: Bug },
-      { name: 'Security Audits', lucide: FileSearch },
-      { name: 'Kubernetes', icon: '/kubernetes.svg' },
-      { name: 'Docker', icon: '/docker.svg' },
-      { name: 'Terraform', lucide: Layers3 },
-      { name: 'AWS', icon: '/aws.svg' },
-    ],
-    capabilities: [
-      { title: 'Threat Modeling', desc: 'We assess architectures for attack surfaces, abuse cases, and trust boundaries before systems go live.' },
-      { title: 'IAM & Access Control', desc: 'Role-based access models, least-privilege policies, and secure identity design for enterprise and regulated teams.' },
-      { title: 'Application Security', desc: 'Hardening for APIs, frontend apps, and backend services against OWASP Top 10 risks and common exploit patterns.' },
-      { title: 'Infrastructure Security', desc: 'Network segmentation, secret management, encryption at rest/in transit, and environment protection for production-grade workloads.' },
-      { title: 'Compliance Readiness', desc: 'Security scaffolding aligned to SOC 2, GDPR, HIPAA, and fintech-grade controls with audit documentation.' },
-      { title: 'Security Operations', desc: 'Monitoring and alerting for suspicious behavior, incident response planning, and ongoing security review across systems.' },
-    ],
-    image: '/backend.png',
-  },
-  'qa-testing-automation': {
-    title: 'QA & Testing Automation',
-    headline: 'Quality engineering that catches issues early and keeps releases reliable.',
-    description: 'We build automated testing systems for UI, API, mobile, performance, and regression workflows so teams can ship confidently with less manual effort.',
-    stats: [
-      { number: '95%', label: 'Target test coverage for critical flows' },
-      { number: '50%', label: 'Reduction in release defects after automation' },
-      { number: '2x', label: 'Faster release validation with CI/CD' },
-    ],
-    tools: [
-      { name: 'Playwright', icon: '/playwright.svg' },
-      { name: 'Cypress', lucide: CircleDot },
-      { name: 'Selenium', lucide: FlaskConical },
-      { name: 'Jest', lucide: CircleCheck },
-      { name: 'Postman', lucide: Send },
-      { name: 'API Testing', icon: '/api.svg' },
-      { name: 'Performance Testing', lucide: Gauge },
-      { name: 'CI/CD', lucide: Workflow },
-      { name: 'GitHub Actions', icon: '/github.svg' },
-      { name: 'Docker', icon: '/docker.svg' },
-      { name: 'Node.js', icon: '/nodejs.svg' },
-      { name: 'Python', icon: '/python.svg' },
-    ],
-    capabilities: [
-      { title: 'End-to-End UI Automation', desc: 'We automate critical user journeys across web and mobile to reduce regressions and speed product confidence.' },
-      { title: 'API & Contract Testing', desc: 'We validate request/response specs, integrations, and edge cases before they affect real users or partners.' },
-      { title: 'Performance & Load Testing', desc: 'We simulate traffic spikes, concurrency patterns, and stress scenarios to catch bottlenecks before launch.' },
-      { title: 'Regression Automation', desc: 'We create durable automated regression suites so every release is checked against the same critical business flows.' },
-      { title: 'Quality Gates in CI/CD', desc: 'We embed automated checks into release pipelines so defects are caught before merge or deployment.' },
-      { title: 'AI-Assisted Test Intelligence', desc: 'We use AI to prioritize test coverage, detect risky changes, and reduce the cost of maintaining large automation suites.' },
-    ],
-    image: '/services.png',
   },
   'frontend-development': {
     title: 'Frontend Development',
@@ -228,6 +79,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'GraphQL', icon: '/graphql.svg' },
       { name: 'WordPress', icon: '/wordpress.svg' },
       { name: 'REST API', icon: '/api.svg' },
+      { name: 'Supabase', icon: '/supabase.svg' },
+      { name: 'Firebase', icon: '/firebase.svg' },
       { name: 'Expo', icon: '/expo.svg' },
     ],
     capabilities: [
@@ -252,10 +105,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
     tools: [
       { name: 'Node.js', icon: '/nodejs.svg' },
       { name: 'Python', icon: '/python.svg' },
-      { name: 'Django', lucide: Leaf },
-      { name: 'FastAPI', lucide: Zap },
-      { name: 'Java', lucide: Coffee },
-      { name: '.NET', lucide: AppWindow },
       { name: 'Go', icon: '/go.svg' },
       { name: 'GraphQL', icon: '/graphql.svg' },
       { name: 'REST APIs', icon: '/api.svg' },
@@ -291,8 +140,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'Flutter', icon: '/flutter.svg' },
       { name: 'Swift', icon: '/swift.svg' },
       { name: 'Kotlin', icon: '/kotlin.svg' },
-      { name: 'Core ML', lucide: BrainCircuit },
-      { name: 'ML Kit', lucide: BrainCog },
       { name: 'Expo', icon: '/expo.svg' },
       { name: 'Firebase', icon: '/firebase.svg' },
       { name: 'App Store', icon: '/appstore.svg' },
@@ -306,7 +153,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Cross-Platform with Flutter', desc: 'Single codebase, native performance. Flutter lets us ship iOS and Android simultaneously without compromising on feel.' },
       { title: 'React Native Apps', desc: 'JavaScript-based cross-platform development with access to native modules for camera, biometrics, and push notifications.' },
       { title: 'Native iOS & Android', desc: 'When performance and platform-specific features matter most, we build fully native with Swift and Kotlin.' },
-      { title: 'On-Device AI & ML', desc: 'Offline intelligence with Core ML and ML Kit for on-device inference, image classification, text recognition, and recommendations.' },
       { title: 'Offline-First Architecture', desc: 'Apps that work without a connection and sync seamlessly when back online, critical for field and enterprise use cases.' },
       { title: 'App Store Optimization', desc: 'We handle submission, metadata, screenshots, and ASO strategy to maximize visibility and conversion on both stores.' },
       { title: 'Push Notifications & Analytics', desc: 'Firebase, OneSignal, and Mixpanel integrations to keep users engaged and give you visibility into behavior.' },
@@ -327,8 +173,6 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { name: 'MongoDB', icon: '/mongodb.svg' },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'MySQL', icon: '/mysql.svg' },
-      { name: 'Pinecone', lucide: TreePine },
-      { name: 'Weaviate', lucide: DatabaseZap },
       { name: 'Elasticsearch', icon: '/elasticsearch.svg' },
       { name: 'Supabase', icon: '/supabase.svg' },
       { name: 'PlanetScale', icon: '/planetscale.svg' },
@@ -342,8 +186,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
       { title: 'Schema Design & Modeling', desc: 'Normalized relational schemas and document models designed for your query patterns, not just your data shape.' },
       { title: 'Performance Tuning', desc: 'Index optimization, query analysis, and caching strategies that eliminate slow queries before they hit production.' },
       { title: 'Database Migrations', desc: 'Zero-downtime migrations from legacy systems to modern databases with full data integrity validation.' },
+      { title: 'Replication & High Availability', desc: 'Read replicas, failover clusters, and multi-region setups that keep your data available even when things go wrong.' },
       { title: 'Search & Analytics', desc: 'Elasticsearch and vector database integrations for full-text search, semantic search, and real-time analytics.' },
-      { title: 'Vector Databases & RAG', desc: 'Pinecone, Weaviate, and pgvector setups that power semantic search, embeddings, and retrieval-augmented generation for AI products.' },
       { title: 'Backup & Disaster Recovery', desc: 'Automated backup strategies, point-in-time recovery, and tested restore procedures for every production system.' },
     ],
     image: '/database.png',
@@ -393,12 +237,8 @@ const TECHNOLOGIES: Record<string, TechData> = {
     ],
     tools: [
       { name: 'AWS', icon: '/aws.svg' },
-      { name: 'Azure', lucide: CloudCog },
-      { name: 'GCP', lucide: Cloudy },
       { name: 'Docker', icon: '/docker.svg' },
       { name: 'Kubernetes', icon: '/kubernetes.svg' },
-      { name: 'CI/CD', lucide: Workflow },
-      { name: 'Terraform', lucide: Layers3 },
       { name: 'Redis', icon: '/redis.svg' },
       { name: 'PostgreSQL', icon: '/postgresql.svg' },
       { name: 'Python', icon: '/python.svg' },
@@ -487,6 +327,7 @@ const TECHNOLOGIES: Record<string, TechData> = {
   },
 }
 
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const tech = TECHNOLOGIES[slug]
@@ -517,12 +358,6 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
   const { slug } = await params
   const tech = TECHNOLOGIES[slug]
   if (!tech) notFound()
-
-  const techTools = Array.from(new Set(tech.tools.map((tool) => tool.name)))
-    .map((name) => tech.tools.find((tool) => tool.name === name))
-    .filter((tool): tool is TechTool => Boolean(tool))
-
-  const subServices = getTechnologySubServices(slug)
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -565,7 +400,7 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
                 {tech.headline}
               </h2>
             </div>
-            <p
+             <p
               className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7"
             >
               {tech.description}
@@ -574,13 +409,8 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           </div>
         </div>
       </section>
-
-
-
-
-
       {/* stats */}
-      <div className={cn('gap-[20px]', 'text-center', 'md:mt-10', 'mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
+      <div className={cn('gap-[20px]', 'text-center', 'md:mt-10','mt-10', 'grid', 'grid-cols-3', 'mx-auto', 'md:px-[36px]', 'pb-[64px]', 'w-full', 'max-w-[1440px]')}>
         {tech.stats.map((s, i) => (
           <Animate key={i} variant="fade-up" delay={i * 100}>
             <div className={cn('flex', 'flex-col', 'gap-[4px]', 'px-[10px]', 'md:py-[32px]', 'border-[#CCCCCC]', 'border-l', 'first:border-l-0')}>
@@ -592,36 +422,15 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Description */}
-      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[56px]', 'pb-[26px]', 'w-full', 'md:mt-5', 'mt-2', 'max-w-[1440px]')}>
+      <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'md:pb-[56px]', 'pb-[26px]','w-full', 'md:mt-5', 'mt-2', 'max-w-[1440px]')}>
         <p className={cn('max-w-[800px]', 'font-inter', 'text-[#555]', 'text-[20px]', 'leading-[32px]')}>{tech.description}</p>
-      </div>
-
-      {/* Tools Marquee */}
-      <div className={cn('w-full', 'bg-[#F3F3F3]', 'py-[32px]', 'md:py-[48px]')}>
-        <div className={cn('relative', 'overflow-hidden', 'w-full', 'max-w-[1440px]', 'mx-auto')}>
-          <div className={cn('flex', 'w-max', 'animate-marquee', 'gap-[32px]')}>
-            {[...techTools, ...techTools].map((tool, index) => (
-              <div
-                key={`${tool.name}-${index}`}
-                className={cn('flex', 'shrink-0', 'items-center', 'justify-center', 'w-[120px]', 'h-[60px]', 'bg-white', 'border', 'border-[#e5e5e5]', 'rounded-[12px]', 'p-[12px]')}
-                aria-hidden={index >= techTools.length}
-              >
-                {tool.lucide ? (
-                  <ToolIcon icon={tool.lucide} />
-                ) : (
-                  <Image src={tool.icon!} alt={tool.name} width={40} height={40} className="object-contain" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Capabilities */}
       <div className={cn('bg-white', 'w-full')}>
         <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
           <h2 className={cn('mb-[64px]', 'max-w-[600px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-            What We Build With {tech.title}
+            What we build with {tech.title}
           </h2>
           <div className={cn('gap-[2px]', 'grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'bg-[#e5e5e5]')}>
             {tech.capabilities.map((cap, i) => (
@@ -637,41 +446,11 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
         </div>
       </div>
 
-      {/* Sub Categories */}
-      {subServices && (
-        <section className="bg-white py-16 md:py-24">
-          <div className="mx-auto px-4 w-full max-w-[1440px]">
-            <div className="mb-10">
-              <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
-                Sub Categories
-              </span>
-              <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-                {subServices.heading}
-              </h2>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {subServices.items.map((item, index) => (
-                <Animate key={item} variant="fade-up" delay={index * 40}>
-                  <div className="flex items-start gap-3 rounded-[18px] border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-4">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <span className="font-inter text-[16px] leading-7 text-[#111212] md:text-[17px]">
-                      {item}
-                    </span>
-                  </div>
-                </Animate>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Tools & Stack */}
       <div className={cn('mx-auto', 'px-[16px]', 'md:px-[36px]', 'py-[96px]', 'w-full', 'max-w-[1440px]')}>
         <div className={cn('flex', 'md:flex-row', 'flex-col', 'justify-between', 'md:items-end', 'gap-[32px]', 'mb-[48px]')}>
           <h2 className={cn('max-w-[500px]', 'font-mont', 'font-bold', 'text-[#111212]', 'text-[48px]', 'leading-[52px]')}>
-            Our {tech.title} Stack
+            Our {tech.title} stack
           </h2>
           <p className={cn('max-w-[400px]', 'font-inter', 'text-[#929296]', 'text-[16px]')}>
             Tools and frameworks we use in production, chosen for reliability, performance, and developer experience.
@@ -681,12 +460,8 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
           {tech.tools.map((tool, i) => (
             <Animate key={tool.name} variant="scale-in" delay={i * 50}>
               <div className={cn('flex', 'flex-col', 'items-center', 'gap-[12px]', 'bg-white', 'p-[24px]', 'border', 'border-[#e5e5e5]', 'hover:border-[#111212]', 'rounded-[16px]', 'transition-colors', 'duration-300')}>
-                <div className={cn('relative', 'flex', 'items-center', 'justify-center', 'w-[40px]', 'h-[40px]')}>
-                  {tool.lucide ? (
-                    <ToolIcon icon={tool.lucide} />
-                  ) : (
-                    <Image src={tool.icon!} alt={tool.name} fill sizes="40px" className="object-contain" />
-                  )}
+                <div className={cn('relative', 'w-[40px]', 'h-[40px]')}>
+                  <Image src={tool.icon} alt={tool.name} fill sizes="40px" className="object-contain" />
                 </div>
                 <p className={cn('font-mont', 'font-semibold', 'text-[#111212]', 'text-[14px]', 'text-center')}>{tool.name}</p>
               </div>
@@ -719,18 +494,14 @@ export default async function TechnologyPage({ params }: { params: Promise<{ slu
       <div className="bg-[#F3F3F3]">
         <ValueFeaturesSection />
       </div>
-      <div className='pb-20'>
-        {/* Industries */}
-        <IndustriesSection />
-      </div>
+<div className='pb-20'>
+      {/* Industries */}
+      <IndustriesSection />
+</div>
       {/* CTA */}
-      <CTASection />
+     <CTASection/>
 
 
     </div>
   )
-}
-
-function ToolIcon({ icon: Icon }: { icon: LucideIcon }) {
-  return <Icon size={36} strokeWidth={1.5} className="text-[#111212]" />
 }

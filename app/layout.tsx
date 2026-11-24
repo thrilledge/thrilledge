@@ -1,24 +1,22 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter } from 'next/font/google'
-import { SITE_URL } from '@/lib/site'
+import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { ChatWidget } from '@/components/chat/chat-widget'
+import { SITE_URL } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
-
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   /**
    * Base for every relative URL in metadata (canonicals, OG/Twitter images,
    * alternates). Without it Next falls back to localhost/undefined and pages
-   * can end up self-canonicalising to the wrong host.
+   * end up self-canonicalising to the wrong host.
    */
   metadataBase: new URL(SITE_URL),
   title: 'Thrill Edge Technologies | Innovation Redefined',
@@ -42,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: `${SITE_URL}`,
+    url: SITE_URL,
     siteName: 'Thrill Edge Technologies',
     title: 'Thrill Edge Technologies | Innovation Redefined',
     description: 'Cutting-edge technology solutions for modern enterprises.',
@@ -92,28 +90,18 @@ export default function RootLayout({
         <meta charSet="utf-8" />
       </head>
       <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        <Providers>
-          <div style={{ overflowX: 'clip' }}>
-            <Header />
-            {children}
-            <Footer />
-          </div>
-          <ChatWidget />
-        </Providers>
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ''}>
+          <Providers>
+            <div style={{ overflowX: 'clip' }}>
+              <Header />
+              {children}
+              <Footer />
+            </div>
+            <ChatWidget />
+          </Providers>
+        </ClerkProvider>
         <Analytics />
         <SpeedInsights />
-        {GA_ID && (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
-            </Script>
-          </>
-        )}
       </body>
     </html>
   )

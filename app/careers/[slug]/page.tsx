@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, MapPin, Briefcase, ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Animate } from '@/components/common/animate'
+import { SITE_URL } from '@/lib/seo'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -20,11 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description: `Apply for the ${job.title.rendered} role at Thrill Edge Technologies. ${job.acf?.position ? job.acf.position + ' position.' : ''}`,
-    alternates: { canonical: `https://www.thrilledge.com/careers/${slug}` },
+    alternates: { canonical: `${SITE_URL}/careers/${slug}` },
     openGraph: {
       title,
       type: 'website',
-      url: `https://www.thrilledge.com/careers/${slug}`,
+      url: `${SITE_URL}/careers/${slug}`,
     },
   }
 }

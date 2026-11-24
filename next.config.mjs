@@ -4,16 +4,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'thrilledge.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.thrilledge.com',
         pathname: '/**',
       },
       {
@@ -201,13 +195,6 @@ const nextConfig = {
         destination: '/services',
         permanent: true,
       },
-
-      // ---------------------------------------------------------------------
-      // WordPress-era blog posts that are still requested at the root path.
-      // They all exist in WordPress under /blog/<same-slug>, so 301 to the
-      // real article instead of dropping the traffic on /blog (Search Console
-      // "Not found (404)" report, Jun–Oct 2026).
-      // ---------------------------------------------------------------------
       {
         source: '/why-thrill-edge-technologies-is-the-no-1-choice-for-digital-solutions-in-the-usa-uk',
         destination: '/blog/why-thrill-edge-technologies-is-the-no-1-choice-for-digital-solutions-in-the-usa-uk',
@@ -238,86 +225,6 @@ const nextConfig = {
         destination: '/blog/a-complete-guide-about-web-1-web-2-and-web-3',
         permanent: true,
       },
-      {
-        source: '/web-development-services-small-business-wordpress-vs-custom',
-        destination: '/blog/web-development-services-small-business-wordpress-vs-custom',
-        permanent: true,
-      },
-      {
-        source: '/amazon-ppc-advertising',
-        destination: '/blog/amazon-ppc-campaign-strategy-a-complete-guide-to-boost-your-sales-in-2025',
-        permanent: true,
-      },
-      {
-        source: '/what-is-an-erp-consultant-a-complete-guide-for-beginners',
-        destination: '/blog/what-is-an-erp-consultant-a-complete-guide-for-beginners',
-        permanent: true,
-      },
-      {
-        source: '/top-reasons-why-pakgpt-is-pakistans-biggest-tech-milestone-yet',
-        destination: '/blog/top-reasons-why-pakgpt-is-pakistans-biggest-tech-milestone-yet',
-        permanent: true,
-      },
-      {
-        source: '/how-to-import-markdown-into-elementor-wordpress',
-        destination: '/blog/how-to-import-markdown-into-elementor-wordpress',
-        permanent: true,
-      },
-      {
-        source: '/why-secure-app-development-practices-are-essential-in-2025',
-        destination: '/blog/why-secure-app-development-practices-are-essential-in-2025',
-        permanent: true,
-      },
-      {
-        source: '/how-marketing-strategies-can-be-improved-by-blockchain',
-        destination: '/blog/how-marketing-strategies-can-be-improved-by-blockchain',
-        permanent: true,
-      },
-      {
-        source: '/why-are-seo-friendly-web-development-services-key-in-2025',
-        destination: '/blog/why-are-seo-friendly-web-development-services-key-in-2025',
-        permanent: true,
-      },
-      {
-        source: '/choosing-between-freelancers-and-agencies-for-web-projects',
-        destination: '/blog/choosing-between-freelancers-and-agencies-for-web-projects',
-        permanent: true,
-      },
-      {
-        source: '/how-to-add-separator-to-wordpress-admin-submenu',
-        destination: '/blog/how-to-add-separator-to-wordpress-admin-submenu',
-        permanent: true,
-      },
-      {
-        source: '/website-design-uk-cost-guide-2025-prices-packages-what-you-get',
-        destination: '/blog/website-design-uk-cost-guide-2025-prices-packages-what-you-get',
-        permanent: true,
-      },
-      {
-        source: '/professional-app-development-features',
-        destination: '/blog/professional-app-development-features',
-        permanent: true,
-      },
-      {
-        source: '/how-to-choose-the-right-web-development-agency-in-europe',
-        destination: '/blog/how-to-choose-the-right-web-development-agency-in-europe',
-        permanent: true,
-      },
-      {
-        source: '/tcs-ui-ux-designer-salary-in-usa-2025-average-pay-factors-career-insights',
-        destination: '/blog/tcs-ui-ux-designer-salary-in-usa-2025-average-pay-factors-career-insights',
-        permanent: true,
-      },
-      {
-        source: '/ai-is-changing-ui-ux-design-in-2025-what-designers-need-to-know',
-        destination: '/blog/ai-is-changing-ui-ux-design-in-2025-what-designers-need-to-know',
-        permanent: true,
-      },
-      {
-        source: '/web-development-services-that-drive-business-growth',
-        destination: '/blog/web-development-services-that-drive-business-growth',
-        permanent: true,
-      },
 
       // ---------------------------------------------------------------------
       // WordPress-era URLs still being requested by Google (Search Console
@@ -338,28 +245,24 @@ const nextConfig = {
       { source: '/ui-ux-design', destination: '/services/ui-ux-design', permanent: true },
       { source: '/erp-services', destination: '/services/custom-web-development', permanent: true },
       { source: '/a-deep-dive-into-sap-solutions', destination: '/services/custom-web-development', permanent: true },
+      { source: '/amazon-ppc-advertising', destination: '/services', permanent: true },
       // Company pages
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/certifications', destination: '/about', permanent: true },
       { source: '/featured-partner', destination: '/about', permanent: true },
-      // Legacy portfolio / case-study URLs
-      { source: '/our-projects/:path*', destination: '/casestudy', permanent: true },
+      // Legacy portfolio/case-study URLs
+      { source: '/our-projects/:slug', destination: '/casestudy', permanent: true },
       { source: '/work', destination: '/casestudy', permanent: true },
       { source: '/work/:slug', destination: '/casestudy/:slug', permanent: true },
       { source: '/work-pending', destination: '/casestudy', permanent: true },
       { source: '/work-pending/:slug', destination: '/casestudy/:slug', permanent: true },
-      // WordPress categories now live under /categories/<slug>. This must come
-      // before the generic rule below so the old typo lands on a live page.
-      { source: '/category/web-developement', destination: '/categories/web-development', permanent: true },
-      { source: '/category/:path*', destination: '/categories/:path*', permanent: true },
-      // Date archives have no modern equivalent; send them to the blog index.
+      // Legacy WordPress taxonomies and date archives
+      { source: '/tag/:slug', destination: '/blog', permanent: true },
+      { source: '/category/:slug', destination: '/categories', permanent: true },
       { source: '/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})', destination: '/blog', permanent: true },
       { source: '/:year(\\d{4})/:month(\\d{2})', destination: '/blog', permanent: true },
       // NOTE: WordPress short links (/?p=123) are handled in middleware.ts,
       // because a config-level redirect would keep the query and loop.
-      // NOTE: /tag/<slug> URLs are intentionally left as 404/410 — they have no
-      // modern equivalent, and mass-redirecting them to /blog creates soft-404
-      // noise rather than helping.
     ]
   },
 }

@@ -144,7 +144,7 @@ Assistant: "I'm only here to help with questions about Thrill Edge Technologies 
 - Cloud: AWS, GCP, Azure
 
 ## Industries We Serve
-Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics, Legal Services, eCommerce & Retail, Home Services
+Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics
 
 ## Pricing
 - All projects are custom-quoted based on scope and requirements
@@ -154,7 +154,7 @@ Healthcare, Education, Real Estate, Blockchain, Fintech, Logistics, Legal Servic
 ## Contact
 - Email: info@thrilledge.com
 - Phone: +44 7576 532096
-- WhatsApp: https://wa.me/+447576532096
+- WhatsApp: https://wa.me/447576532096
 - Book a meeting: user just needs to say "book meeting"
 
 ## Our Process & Culture
@@ -246,7 +246,7 @@ export async function POST(req: NextRequest) {
   // 8. Call Groq
   try {
     const completion = await groq.chat.completions.create({
-      model: 'openai/gpt-oss-120b',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: finalSystemPrompt },
         ...messages,

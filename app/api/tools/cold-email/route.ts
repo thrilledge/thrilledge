@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
-import { checkRateLimit } from '@/lib/rate-limit'
+import { auth } from '@clerk/nextjs/server'
+import { checkUsage, incrementUsage } from '@/lib/usage'
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -54,9 +55,9 @@ Format: Return the email with "Subject:" on first line, then blank line, then bo
 
 export async function POST(req: NextRequest) {
   try {
-    const rateLimit = await checkRateLimit(req, 'cold-email')
-    if (!rateLimit.success) {
-      return NextResponse.json({ error: 'Rate limit reached. Please try again later.' }, { status: 429 })
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { prospectName, prospectCompany, prospectRole, yourService, valueProp, socialProof } = await req.json()
@@ -65,10 +66,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Prospect name, company, and your service are required' }, { status: 400 })
     }
 
+    const { allowed, plan } = await checkUsage(userId, 'cold-email')
+    if (!allowed) {
+      return NextResponse.json({ error: 'Monthly limit reached', plan }, { status: 402 })
+    }
+
     const userPrompt = `Prospect Name: ${prospectName}\nCompany: ${prospectCompany}\nRole: ${prospectRole || 'Not specified'}\nYour Service: ${yourService}\nValue Proposition: ${valueProp || 'Not specified'}\nSocial Proof / Results: ${socialProof || 'Not specified'}\n\nWrite a cold email to this prospect.`
 
     const completion = await groq.chat.completions.create({
-      model: 'openai/gpt-oss-120b',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
@@ -79,7 +85,9 @@ export async function POST(req: NextRequest) {
 
     const email = completion.choices[0]?.message?.content?.trim() || ''
 
-    return NextResponse.json({ email })
+    await incrementUsage(userId, 'cold-email')
+
+    return NextResponse.json({ email, plan })
   } catch (err) {
     console.error('[Cold Email API] Error:', err)
     return NextResponse.json({ error: 'Failed to generate cold email' }, { status: 500 })

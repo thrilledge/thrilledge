@@ -29,15 +29,16 @@ export async function getPaddleClient(): Promise<Paddle | null> {
   }
 }
 
-export function openCheckout(priceId: string, userEmail: string) {
+export function openCheckout(priceId: string, userId: string, userEmail: string) {
   getPaddleClient().then((paddle) => {
     if (!paddle) return
     paddle.Checkout.open({
       items: [{ priceId, quantity: 1 }],
       customer: { email: userEmail },
+      customData: { userId },
       settings: {
         displayMode: 'overlay',
-        successUrl: `${window.location.origin}/tools?checkout=success`,
+        successUrl: `${window.location.origin}/tools/profile?checkout=success`,
       },
     })
   })

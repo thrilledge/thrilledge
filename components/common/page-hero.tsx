@@ -59,7 +59,7 @@ export function PageHero({
             src={bgImage}
             alt="Background"
             fill
-            className="object-contain"
+            className="object-cover"
             priority
           />
         </div>
@@ -77,7 +77,7 @@ export function PageHero({
 
       {/* Content */}
       <div className={cn('relative', 'z-20', 'max-w-360', 'mx-auto', 'md:px-9', 'px-4', 'pt-20', 'pb-16', 'flex', 'md:flex-row', 'flex-col', 'md:items-end', 'justify-between', 'gap-8')}>
-
+        
         {/* Left Content */}
         <div className={cn('flex', 'flex-col', 'gap-4')}>
           {label && (
@@ -105,7 +105,7 @@ export function PageHero({
               src={image}
               alt={imageAlt || "Hero Image"}
               fill
-              className={cn('object-contain', 'rounded-2xl')}
+              className={cn('object-cover', 'rounded-2xl')}
               priority
             />
           </div>

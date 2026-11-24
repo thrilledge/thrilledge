@@ -83,7 +83,7 @@ export function ValueFeaturesSection() {
           {/* Left sticky title */}
           <Animate variant="slide-left" className="lg:w-[420px] w-full shrink-0 lg:sticky lg:top-[100px]">
             <h2 className="text-black font-mont md:text-[48px] text-[32px] font-semibold md:leading-[56px] leading-[38px]">
-              Validate Your Product Idea, Impress Investors, And Get To Market Faster.
+              Validate your product idea, impress investors, and get to market faster.
             </h2>
             <p className="mt-[20px] text-[#929296] font-inter text-[16px] leading-[24px]">
               Without wasting time or money on the wrong features.

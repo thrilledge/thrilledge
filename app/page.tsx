@@ -7,6 +7,7 @@ import { Metadata } from 'next'
 import HeroSection from '@/components/sections/hero-section'
 import ValuePropositionSection from '@/components/sections/value-proposition'
 import { ServicesSection } from '@/components/sections/services-section'
+import { WorkSection } from '@/components/sections/work-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { ProcessSection } from '@/components/sections/process-section'
 import { IndustriesSection } from '@/components/sections/industries-section'
@@ -41,7 +42,7 @@ const organizationSchema = {
   logo: 'https://www.thrilledge.com/logo.svg',
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+44-7853-746775',
+    telephone: '+44-7576-532096',
     contactType: 'customer service',
     email: 'info@thrilledge.com',
     areaServed: ['GB', 'US', 'AU', 'CA'],
@@ -79,12 +80,12 @@ export default function Home() {
       <HeroSection />
       <BrandsMarquee />
       <ValuePropositionSection />
-      <ServicesSection show={3} />
+      <ServicesSection show={4} />
       {/* <WorkSection show={3} /> */}
       <TestimonialsSection show={12} />
       <ProcessSection />
       <div className="py-20 lg:py-25 bg-[#eee]">
-        <IndustriesSection />
+      <IndustriesSection />
       </div>
       <ValueFeaturesSection />
       <LatestArticlesSection show={3} />

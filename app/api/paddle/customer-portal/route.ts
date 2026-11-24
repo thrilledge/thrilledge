@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPaddle } from '@/lib/paddle'
-import { checkRateLimit } from '@/lib/rate-limit'
+import { auth } from '@clerk/nextjs/server'
 
 export async function POST(req: NextRequest) {
-  const rateLimit = await checkRateLimit(req, 'paddle-portal')
-  if (!rateLimit.success) {
-    return NextResponse.json({ error: 'Rate limit reached. Please try again later.' }, { status: 429 })
+  const { userId } = await auth()
+  if (!userId) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const paddle = getPaddle()

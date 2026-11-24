@@ -9,9 +9,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ProcessSection } from "@/components/sections/process-section";
 import { ValueFeaturesSection } from "@/components/sections/value-features-section";
-import { cn, decodeHtml } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Animate } from "@/components/common/animate";
-import { getServiceSubServices } from "@/lib/service-sub-services";
 
 export function ServiceClient({ slug }: { slug: string }) {
   const { data: service, isLoading, error } = useService(slug);
@@ -53,7 +52,6 @@ export function ServiceClient({ slug }: { slug: string }) {
     acf.service_count?.count_3,
   ].filter(Boolean);
   const projects = acf.projects ?? [];
-  const serviceSubServices = getServiceSubServices(slug, acf as Record<string, unknown> | undefined);
 
   return (
     <div className="relative bg-[#F3F3F3]">
@@ -63,7 +61,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           {heroImg ? (
             <Image
               src={heroImg}
-              alt={decodeHtml(service.title.rendered)}
+              alt={service.title.rendered}
               fill
               className="object-[center_35%] object-cover"
               sizes="100vw"
@@ -95,7 +93,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               </span>
               <h1
                 className="max-w-2xl font-mont font-semibold text-[36px] text-white lg:text-[60px] leading-none"
-                dangerouslySetInnerHTML={{ __html: decodeHtml(service.title.rendered) }}
+                dangerouslySetInnerHTML={{ __html: service.title.rendered }}
               />
             </div>
             {acf.service_solutions && (
@@ -166,7 +164,7 @@ export function ServiceClient({ slug }: { slug: string }) {
           {acf.about_us && (
             <AboutTabs
               aboutUs={acf.about_us}
-              serviceTitle={decodeHtml(service.title.rendered)}
+              serviceTitle={service.title.rendered}
             />
           )}
         </div>
@@ -181,37 +179,6 @@ export function ServiceClient({ slug }: { slug: string }) {
         </div>
       )}
 
-      {/* Sub Services List */}
-      {serviceSubServices && (
-        <section className="bg-white pt-16 md:pt-24">
-          <div className="max-w-360 mx-auto px-4">
-            <div className="mb-10">
-              <span className="font-inter font-semibold text-[11px] uppercase tracking-[0.22em] text-[#929296]">
-                Sub Services
-              </span>
-              <h2 className="mt-4 font-mont font-semibold text-[32px] leading-[1.1] text-[#111212] md:text-[48px]">
-                {(serviceSubServices.heading)}
-              </h2>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {serviceSubServices.items.map((item, index) => (
-                <div
-                  key={`${item}-${index}`}
-                  className="flex items-start gap-3 rounded-[18px] border border-[#E5E5E5] bg-[#F7F7F7] px-4 py-4"
-                >
-                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#111212] font-mont text-[10px] font-semibold text-white">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span className="font-inter text-[16px] leading-7 text-[#111212] md:text-[17px]">
-                    {toTitleCase(item)}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* How We Work */}
       {hwwSteps.length > 0 && (
         <div className="bg-white w-full">
@@ -220,7 +187,7 @@ export function ServiceClient({ slug }: { slug: string }) {
               <div className="flex lg:flex-row flex-col md:gap-16 gap-12 items-start">
                 <div className="lg:w-105 w-full shrink-0 lg:sticky lg:top-25">
                   <h2 className="font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-[1.15]">
-                    How We Work
+                    How we work
                   </h2>
                   <p className="mt-5 font-inter text-[#929296] text-[16px] leading-6.5">
                     A clear, repeatable process that keeps projects on track and
@@ -534,7 +501,7 @@ function ProjectsMarquee({
     queryFn: async () => {
       if (!ids) return [];
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/casestudy?include=${ids}&_embed&acf_format=standard&per_page=100`,
+        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/work?include=${ids}&_embed&acf_format=standard&per_page=100`,
       );
       return res.json() as Promise<
         Array<{
@@ -584,7 +551,7 @@ function ProjectsMarquee({
           const img = imageMap[p.ID];
           return (
             <div key={i} className="shrink-0">
-              <Link href={`/casestudy/${p.post_name}`}>
+              <Link href={`/work/${p.post_name}`}>
                 <div className="group relative bg-[#111212] rounded-[20px] w-70 sm:w-95 lg:w-140 h-55 md:h-90 overflow-hidden">
                   {img && (
                     <Image
@@ -615,60 +582,6 @@ function ProjectsMarquee({
 }
 
 /* ── Marquee text strip ── */
-function toTitleCase(value: string) {
-  const acronyms = new Set([
-    'AI',
-    'ML',
-    'LLM',
-    'LLMs',
-    'MLOps',
-    'PWA',
-    'SEO',
-    'CRO',
-    'MVP',
-    'SaaS',
-    'iOS',
-    'Android',
-    'CRM',
-    'ERP',
-    'NLP',
-    'CMS',
-    'API',
-    'APIs',
-    'UI',
-    'UX',
-    'OpenAI',
-    'Claude',
-    'Gemini',
-    'No-Code',
-    'Low-Code',
-    'E-Commerce',
-    'PPC',
-  ]);
-
-  return value
-    .split(/\s+/)
-    .map((word) => {
-      if (!word) return word;
-      const normalized = word.replace(/[^A-Za-z0-9&-]/g, '');
-      if (!normalized) return word;
-
-      if (acronyms.has(normalized)) return normalized;
-      if (normalized === '&') return '&';
-
-      const parts = normalized.split('-').map((part) => {
-        if (!part) return part;
-        if (acronyms.has(part)) return part;
-        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-      });
-
-      return parts.join('-');
-    })
-    .join(' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function MarqueeStrip() {
   const trackRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(0);

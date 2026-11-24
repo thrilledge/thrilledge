@@ -9,7 +9,6 @@ import { CTASection } from "@/components/sections/cta-section";
 export const metadata: Metadata = {
   title: "Client Reviews | Thrill Edge Technologies",
   description: "Read what our clients say about working with Thrill Edge Technologies.",
-  alternates: { canonical: "https://www.thrilledge.com/client-reviews" },
 };
 
 function StarRating({ rating = 5 }: { rating?: number }) {
@@ -50,36 +49,36 @@ export default async function ClientReviewsPage() {
       </div>
 
       {/* Stats bar */}
-      <div className="mx-auto px-4 md:px-9 py-8 md:py-16 w-full max-w-360">
-        <Animate variant="fade-up">
-          <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-[#e5e5e5] rounded-2xl overflow-hidden">
+<div className="mx-auto px-4 md:px-9 py-8 md:py-16 w-full max-w-360">
+  <Animate variant="fade-up">
+    <div className="gap-px grid grid-cols-2 md:grid-cols-4 bg-[#e5e5e5] rounded-2xl overflow-hidden">
 
-            {[
-              { num: "4.9★", label: "Average Rating" },
-              { num: "98%", label: "Satisfaction Rate" },
-              { num: `150+`, label: "Happy Clients" },
-              { num: "15+", label: "Years Experience" },
-            ].map((s, i) => (
-              <Animate key={s.label} variant="scale-in" delay={i * 80}>
+      {[
+        { num: "4.9★", label: "Average Rating" },
+        { num: "98%", label: "Satisfaction Rate" },
+        { num: `${testimonials?.length ?? 0}+`, label: "Happy Clients" },
+        { num: "15+", label: "Years Experience" },
+      ].map((s, i) => (
+        <Animate key={s.label} variant="scale-in" delay={i * 80}>
+          
+          <div className="flex flex-col items-center md:items-start gap-1 bg-white px-4 md:px-7 py-5 md:py-7 text-center md:text-left">
+            
+            <p className="font-mont font-bold text-[#111212] text-[28px] md:text-[36px] leading-none tabular-nums whitespace-nowrap">
+              {s.num}
+            </p>
 
-                <div className="flex flex-col items-center md:items-start gap-1 bg-white px-4 md:px-7 py-5 md:py-7 text-center md:text-left">
-
-                  <p className="font-mont font-bold text-[#111212] text-[28px] md:text-[36px] leading-none tabular-nums whitespace-nowrap">
-                    {s.num}
-                  </p>
-
-                  <p className="font-inter text-[#929296] text-[13px] md:text-[14px]">
-                    {s.label}
-                  </p>
-
-                </div>
-
-              </Animate>
-            ))}
+            <p className="font-inter text-[#929296] text-[13px] md:text-[14px]">
+              {s.label}
+            </p>
 
           </div>
+
         </Animate>
-      </div>
+      ))}
+
+    </div>
+  </Animate>
+</div>
 
       {/* Submit Review button */}
       <Animate variant="fade-up" className="flex justify-center mx-auto px-4 md:px-9 pb-8 md:pb-16 w-full max-w-360">
@@ -124,7 +123,7 @@ export default async function ClientReviewsPage() {
       )}
 
       {/* CTA */}
-      <CTASection />
+      <CTASection/>
     </div>
   );
 }

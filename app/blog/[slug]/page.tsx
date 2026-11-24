@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPost, getAllPostSlugs } from '@/lib/wordpress'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL } from '@/lib/seo'
 import PostClient from './post-client'
 
 interface Props {

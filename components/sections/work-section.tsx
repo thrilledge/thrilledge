@@ -22,7 +22,7 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
         {/* Header */}
         <div className="mb-16 ">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            We Deliver. Period.
+            We deliver. Period.
           </h2>
         </div>
 
@@ -36,11 +36,11 @@ export async function WorkSection({ show = 6, industry }: { show?: number; indus
                 const longTitle = work.acf?.long_title || work.title.rendered
                 const servicesTags = work.acf?.services
                   ? work.acf.services
-                    .replace(/<[^>]*>/g, '')
-                    .split(/[,\n]/)
-                    .map((s) => s.trim())
-                    .filter(Boolean)
-                    .slice(0, 3)
+                      .replace(/<[^>]*>/g, '')
+                      .split(/[,\n]/)
+                      .map((s) => s.trim())
+                      .filter(Boolean)
+                      .slice(0, 3)
                   : []
 
                 return (

@@ -15,24 +15,19 @@ export const metadata: Metadata = {
 }
 
 const TECHNOLOGIES = [
-  { slug: 'ai-machine-learning', title: 'AI & Machine Learning', tagline: 'Intelligent systems that learn, adapt, and drive real outcomes.', stat: { number: '20+', label: 'AI models in production' }, tools: ['Python', 'TensorFlow', 'PyTorch', 'OpenAI', 'LangChain', 'LangGraph', 'Hugging Face', 'OpenCV', 'spaCy', 'Scikit-learn', 'AWS SageMaker', 'Claude', 'Gemini'], icon: '/ai.png', accent: '#6366f1' },
-  { slug: 'cloud-devops', title: 'Cloud & DevOps', tagline: 'Resilient infrastructure for faster delivery, lower cost, and better uptime.', stat: { number: '99.9%', label: 'Cloud uptime SLA' }, tools: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'CI/CD'], icon: '/backend.png', accent: '#10b981' },
-  { slug: 'data-engineering-big-data', title: 'Data Engineering & Big Data', tagline: 'Reliable pipelines, warehousing, and analytics that turn raw data into decisions.', stat: { number: '100TB+', label: 'Data managed' }, tools: ['Airflow', 'dbt', 'Snowflake', 'BigQuery', 'Kafka', 'Spark', 'PostgreSQL', 'Warehouse'], icon: '/database.png', accent: '#ef4444' },
-  { slug: 'cybersecurity', title: 'Cybersecurity', tagline: 'Secure systems engineered for trust, compliance, and resilient operations.', stat: { number: '24/7', label: 'Threat monitoring coverage' }, tools: ['Zero Trust', 'OWASP', 'SIEM', 'IAM', 'SOC 2', 'Pen Testing', 'WAF', 'Encryption'], icon: '/backend.png', accent: '#f59e0b' },
-  { slug: 'qa-testing-automation', title: 'QA & Testing Automation', tagline: 'Quality engineering that catches issues before users do.', stat: { number: '95%', label: 'Test coverage target' }, tools: ['Playwright', 'Cypress', 'Selenium', 'Postman', 'Jest', 'API Testing', 'CI/CD', 'Performance Testing'], icon: '/services.png', accent: '#8b5cf6' },
+  { slug: 'ai-machine-learning', title: 'AI & Machine Learning', tagline: 'Intelligent systems that learn, adapt, and drive real outcomes.', stat: { number: '20+', label: 'AI models in production' }, tools: ['Python', 'TensorFlow', 'OpenAI', 'LangChain', 'PyTorch', 'Hugging Face', 'Scikit-learn', 'AWS SageMaker'], icon: '/ai.png', accent: '#6366f1' },
   { slug: 'frontend-development', title: 'Frontend Development', tagline: 'Interfaces that are fast, accessible, and built to convert.', stat: { number: '150+', label: 'Frontend projects delivered' }, tools: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Vue.js', 'Framer Motion', 'GraphQL', 'WordPress'], icon: '/frontenddevelopment.png', accent: '#0ea5e9' },
-  { slug: 'backend-development', title: 'Backend Development', tagline: 'Scalable, secure APIs and systems that power your product.', stat: { number: '99.9%', label: 'Uptime SLA' }, tools: ['Node.js', 'Python', 'Django', 'FastAPI', 'Java', '.NET', 'Go', 'Docker', 'GraphQL', 'REST API', 'Kubernetes', 'AWS'], icon: '/backend.png', accent: '#10b981' },
-  { slug: 'mobile-development', title: 'Mobile Development', tagline: 'Native and cross-platform apps users actually keep.', stat: { number: '4.8', label: 'Avg App Store rating' }, tools: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Core ML', 'ML Kit', 'Expo', 'Firebase', 'App Store', 'Play Store'], icon: '/mobi.png', accent: '#f59e0b' },
-  { slug: 'databases', title: 'Databases', tagline: 'Data architectures designed for reliability and scale.', stat: { number: '100TB+', label: 'Data managed' }, tools: ['PostgreSQL', 'MongoDB', 'Redis', 'MySQL', 'Elasticsearch', 'Pinecone', 'Weaviate', 'Supabase', 'PlanetScale', 'DynamoDB'], icon: '/database.png', accent: '#ef4444' },
+  { slug: 'backend-development', title: 'Backend Development', tagline: 'Scalable, secure APIs and systems that power your product.', stat: { number: '99.9%', label: 'Uptime SLA' }, tools: ['Node.js', 'Python', 'Go', 'Docker', 'GraphQL', 'REST API', 'Kubernetes', 'AWS'], icon: '/backend.png', accent: '#10b981' },
+  { slug: 'mobile-development', title: 'Mobile Development', tagline: 'Native and cross-platform apps users actually keep.', stat: { number: '4.8', label: 'Avg App Store rating' }, tools: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Expo', 'Firebase', 'App Store', 'Play Store'], icon: '/mobi.png', accent: '#f59e0b' },
+  { slug: 'databases', title: 'Databases', tagline: 'Data architectures designed for reliability and scale.', stat: { number: '100TB+', label: 'Data managed' }, tools: ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch', 'MySQL', 'Supabase', 'PlanetScale', 'DynamoDB'], icon: '/database.png', accent: '#ef4444' },
   { slug: 'ai-workflow-automation', title: 'AI Workflow Automation', tagline: 'Intelligent pipelines that eliminate manual work and scale operations.', stat: { number: '80%', label: 'Reduction in manual processing time' }, tools: ['LangChain', 'OpenAI', 'Python', 'n8n', 'Zapier', 'AWS Lambda', 'Docker', 'Node.js'], icon: '/ai.png', accent: '#8b5cf6' },
 ]
 
 const ALL_TOOLS = [
   { category: 'Frontend', tools: [{ name: 'React', icon: '/react.svg' }, { name: 'Next.js', icon: '/nextjs.svg' }, { name: 'TypeScript', icon: '/typescript.svg' }, { name: 'Tailwind CSS', icon: '/tailwind.svg' }, { name: 'Vue.js', icon: '/vuejs.svg' }, { name: 'Framer Motion', icon: '/framer.svg' }, { name: 'GraphQL', icon: '/graphql.svg' }, { name: 'WordPress', icon: '/wordpress.svg' }, { name: 'REST API', icon: '/api.svg' }, { name: 'Supabase', icon: '/supabase.svg' }, { name: 'Firebase', icon: '/firebase.svg' }, { name: 'Expo', icon: '/expo.svg' }] },
-  { category: 'Backend & Cloud', tools: [{ name: 'Node.js', icon: '/nodejs.svg' }, { name: 'Python', icon: '/python.svg' }, { name: 'Django', icon: '/python.svg' }, { name: 'FastAPI', icon: '/python.svg' }, { name: 'Java', icon: '/go.svg' }, { name: '.NET', icon: '/api.svg' }, { name: 'Go', icon: '/go.svg' }, { name: 'GraphQL', icon: '/graphql.svg' }, { name: 'REST API', icon: '/api.svg' }, { name: 'Docker', icon: '/docker.svg' }, { name: 'Kubernetes', icon: '/kubernetes.svg' }, { name: 'AWS', icon: '/aws.svg' }] },
-  { category: 'Mobile', tools: [{ name: 'React Native', icon: '/react.svg' }, { name: 'Flutter', icon: '/flutter.svg' }, { name: 'Swift', icon: '/swift.svg' }, { name: 'Kotlin', icon: '/kotlin.svg' }, { name: 'Core ML', icon: '/swift.svg' }, { name: 'ML Kit', icon: '/kotlin.svg' }, { name: 'Expo', icon: '/expo.svg' }, { name: 'Firebase', icon: '/firebase.svg' }, { name: 'App Store', icon: '/appstore.svg' }, { name: 'Play Store', icon: '/playstore.svg' }, { name: 'TypeScript', icon: '/typescript.svg' }, { name: 'GraphQL', icon: '/graphql.svg' }] },
-  { category: 'AI & Automation', tools: [{ name: 'OpenAI', icon: '/openai.svg' }, { name: 'Claude', icon: '/openai.svg' }, { name: 'Gemini', icon: '/openai.svg' }, { name: 'LangChain', icon: '/langchain.svg' }, { name: 'LangGraph', icon: '/langchain.svg' }, { name: 'TensorFlow', icon: '/tensorflow.svg' }, { name: 'PyTorch', icon: '/pytorch.svg' }, { name: 'OpenCV', icon: '/python.svg' }, { name: 'spaCy', icon: '/python.svg' }, { name: 'Hugging Face', icon: '/huggingface.svg' }, { name: 'Scikit-learn', icon: '/scikitlearn.svg' }, { name: 'Python', icon: '/python.svg' }] },
-  { category: 'Data & Security', tools: [{ name: 'PostgreSQL', icon: '/postgresql.svg' }, { name: 'MongoDB', icon: '/mongodb.svg' }, { name: 'Redis', icon: '/redis.svg' }, { name: 'Kafka', icon: '/redis.svg' }, { name: 'Spark', icon: '/python.svg' }, { name: 'dbt', icon: '/docker.svg' }, { name: 'Pinecone', icon: '/aws.svg' }, { name: 'Weaviate', icon: '/aws.svg' }, { name: 'OWASP', icon: '/aws.svg' }, { name: 'SIEM', icon: '/aws.svg' }, { name: 'IAM', icon: '/aws.svg' }, { name: 'Playwright', icon: '/playwright.svg' }] },
+  { category: 'Backend', tools: [{ name: 'Node.js', icon: '/nodejs.svg' }, { name: 'Python', icon: '/python.svg' }, { name: 'Go', icon: '/go.svg' }, { name: 'GraphQL', icon: '/graphql.svg' }, { name: 'REST API', icon: '/api.svg' }, { name: 'Docker', icon: '/docker.svg' }, { name: 'Kubernetes', icon: '/kubernetes.svg' }, { name: 'AWS', icon: '/aws.svg' }, { name: 'Redis', icon: '/redis.svg' }, { name: 'PostgreSQL', icon: '/postgresql.svg' }, { name: 'MongoDB', icon: '/mongodb.svg' }, { name: 'Firebase', icon: '/firebase.svg' }] },
+  { category: 'Mobile', tools: [{ name: 'React Native', icon: '/react.svg' }, { name: 'Flutter', icon: '/flutter.svg' }, { name: 'Swift', icon: '/swift.svg' }, { name: 'Kotlin', icon: '/kotlin.svg' }, { name: 'Expo', icon: '/expo.svg' }, { name: 'Firebase', icon: '/firebase.svg' }, { name: 'App Store', icon: '/appstore.svg' }, { name: 'Play Store', icon: '/playstore.svg' }, { name: 'TypeScript', icon: '/typescript.svg' }, { name: 'GraphQL', icon: '/graphql.svg' }, { name: 'Supabase', icon: '/supabase.svg' }, { name: 'Node.js', icon: '/nodejs.svg' }] },
+  { category: 'AI & Automation', tools: [{ name: 'OpenAI', icon: '/openai.svg' }, { name: 'LangChain', icon: '/langchain.svg' }, { name: 'TensorFlow', icon: '/tensorflow.svg' }, { name: 'PyTorch', icon: '/pytorch.svg' }, { name: 'Hugging Face', icon: '/huggingface.svg' }, { name: 'Scikit-learn', icon: '/scikitlearn.svg' }, { name: 'Python', icon: '/python.svg' }, { name: 'n8n', icon: '/n8n.svg' }, { name: 'Zapier', icon: '/zapier.png' }, { name: 'AWS', icon: '/aws.svg' }, { name: 'Docker', icon: '/docker.svg' }, { name: 'Node.js', icon: '/nodejs.svg' }] },
 ]
 
 export default function TechnologiesPage() {
@@ -48,7 +43,7 @@ export default function TechnologiesPage() {
             <div className="flex flex-col gap-3">
               <span className="font-inter font-semibold text-[11px] text-white/30 uppercase tracking-[0.2em]">Our stack</span>
               <h1 className="max-w-2xl font-mont font-bold text-[40px] text-white lg:text-[72px] leading-none">
-                Built With The<br />Best Tools.
+                Built with the<br />best tools.
               </h1>
             </div>
             <p className="lg:text-[18px] text-[15px] font-inter text-white/70 lg:max-w-1/2 leading-7">
@@ -100,7 +95,7 @@ export default function TechnologiesPage() {
           <div className="flex md:flex-row flex-col justify-between md:items-end gap-6 mb-14">
             <Animate variant="slide-left">
               <h2 className="max-w-125 font-mont font-bold text-[#111212] text-[32px] md:text-[48px] leading-tight">
-                Tools We Use Every Day
+                Tools we use every day
               </h2>
             </Animate>
             <Animate variant="slide-right" delay={100}>
@@ -137,7 +132,7 @@ export default function TechnologiesPage() {
       <ProcessSection />
 
       {/* CTA */}
-      <CTASection />
+     <CTASection/>
 
 
     </div>

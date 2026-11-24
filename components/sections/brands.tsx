@@ -5,8 +5,8 @@ import { useRef, useEffect } from "react";
 import { useInView } from "@/hooks/use-in-view";
 
 const brands = [
-  "ledgerplustax.png", "mrcsaudi.png", "bithub.png", "Inviveo.png",
-  "colbeck.webp", "globaldata365.png", "shotdiffrnt.png", "puresurfschoolgc.png", "limitlessmotionlm.png"];
+  "ledgerplustax.png","mrcsaudi.png","bithub.png","Inviveo.png",
+  "colbeck.webp", "globaldata365.png", "shotdiffrnt.png"];
 
 export default function BrandsMarquee() {
   const trackRef = useRef<HTMLDivElement>(null);

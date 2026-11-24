@@ -33,8 +33,8 @@ export function ColdEmail() {
       const data = await res.json()
 
       if (!res.ok) {
-        if (res.status === 429) {
-          setError('Rate limit reached. Please wait a minute and try again.')
+        if (res.status === 402) {
+          setError('Monthly limit reached. Upgrade to Unlimited for more.')
           return
         }
         throw new Error(data.error || 'Failed to generate')

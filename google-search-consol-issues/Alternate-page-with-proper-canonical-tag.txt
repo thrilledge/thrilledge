@@ -1,0 +1,16 @@
+Alternate page with proper canonical tag
+These pages aren't indexed or served on Google
+
+URL	Last crawled
+https://thrilledge.com/blog
+Nov 12, 2026
+https://thrilledge.com/services
+Nov 12, 2026
+https://thrilledge.com/casestudy
+Nov 12, 2026
+https://thrilledge.com/
+Nov 11, 2026
+https://thrilledge.com/?p=6526
+Nov 6, 2026
+https://thrilledge.com/?p=7864
+Nov 5, 2026

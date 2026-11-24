@@ -32,35 +32,40 @@ export async function POST(request: NextRequest) {
         if (action === 'published' || action === 'updated') {
           revalidatePath(`/blog/${slug}`)
           revalidatePath('/blog')
-          revalidateTag('posts', 'default-cache')
+          revalidateTag('posts', 'max')
         } else if (action === 'deleted') {
           revalidatePath('/blog')
-          revalidateTag('posts', 'default-cache')
+          revalidateTag('posts', 'max')
         }
         break
 
       case 'category':
         revalidatePath(`/categories/${slug}`)
         revalidatePath('/categories')
-        revalidateTag('categories', 'default-cache')
+        revalidateTag('categories', 'max')
         break
 
       case 'work':
         if (action === 'published' || action === 'updated') {
           revalidatePath(`/casestudy/${slug}`)
+          revalidatePath('/casestudy')
           revalidatePath('/')
-          revalidateTag('work-items', 'default-cache')
+          revalidateTag('work-items', 'max')
+        } else if (action === 'deleted') {
+          revalidatePath('/casestudy')
+          revalidatePath('/')
+          revalidateTag('work-items', 'max')
         }
         break
 
       case 'service':
         revalidatePath('/')
-        revalidateTag('services', 'default-cache')
+        revalidateTag('services', 'max')
         break
 
       case 'testimonial':
         revalidatePath('/')
-        revalidateTag('testimonials', 'default-cache')
+        revalidateTag('testimonials', 'max')
         break
 
       case 'all':
@@ -97,7 +102,7 @@ export async function POST(request: NextRequest) {
 // GET endpoint for testing
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('Authorization')
-
+  
   if (authHeader !== `Bearer ${REVALIDATE_SECRET}`) {
     return NextResponse.json(
       { error: 'Unauthorized' },

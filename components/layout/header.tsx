@@ -40,9 +40,6 @@ import {
   Bitcoin,
   Landmark,
   Truck,
-  Scale,
-  ShoppingBag,
-  Home,
   GitBranch,
   TrendingUp,
   Search,
@@ -55,10 +52,7 @@ import {
   Globe,
   Linkedin,
   Instagram,
-  ShieldCheck,
-  BarChart3,
-  Bug,
-  BookOpen,
+  
 } from 'lucide-react'
 
 import { MegaMenu } from './mega-menu'
@@ -80,24 +74,10 @@ const mobileNav = [
       },
 
       {
-        label: 'Team',
-        href: '/team',
-        desc: 'Meet the people behind our work',
-        icon: Info,
-      },
-
-      {
         label: 'Reviews',
         href: '/client-reviews',
         desc: 'What clients say about us',
         icon: Star,
-      },
-
-      {
-        label: 'Case Studies',
-        href: '/casestudy',
-        desc: 'Explore our successful projects',
-        icon: BriefcaseBusiness,
       },
 
       {
@@ -246,13 +226,6 @@ const mobileNav = [
         desc: 'High converting Shopify stores',
         icon: ShoppingCart,
       },
-
-      {
-        label: 'SAP Learning',
-        href: '/services/sap-learning',
-        desc: 'SAP training & consulting career paths',
-        icon: BookOpen,
-      },
     ],
   },
 
@@ -295,34 +268,6 @@ const mobileNav = [
         desc: 'Secure scalable databases',
         icon: Database,
       },
-
-      {
-        label: 'Cloud & DevOps',
-        href: '/technologies/cloud-devops',
-        desc: 'AWS, Azure, GCP & CI/CD',
-        icon: Cloud,
-      },
-
-      {
-        label: 'Data Engineering & Big Data',
-        href: '/technologies/data-engineering-big-data',
-        desc: 'Pipelines & warehousing',
-        icon: BarChart3,
-      },
-
-      {
-        label: 'Cybersecurity',
-        href: '/technologies/cybersecurity',
-        desc: 'Security-first engineering',
-        icon: ShieldCheck,
-      },
-
-      {
-        label: 'QA & Testing Automation',
-        href: '/technologies/qa-testing-automation',
-        desc: 'Automated quality assurance',
-        icon: Bug,
-      },
     ],
   },
 
@@ -341,7 +286,7 @@ const mobileNav = [
       {
         label: 'Education',
         href: '/industries/education',
-        desc: 'Education solutions',
+        desc: 'EdTech solutions',
         icon: GraduationCap,
       },
 
@@ -371,27 +316,6 @@ const mobileNav = [
         href: '/industries/logistics',
         desc: 'Supply chain & logistics systems',
         icon: Truck,
-      },
-
-      {
-        label: 'Legal Services',
-        href: '/industries/legal-services',
-        desc: 'Legal tech & case management',
-        icon: Scale,
-      },
-
-      {
-        label: 'eCommerce & Retail',
-        href: '/industries/ecommerce-retail',
-        desc: 'Commerce & retail platforms',
-        icon: ShoppingBag,
-      },
-
-      {
-        label: 'Home Services',
-        href: '/industries/home-services',
-        desc: 'Field service & booking systems',
-        icon: Home,
       },
     ],
   },
@@ -465,12 +389,12 @@ function AccordionItem({
         )}
       >
         <div className="pl-2 pb-3 flex flex-col gap-2">
-          {item.children.map((child, index) => {
+          {item.children.map((child) => {
             const ChildIcon = child.icon
 
             return (
               <Link
-                key={`${child.href}-${child.label}-${index}`}
+                key={child.href}
                 href={child.href}
                 onClick={onClose}
                 className="
@@ -731,7 +655,7 @@ function MobileDrawer({
                     transition-all
                   "
                 >
-                  <Instagram size={18} />
+                 <Instagram size={18} />
                 </Link>
               </div>
             </div>

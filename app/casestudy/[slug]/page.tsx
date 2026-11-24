@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getWorkItem, getAllWorkSlugs } from '@/lib/wordpress'
-import { SITE_URL } from '@/lib/site'
-import WorkClient from './casestudy-client'
+import { SITE_URL } from '@/lib/seo'
+import WorkClient from './work-client'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -49,7 +49,7 @@ export default async function WorkPage({ params }: Props) {
   // Real 404 for unknown slugs (previously the 200 shell deferred this to the client).
   if (!work) notFound()
 
-  const casestudySchema = {
+  const caseStudySchema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     name: work.title.rendered.replace(/<[^>]*>/g, ''),
@@ -63,10 +63,7 @@ export default async function WorkPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(casestudySchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
       <WorkClient params={params} />
     </>
   )

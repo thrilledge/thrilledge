@@ -8,7 +8,6 @@ import { Animate } from '@/components/common/animate'
 export const metadata: Metadata = {
   title: 'Blog | Thrill Edge Technologies',
   description: 'Expert insights, tutorials, and industry updates from Thrill Edge Technologies.',
-  alternates: { canonical: 'https://www.thrilledge.com/blog' },
 }
 
 export default async function BlogPage() {
